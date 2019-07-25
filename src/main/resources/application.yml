@@ -35,7 +35,6 @@ spring:
   mvc:
     locale: pl_PL
     locale-resolver: fixed
-
 # ===============================
 # = Logging configurations
 # ===============================
@@ -45,3 +44,9 @@ logging:
     com.memorynotfound: DEBUG
     org.springframework.web: INFO
     org.springframework.security: INFO
+server:
+  error:
+    whitelabel:
+      enabled: false
+    path: /errors/404.html
+

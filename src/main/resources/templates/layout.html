@@ -1,0 +1,161 @@
+<!DOCTYPE html>
+<html lang="pl" xmlns="http://www.w3.org/1999/xhtml" xmlns:th="http://www.thymeleaf.org"
+      xmlns:layout="http://www.ultraq.net.nz/web/thymeleaf/layout">
+<head>
+    <title>HeadMasters - Future hosting for modern warfighters</title>
+    <meta charset="UTF-8">
+    <meta name="description" content="HeadMasters - Future hosting for modern warfighters">
+    <meta name="keywords" content="hosting, gaming, rent, server">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+<!--     Favicon-->
+        <link href="img/favicon.ico" rel="shortcut icon"/>
+
+    <!-- Google Font -->
+    <link href="https://fonts.googleapis.com/css?family=Poppins:400,400i,500,500i,600,600i,700,700i" rel="stylesheet">
+
+    <!-- Stylesheets -->
+
+    <link rel="stylesheet" type="text/css" media="all" href="css/bootstrap.min.css"/>
+    <link rel="stylesheet" type="text/css" media="all" href="css/font-awesome.min.css"/>
+    <link rel="stylesheet" type="text/css" media="all" href="css/magnific-popup.css"/>
+    <link rel="stylesheet" type="text/css" media="all" href="css/owl.carousel.min.css"/>
+    <link rel="stylesheet" type="text/css" media="all" href="css/style.css"/>
+    <link rel="stylesheet" type="text/css" media="all" href="css/animate.css"/>
+
+<!--    <link rel="stylesheet" type="text/css" media="all" th:href="@{static/css/bootstrap.min.css}"/>-->
+<!--    <link rel="stylesheet" type="text/css" media="all" th:href="@{/css/font-awesome.min.css}"/>-->
+<!--    <link rel="stylesheet" type="text/css" media="all" th:href="@{/css/magnific-popup.css}"/>-->
+<!--    <link rel="stylesheet" type="text/css" media="all" th:href="@{/css/owl.carousel.min.css}"/>-->
+<!--    <link rel="stylesheet" type="text/css" media="all" th:href="@{/css/style.css}"/>-->
+<!--    <link rel="stylesheet" type="text/css" media="all" th:href="@{/css/animate.css}"/>-->
+</head>
+<body>
+<!-- Header section -->
+<header class="header-section">
+    <div class="container">
+        <a th:href="@{/}" class="site-logo">
+            <h3 class="text-white">HEAD<span class="btn-danger"><b>MASTERS</b></span></h3>
+            <p class="text-uppercase">pro host for pro players</p>
+        </a>
+        <!-- Switch button -->
+        <div class="nav-switch">
+            <div class="ns-bar"></div>
+        </div>
+        <div class="header-right">
+            <ul class="main-menu">
+                <li><a th:href="@{/}" th:text="#{top.menu.home}"></a></li>
+                <li><a th:href="@{/about}" th:text="#{top.menu.aboutus}"></a></li>
+                <li><a th:href="@{/service}" th:text="#{top.menu.services}"></a></li>
+                <li><a th:href="@{/servers}" th:text="#{top.menu.servers}"></a></li>
+                <li><a th:href="@{/contact}" th:text="#{top.menu.contact}"></a></li>
+            </ul>
+            <div class="header-btns">
+                <a th:href="@{/help}" class="site-btn sb-c1" th:text="#{top.support}"></a>
+                <a th:href="@{/login}" class="site-btn sb-c2" th:text="#{top.login}"></a>
+                <a th:href="@{/registration}" class="site-btn sb-c3" th:text="#{top.register}"></a>
+            </div>
+        </div>
+    </div>
+</header>
+<!-- Views section Start -->
+<div layout:fragment="fragOne"></div>
+<div layout:fragment="fragOneBy"></div>
+<div layout:fragment="fragTwo"></div>
+<div layout:fragment="fragThree"></div>
+<div layout:fragment="fragFour"></div>
+<div th:fragment="milestone"></div>
+<!-- Views section End -->
+
+<!-- Footer top section -->
+<section class="footer-top-section">
+    <div class="container">
+        <div class="row">
+            <div class="col-lg-3 col-md-12">
+                <div class="footer-widget about-widget">
+                    <h6 class="text-white">HEADMASTERS</h6>
+                    <p class="text-uppercase">pro host for pro players</p>
+                    <p th:text="#{footer.company}"></p>
+                    <div class="social-links">
+                        <a href="#"><i class="fa fa-facebook"></i></a>
+                        <a href="#"><i class="fa fa-twitter"></i></a>
+                        <a href="#"><i class="fa fa-behance"></i></a>
+                        <a href="#"><i class="fa fa-linkedin"></i></a>
+                    </div>
+                </div>
+            </div>
+            <div class="col-lg-3 col-sm-4">
+                <div class="footer-widget">
+                    <h5 class="fw-title" th:text="#{menu.ourproducts}"></h5>
+                    <ul>
+                        <li><a href="#" th:text="#{op.public}"></a></li>
+                        <li><a href="#" th:text="#{op.private}"></a></li>
+                        <li><a href="#" th:text="#{op.custom}"></a></li>
+                    </ul>
+                </div>
+            </div>
+            <div class="col-lg-3 col-sm-4">
+                <div class="footer-widget">
+                    <h5 class="fw-title" th:text="#{menu.oursolutions}">Our Solutions</h5>
+                    <ul>
+                        <li><a href="#" th:text="#{os.admin}"></a></li>
+                        <li><a href="#" th:text="#{os.mod}"></a></li>
+                        <li><a href="#" th:text="#{os.ftp}">Servers</a></li>
+                    </ul>
+                </div>
+            </div>
+            <div class="col-lg-3 col-sm-4">
+                <div class="footer-widget">
+                    <h5 class="fw-title" th:text="#{menu.partners}"></h5>
+                    <ul>
+                        <li><a href="#" th:text="#{p.esl}"></a></li>
+                        <li><a href="#" th:text="#{p.link1}"></a></li>
+                        <li><a href="#" th:text="#{p.link2}"></a></li>
+                    </ul>
+                </div>
+            </div>
+        </div>
+    </div>
+</section>
+<!-- Footer top section end -->
+
+<!-- Footer section -->
+<footer class="footer-section">
+    <div class="container">
+        <div class="footer-nav">
+            <ul>
+                <li><a th:href="@{/}" th:text="#{top.menu.home}"></a></li>
+                <li><a th:href="@{/about}" th:text="#{top.menu.aboutus}"></a></li>
+                <li><a th:href="@{/service}" th:text="#{top.menu.services}"></a></li>
+                <li><a th:href="@{/servers}" th:text="#{top.menu.servers}"></a></li>
+                <li><a th:href="@{/contact}" th:text="#{top.menu.contact}"></a></li>
+            </ul>
+        </div>
+        <div class="copyright">
+            <p><!-- Link back to Colorlib can't be removed. Template is licensed under CC BY 3.0. -->
+                Copyright &copy; by <a th:href="@{/}">HeadMasters</a>
+                <script>document.write(new Date().getFullYear());</script>
+                All rights reserved | This template is made with <i class="fa fa-heart-o" aria-hidden="true"></i> by
+                <a href="https://colorlib.com" target="_blank">Colorlib</a>
+                <!-- Link back to Colorlib can't be removed. Template is licensed under CC BY 3.0. -->
+            </p>
+        </div>
+    </div>
+</footer>
+<!-- Footer section end -->
+
+
+<!--====== Javascripts & Jquery ======-->
+<script type="text/javascript" src="js/jquery-3.2.1.min.js"></script>
+<script type="text/javascript" src="js/bootstrap.min.js"></script>
+<script type="text/javascript" src="js/owl.carousel.min.js"></script>
+<script type="text/javascript" src="js/jquery.magnific-popup.min.js"></script>
+<script type="text/javascript" src="js/circle-progress.min.js"></script>
+<script type="text/javascript" src="/js/main.js"></script>
+<!--<script type="text/javascript" th:src="@{/../../js/jquery-3.2.1.min.js}"></script>-->
+<!--<script type="text/javascript" th:src="@{/../../js/bootstrap.min.js}"></script>-->
+<!--<script type="text/javascript" th:src="@{/../../js/owl.carousel.min.js}"></script>-->
+<!--<script type="text/javascript" th:src="@{/../../js/jquery.magnific-popup.min.js}"></script>-->
+<!--<script type="text/javascript" th:src="@{/../../js/circle-progress.min.js}"></script>-->
+<!--<script type="text/javascript" th:src="@{/../../js/main.js}"></script>-->
+</body>
+</html>
