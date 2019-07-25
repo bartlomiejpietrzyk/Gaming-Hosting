@@ -27,6 +27,10 @@ class SpringSecurity extends WebSecurityConfigurerAdapter {
                     .authorizeRequests()
                     .antMatchers(
                             "/registration**",
+                            "/vendor/**",
+                            "/Source/**",
+                            "/scss/**",
+                            "/icon-fonts/**",
                             "/js/**",
                             "/css/**",
                             "/img/**",
