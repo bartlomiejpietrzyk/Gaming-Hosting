@@ -3,6 +3,8 @@ import java.util.Arrays;
 import java.util.Collection;
 import java.util.stream.Collectors;
 
+import com.github.bartlomiejpietrzyk.registration.UserRegistrationDto;
+import com.github.bartlomiejpietrzyk.registration.UserRegistrationService;
 import com.github.bartlomiejpietrzyk.user.*;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.security.core.GrantedAuthority;
@@ -13,7 +15,7 @@ import org.springframework.security.crypto.bcrypt.BCryptPasswordEncoder;
 import org.springframework.stereotype.Service;
 
 @Service
-public class UserServiceImpl implements UserService {
+public class UserRegistrationServiceImpl implements UserRegistrationService {
 
     @Autowired
     private UserRepository userRepository;
@@ -25,7 +27,7 @@ public class UserServiceImpl implements UserService {
     public UserDetails loadUserByUsername(String email) throws UsernameNotFoundException {
         User user = userRepository.findByEmail(email);
         if (user == null){
-            throw new UsernameNotFoundException("Invalid username or password.");
+            throw new UsernameNotFoundException("Invalid email or password.");
         }
         return new org.springframework.security.core.userdetails.User(user.getEmail(),
                 user.getPassword(),
