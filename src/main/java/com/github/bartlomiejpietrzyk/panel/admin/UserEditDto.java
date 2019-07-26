@@ -1,28 +1,22 @@
-package com.github.bartlomiejpietrzyk.user;
+package com.github.bartlomiejpietrzyk.panel.admin;
 
 import com.github.bartlomiejpietrzyk.validator.FieldMatch;
 import org.hibernate.validator.constraints.Email;
 import org.hibernate.validator.constraints.NotEmpty;
 
-import javax.validation.constraints.AssertTrue;
-
 @FieldMatch.List({
-        @FieldMatch(first = "password", second = "confirmPassword", message = "The password fields must match"),
         @FieldMatch(first = "email", second = "confirmEmail", message = "The email fields must match")
 })
-public class UserRegistrationDto {
+public class UserEditDto {
+
+    @NotEmpty
+    private String username;
 
     @NotEmpty
     private String firstName;
 
     @NotEmpty
     private String lastName;
-
-    @NotEmpty
-    private String password;
-
-    @NotEmpty
-    private String confirmPassword;
 
     @Email
     @NotEmpty
@@ -32,8 +26,22 @@ public class UserRegistrationDto {
     @NotEmpty
     private String confirmEmail;
 
-    @AssertTrue
-    private Boolean terms;
+    @NotEmpty
+    private String address;
+
+    @NotEmpty
+    private String postCode;
+
+    @NotEmpty
+    private String city;
+
+    public String getUsername() {
+        return username;
+    }
+
+    public void setUsername(String username) {
+        this.username = username;
+    }
 
     public String getFirstName() {
         return firstName;
@@ -49,22 +57,6 @@ public class UserRegistrationDto {
 
     public void setLastName(String lastName) {
         this.lastName = lastName;
-    }
-
-    public String getPassword() {
-        return password;
-    }
-
-    public void setPassword(String password) {
-        this.password = password;
-    }
-
-    public String getConfirmPassword() {
-        return confirmPassword;
-    }
-
-    public void setConfirmPassword(String confirmPassword) {
-        this.confirmPassword = confirmPassword;
     }
 
     public String getEmail() {
@@ -83,11 +75,27 @@ public class UserRegistrationDto {
         this.confirmEmail = confirmEmail;
     }
 
-    public Boolean getTerms() {
-        return terms;
+    public String getAddress() {
+        return address;
     }
 
-    public void setTerms(Boolean terms) {
-        this.terms = terms;
+    public void setAddress(String address) {
+        this.address = address;
+    }
+
+    public String getPostCode() {
+        return postCode;
+    }
+
+    public void setPostCode(String postCode) {
+        this.postCode = postCode;
+    }
+
+    public String getCity() {
+        return city;
+    }
+
+    public void setCity(String city) {
+        this.city = city;
     }
 }
