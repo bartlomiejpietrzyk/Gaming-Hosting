@@ -1,10 +1,31 @@
 package com.github.bartlomiejpietrzyk.user;
 
-import org.springframework.security.core.userdetails.UserDetailsService;
+import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.stereotype.Service;
+import org.springframework.transaction.annotation.Transactional;
 
-public interface UserService extends UserDetailsService {
+import java.util.List;
+import java.util.stream.Collectors;
 
-    User findByEmail(String email);
+@Service
+@Transactional
+public class UserService {
 
-    User save(UserRegistrationDto registration);
+    private UserRepository userRepository;
+
+    @Autowired
+    public UserService(UserRepository userRepository) {
+        this.userRepository = userRepository;
+    }
+
+    public List<UserDto> findAll() {
+        return userRepository
+                .findAll()
+                .stream()
+                .map(UserDto::new)
+                .collect(Collectors.toList());
+    }
+    public UserDto findUserById(String id) {
+        return new UserDto(userRepository.findUserById(Long.valueOf(id)));
+    }
 }
