@@ -19,9 +19,14 @@ public class HomeController {
         return "login";
     }
 
+    @PostMapping("/login")
+    public String logged() {
+        return "redirect:/api/dashboard";
+    }
+
     @GetMapping("/user")
     public String userIndex() {
-        return "redirect:/api/dashboard";
+        return "panel/dashboard";
     }
 
     @GetMapping("/about")

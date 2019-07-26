@@ -22,6 +22,7 @@ public class UserDto {
 
     public UserDto(User that) {
 //        this.uuid = that.getUuid();
+        this.id = String.valueOf(that.getId());
         this.email = that.getEmail();
         this.password = that.getPassword();
         this.firstName = that.getLastName();

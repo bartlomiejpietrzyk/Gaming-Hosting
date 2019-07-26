@@ -1,5 +1,6 @@
 package com.github.bartlomiejpietrzyk.user;
 
+import com.github.bartlomiejpietrzyk.panel.admin.UserEditDto;
 import org.springframework.data.jpa.repository.JpaRepository;
 import org.springframework.stereotype.Repository;
 
@@ -14,4 +15,5 @@ public interface UserRepository extends JpaRepository<User, Long> {
     void delete(Long id);
 
     <S extends User> S saveAndFlush(S s);
+    User saveAndFlush(UserEditDto userDto);
 }

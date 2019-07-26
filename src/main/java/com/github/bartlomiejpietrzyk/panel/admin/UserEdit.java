@@ -11,7 +11,7 @@ import org.springframework.web.bind.annotation.*;
 import javax.validation.Valid;
 
 @Controller
-@RequestMapping("/api/admin/")
+@RequestMapping("/api/admin/user")
 public class UserEdit {
     private UserService userService;
 
@@ -28,8 +28,18 @@ public class UserEdit {
         return "panel/adminUserEdit";
     }
 
-    @PostMapping("/edit")
+    @PutMapping("/edit")
     public String userUpdated(@ModelAttribute("user") @Valid UserEditDto userDto, BindingResult result) {
-        return null;
+
+        if (result.hasErrors()) {
+            return "/edit";
+        }
+        userService.update(userDto);
+        return "panel/dashboard";
+    }
+    @DeleteMapping("/delete")
+    public String deleteUser(@PathVariable String id) {
+        userService.deleteUser(id);
+        return "redirect:/api/admin/user/list";
     }
 }
