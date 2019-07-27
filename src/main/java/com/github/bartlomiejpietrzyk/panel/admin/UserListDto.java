@@ -1,20 +1,24 @@
 package com.github.bartlomiejpietrzyk.panel.admin;
 
 import com.github.bartlomiejpietrzyk.user.User;
-import com.github.bartlomiejpietrzyk.validator.FieldMatch;
-import org.hibernate.validator.constraints.Email;
-import org.hibernate.validator.constraints.NotEmpty;
-import org.springframework.beans.factory.annotation.Autowired;
 
-@FieldMatch.List({
-        @FieldMatch(first = "email", second = "confirmEmail", message = "The email fields must match")
-})
-public class UserEditDto {
-    @Autowired
-    public UserEditDto() {
+public class UserListDto {
+    private String id;
+
+    private String firstName;
+    private String lastName;
+    private String email;
+    private String confirmEmail;
+    private String mobile;
+    private String address;
+    private String postCode;
+    private String city;
+
+    public UserListDto() {
     }
 
-    public UserEditDto(User that) {
+    public UserListDto(User that) {
+        this.id = String.valueOf(that.getId());
         this.firstName = that.getFirstName();
         this.lastName = that.getLastName();
         this.email = that.getEmail();
@@ -22,40 +26,7 @@ public class UserEditDto {
         this.address = that.getAddress();
         this.postCode = that.getPostCode();
         this.city = that.getCity();
-//        this.locked = that.getLocked();
     }
-
-    private String id;
-
-    @NotEmpty
-    private String firstName;
-
-    @NotEmpty
-    private String lastName;
-
-    @Email
-    @NotEmpty
-    private String email;
-
-    @Email
-    @NotEmpty
-    private String confirmEmail;
-
-    @NotEmpty
-    private String mobile;
-
-    @NotEmpty
-    private String address;
-
-    @NotEmpty
-    private String postCode;
-
-    @NotEmpty
-    private String city;
-
-    private Boolean enabled;
-
-    private Boolean locked;
 
     public String getId() {
         return id;
@@ -127,21 +98,5 @@ public class UserEditDto {
 
     public void setCity(String city) {
         this.city = city;
-    }
-
-    public Boolean getLocked() {
-        return locked;
-    }
-
-    public void setLocked(Boolean locked) {
-        this.locked = locked;
-    }
-
-    public Boolean getEnabled() {
-        return enabled;
-    }
-
-    public void setEnabled(Boolean enabled) {
-        this.enabled = enabled;
     }
 }

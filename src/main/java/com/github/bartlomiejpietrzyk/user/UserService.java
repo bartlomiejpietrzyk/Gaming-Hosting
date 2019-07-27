@@ -48,10 +48,15 @@ public class UserService {
         user.setAddress(userEditDto.getAddress());
         user.setPostCode(userEditDto.getPostCode());
         user.setCity(userEditDto.getCity());
+        user.setLocked(userEditDto.getLocked());
         return user;
     }
 
     public void deleteUser(Long id) {
         userRepository.delete(id);
+    }
+
+    public void deleteUser(User user) {
+        userRepository.delete(user);
     }
 }

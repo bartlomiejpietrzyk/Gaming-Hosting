@@ -2,6 +2,7 @@ package com.github.bartlomiejpietrzyk.registration;
 
 import com.github.bartlomiejpietrzyk.validator.FieldMatch;
 import org.hibernate.validator.constraints.Email;
+import org.hibernate.validator.constraints.Length;
 import org.hibernate.validator.constraints.NotEmpty;
 
 import javax.validation.constraints.AssertTrue;
@@ -11,10 +12,11 @@ import javax.validation.constraints.AssertTrue;
         @FieldMatch(first = "email", second = "confirmEmail", message = "The email fields must match")
 })
 public class UserRegistrationDto {
-
+    @Length(min = 8, max = 32)
     @NotEmpty
     private String password;
 
+    @Length(min = 8, max = 32)
     @NotEmpty
     private String confirmPassword;
 

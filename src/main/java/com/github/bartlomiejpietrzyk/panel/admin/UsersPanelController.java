@@ -1,5 +1,6 @@
 package com.github.bartlomiejpietrzyk.panel.admin;
 
+import com.github.bartlomiejpietrzyk.user.UserRepository;
 import com.github.bartlomiejpietrzyk.user.UserService;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
@@ -15,6 +16,7 @@ import java.util.List;
 public class UsersPanelController {
 
     private UserService userService;
+    private UserRepository userRepository;
 
     @Autowired
     public UsersPanelController(UserService userService) {
@@ -27,7 +29,6 @@ public class UsersPanelController {
         return "panel/adminUserList";
     }
 
-    //
     @ModelAttribute("usersList")
     public List<UserListDto> list() {
         return userService.findAll();
@@ -42,18 +43,18 @@ public class UsersPanelController {
     }
 
     @PostMapping("/edit")
-    public String editForm(@ModelAttribute("user") @Valid UserEditDto userDto, BindingResult result) {
-//        if (result.hasErrors()) {
-//            return "redirect:/api/admin/user/edit?failed";
-//        }
-        System.out.println(userDto.getId());
+    public String editForm(@ModelAttribute("user") @Valid UserEditDto userDto, BindingResult result, Model model) {
+
+        if (result.hasErrors()) {
+            return "redirect:/api/admin/user/edit?id=" + userDto.getId();
+        }
         userService.editUpdate(userDto);
         return "redirect:/api/admin/user/edit?id=" + userDto.getId();
     }
 
-//    @DeleteMapping("/delete")
-//    public String deleteUser(@PathVariable String id) {
-//        userService.deleteUser(id);
-//        return "redirect:/api/admin/user/list";
-//    }
+    @RequestMapping("/delete")
+    public String deleteUser(@RequestParam String id) {
+        userService.deleteUser(Long.valueOf(id));
+        return "redirect:/api/admin/user/list";
+    }
 }

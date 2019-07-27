@@ -1,0 +1,90 @@
+<!DOCTYPE HTML>
+<html xmlns:th="http://www.thymeleaf.org"
+      xmlns:layout="http://www.ultraq.net.nz/web/thymeleaf/layout"
+      layout:decorate="~{panel/template}" lang="pl">
+<body>
+<section layout:fragment="content">
+
+    <!-- Begin Page Content -->
+    <div class="container-fluid">
+        <!---->
+        <!-- Page Heading -->
+        <div class="d-sm-flex align-items-center justify-content-between mb-4">
+            <h1 class="h3 mb-0 text-gray-800" th:text="#{panel.text.usersList}">List of Users</h1>
+        </div>
+
+        <!-- DataTales Example -->
+        <div class="card shadow mb-4">
+            <div class="card-header py-3">
+                <h6 class="m-0 font-weight-bold text-primary"></h6>
+            </div>
+            <div class="card-body">
+                <div class="table-responsive">
+                    <table class="table table-bordered" id="dataTable" width="100%" cellspacing="0">
+                        <thead>
+                        <tr>
+                            <th th:text="#{panel.text.id}">#ID#</th>
+                            <th th:text="#{panel.text.email}">E-Mail</th>
+                            <th th:text="#{panel.text.firstname}">First Name</th>
+                            <th th:text="#{panel.text.lastname}">Last Name</th>
+                            <th th:text="#{panel.text.address}">Address</th>
+                            <th th:text="#{panel.text.post}">Post-Code</th>
+                            <th th:text="#{panel.text.city}">City</th>
+                            <th th:text="#{panel.text.action}">Action</th>
+                        </tr>
+                        </thead>
+
+                        <tbody>
+                        <!--/*@thymesVar id="usersList" type="com.github.bartlomiejpietrzyk.panel.admin.UsersPanelController"*/-->
+                        <tr th:each="user : ${usersList}">
+                            <td th:text="${user.id}"></td>
+                            <td th:text="${user.email}"></td>
+                            <td th:text="${user.firstName}"></td>
+                            <td th:text="${user.lastName}"></td>
+                            <td th:text="${user.address}"></td>
+                            <td th:text="${user.postCode}"></td>
+                            <td th:text="${user.city}"></td>
+                            <td>
+                                <a th:href="@{/api/admin/user/details(id=${user.id})}">
+                                    <input type="hidden" name="id" th:value="${user.id}">
+                                    <input type="submit" th:value="#{panel.text.button.details}" class="btn btn-dark"/></a>
+
+                                <a th:href="@{/api/admin/user/edit(id=${user.id})}">
+                                    <input type="hidden" name="id" th:value="${user.id}">
+                                    <input type="submit" th:value="#{panel.text.button.edit}" class="btn btn-info"/></a>
+
+                                <a th:href="@{/api/admin/user/delete(id=${user.id})}"
+                                   th:action="@{/api/admin/user/delete(id=${user.id})}"
+                                   method="post">
+                                    <!--                                        <input type="hidden" name="id" th:value="${user.id}">-->
+                                    <input type="submit" th:value="#{panel.text.button.delete}"
+                                           class="btn btn-danger"
+                                           onclick="return confirm('Are you sure to delete?')"></a>
+                            </td>
+                        </tr>
+                        </tbody>
+                    </table>
+                </div>
+            </div>
+        </div>
+
+        <!-- Content Row -->
+        <div class=" row">
+            <!---->
+            <!-- Content Column -->
+            <div class="col-lg-6 mb-4">
+                <!---->
+                <!---->
+            </div>
+            <!---->
+            <div class="col-lg-6 mb-4">
+                <!---->
+            </div>
+        </div>
+        <!---->
+    </div>
+    <!-- /.container-fluid -->
+    <!---->
+</section>
+</body>
+</html>

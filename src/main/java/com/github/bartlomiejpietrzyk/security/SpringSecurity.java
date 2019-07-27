@@ -19,11 +19,17 @@ class SpringSecurity extends WebSecurityConfigurerAdapter {
 
     @Override
     protected void configure(HttpSecurity http) throws Exception {
+//        http
+//                .csrf().disable()
+//                .authorizeRequests()
+//                .antMatchers("/api/admin/**").hasRole("ADMIN")
+//                .antMatchers("/api/user/**").hasRole("USER")
+//                .anyRequest().authenticated();
         http
                 .authorizeRequests()
                 .antMatchers(
                         "/registration**",
-                        "/**",
+                        "/*",
                         "/help**",
                         "/contact**",
                         "/about**",
@@ -37,8 +43,8 @@ class SpringSecurity extends WebSecurityConfigurerAdapter {
                         "/css/**",
                         "/img/**",
                         "/webjars/**").permitAll()
-                .antMatchers("/api/admin/**").hasRole("ADMIN")
-                .antMatchers("/api/user/**").hasRole("USER")
+//                .antMatchers("/api/admin/**").access("hasRole('ADMIN')")
+//                .antMatchers("/api/user/**").hasRole("USER")
                 .anyRequest().authenticated()
                 .and()
                 .formLogin()
@@ -55,6 +61,7 @@ class SpringSecurity extends WebSecurityConfigurerAdapter {
                 .and()
                 .sessionManagement()
                 .sessionCreationPolicy(SessionCreationPolicy.ALWAYS);
+
     }
 
     @Bean

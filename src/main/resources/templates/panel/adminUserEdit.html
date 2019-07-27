@@ -1,0 +1,159 @@
+<!DOCTYPE HTML>
+<html xmlns:th="http://www.thymeleaf.org"
+      xmlns:layout="http://www.ultraq.net.nz/web/thymeleaf/layout"
+      layout:decorate="panel/template" lang="pl">
+<body>
+<section layout:fragment="content">
+
+    <!-- Begin Page Content -->
+    <div class="container-fluid">
+        <!---->
+        <!-- Page Heading -->
+        <div class="d-sm-flex align-items-center justify-content-between mb-4">
+            <h1 class="h3 mb-0 text-gray-800">List of Users</h1>
+        </div>
+
+        <!-- DataTales Example -->
+        <div class="card shadow mb-4">
+            <div class="card-header py-3">
+                <h6 class="m-0 font-weight-bold text-primary">User edit site</h6>
+            </div>
+            <div class="card-body">
+                <div class="table-responsive">
+                    <table>
+                        <form th:action="@{/api/admin/user/edit(id=${userId})}" th:object="${user}" th:method="post">
+
+                            <p>User ID: <span th:text=" ${userId}"></span></p>
+                            <!--                            <p>Locked: <span th:text="${locked}"></span></p>-->
+
+                            <div class="form-group text-monospace">
+                                <label for="email" class="text-monospace card-title"
+                                       th:text="#{form.email}">E-Mail</label>
+                                <input type="text"
+                                       id="email"
+                                       name="email"
+                                       class="form-control"
+                                       autofocus="autofocus"
+                                       th:field="*{email}"/>
+
+                            </div>
+                            <div class="form-group text-monospace">
+                                <label for="firstname" class="text-monospace card-title"
+                                       th:text="#{form.firstname}">E-Mail</label>
+                                <input type="text"
+                                       id="firstname"
+                                       name="firstname"
+                                       class="form-control"
+                                       autofocus="autofocus"
+                                       th:field="*{firstName}"/>
+                            </div>
+                            <div class="form-group text-monospace">
+                                <label for="email" class="text-monospace card-title"
+                                       th:text="#{form.lastname}">E-Mail</label>
+                                <input type="text"
+                                       id="lastname"
+                                       name="lastname"
+                                       class="form-control"
+                                       autofocus="autofocus"
+                                       th:field="*{lastName}"/>
+                            </div>
+                            <div class="form-group text-monospace">
+                                <label for="mobile" class="text-monospace card-title"
+                                       th:text="#{form.mobile}">Mobile</label>
+                                <input th:type="text"
+                                       id="mobile"
+                                       name="mobile"
+                                       class="form-control"
+                                       autofocus="autofocus"
+                                       th:maxlength="9"
+                                       th:field="*{mobile}"/>
+
+                            </div>
+                            <div class="form-group text-monospace">
+                                <label for="address" class="text-monospace card-title"
+                                       th:text="#{form.address}">Address</label>
+                                <input type="text"
+                                       id="address"
+                                       name="address"
+                                       class="form-control"
+                                       autofocus="autofocus"
+                                       th:field="*{address}"/>
+
+                            </div>
+
+                            <div class="form-group text-monospace">
+                                <label for="postCode" class="text-monospace card-title"
+                                       th:text="#{form.postcode}">Post-Code</label>
+                                <input type="text"
+                                       id="postCode"
+                                       name="postCode"
+                                       class="form-control"
+                                       autofocus="autofocus"
+                                       th:field="*{postCode}"/>
+
+                            </div>
+
+                            <div class="form-group text-monospace">
+                                <label for="city" class="text-monospace card-title"
+                                       th:text="#{form.city}">City</label>
+                                <input type="text"
+                                       id="city"
+                                       name="city"
+                                       class="form-control"
+                                       autofocus="autofocus"
+                                       th:field="*{city}"/>
+                            </div>
+                            <!--                                                        <div class="form-group checkbox leftBottom">-->
+                            <!--                                                            <label for="enable" class="text-monospace card-title"-->
+                            <!--                                                                   th:text="#{form.isEnabled}">Konto aktywowane</label>-->
+                            <!--                                                            <input type="checkbox"-->
+                            <!--                                                                   id="enable"-->
+                            <!--                                                                   name="enable"-->
+                            <!--                                                                   class="form-control"-->
+                            <!--                                                                   autofocus="autofocus"-->
+                            <!--                                                                   th:field="*{enabled}"/>-->
+                            <!--                                                        </div>-->
+                            <!--                                                        <div class="form-group">-->
+                            <!--                                                            <label for="locked" class="text-monospace card-title"-->
+                            <!--                                                                   th:text="#{form.isLocked}">Konto zablokowane</label>-->
+                            <!--                                                            <input th:type="checkbox"-->
+                            <!--                                                                   id="locked"-->
+                            <!--                                                                   name="locked"-->
+                            <!--                                                                   class="form-control"-->
+                            <!--                                                                   autofocus="autofocus"-->
+                            <!--                                                                   th:checked="*{locked}"/>-->
+                            <!--                                                        </div>-->
+                            <div class="form-group text-monospace">
+                                <button type="submit" class="btn btn-danger" th:text="#{form.button.save}">Save
+                                </button>
+
+                            </div>
+                        </form>
+                    </table>
+                    <br><br>
+                </div>
+            </div>
+        </div>
+    </div>
+
+
+    <!-- Content Row -->
+    <div class="row">
+        <!---->
+        <!-- Content Column -->
+        <div class="col-lg-6 mb-4">
+            <!---->
+            <!---->
+        </div>
+        <!---->
+        <div class="col-lg-6 mb-4">
+            <!---->
+        </div>
+    </div>
+    <!---->
+    </div>
+    <!-- /.container-fluid -->
+    <!---->
+</section>
+</body>
+</html>

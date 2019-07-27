@@ -28,8 +28,7 @@ public class User {
     private String address;
     private String postCode;
     private String city;
-    private boolean enabled;
-    private boolean locked;
+    private Boolean locked;
     @CreatedDate
     @Convert(converter = LocalDateTimeAttributeConverter.class)
     private LocalDateTime created;
@@ -132,19 +131,11 @@ public class User {
         this.city = city;
     }
 
-    public boolean isEnabled() {
-        return enabled;
-    }
-
-    public void setEnabled(boolean enabled) {
-        this.enabled = enabled;
-    }
-
-    public boolean isLocked() {
+    public Boolean getLocked() {
         return locked;
     }
 
-    public void setLocked(boolean locked) {
+    public void setLocked(Boolean locked) {
         this.locked = locked;
     }
 
