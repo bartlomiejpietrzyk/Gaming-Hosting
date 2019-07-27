@@ -1,13 +1,33 @@
 package com.github.bartlomiejpietrzyk.panel.admin;
 
+import com.github.bartlomiejpietrzyk.user.User;
+import com.github.bartlomiejpietrzyk.user.UserDto;
 import com.github.bartlomiejpietrzyk.validator.FieldMatch;
 import org.hibernate.validator.constraints.Email;
 import org.hibernate.validator.constraints.NotEmpty;
+import org.springframework.beans.factory.annotation.Autowired;
+
+import javax.validation.constraints.AssertTrue;
 
 @FieldMatch.List({
         @FieldMatch(first = "email", second = "confirmEmail", message = "The email fields must match")
 })
 public class UserEditDto {
+    @Autowired
+    private User that;
+    @Autowired
+    public UserEditDto() {
+    }
+
+    public UserEditDto(User that) {
+        this.firstName = that.getFirstName();
+        this.lastName = that.getLastName();
+        this.email = that.getEmail();
+        this.mobile = String.valueOf(that.getMobile());
+        this.address = that.getAddress();
+        this.postCode = that.getPostCode();
+        this.city = that.getCity();
+    }
 
     private String id;
 
@@ -24,6 +44,9 @@ public class UserEditDto {
     @Email
     @NotEmpty
     private String confirmEmail;
+
+    @NotEmpty
+    private String mobile;
 
     @NotEmpty
     private String address;
@@ -72,6 +95,14 @@ public class UserEditDto {
 
     public void setConfirmEmail(String confirmEmail) {
         this.confirmEmail = confirmEmail;
+    }
+
+    public String getMobile() {
+        return mobile;
+    }
+
+    public void setMobile(String mobile) {
+        this.mobile = mobile;
     }
 
     public String getAddress() {

@@ -156,14 +156,6 @@ public class User {
         this.created = created;
     }
 
-    public Collection<Role> getRoles() {
-        return roles;
-    }
-
-    public void setRoles(Collection<Role> roles) {
-        this.roles = roles;
-    }
-
     public Set<Server> getServersSet() {
         return serversSet;
     }
@@ -178,5 +170,13 @@ public class User {
 
     public void setPayments(Set<Payment> payments) {
         this.payments = payments;
+    }
+
+    public Collection<Role> getRoles() {
+        return roles;
+    }
+
+    public void setRoles(Collection<Role> roles) {
+        this.roles = roles;
     }
 }

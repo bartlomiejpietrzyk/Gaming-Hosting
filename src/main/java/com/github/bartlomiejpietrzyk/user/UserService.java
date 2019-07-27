@@ -1,6 +1,7 @@
 package com.github.bartlomiejpietrzyk.user;
 
 import com.github.bartlomiejpietrzyk.panel.admin.UserEditDto;
+import com.github.bartlomiejpietrzyk.panel.admin.UserListDto;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 import org.springframework.transaction.annotation.Transactional;
@@ -19,24 +20,38 @@ public class UserService {
         this.userRepository = userRepository;
     }
 
-    public List<UserDto> findAll() {
+    public List<UserListDto> findAll() {
         return userRepository
                 .findAll()
                 .stream()
-                .map(UserDto::new)
+                .map(UserListDto::new)
                 .collect(Collectors.toList());
     }
 
-    public UserDto findUserById(String id) {
-        return new UserDto(userRepository.findUserById(Long.valueOf(id)));
+    public UserEditDto findUserById(String id) {
+        return new UserEditDto(userRepository.getOne(Long.valueOf(id)));
     }
 
-    public User update(UserEditDto userDto) {
-        return userRepository.saveAndFlush(userDto);
-
+    public User save(User user) {
+        return userRepository.save(user);
     }
 
-    public void deleteUser(String id) {
-        userRepository.delete(Long.valueOf(id));
+    public void editUpdate(UserEditDto userEditDto) {
+        User existing = userRepository.getOne(Long.valueOf(userEditDto.getId()));
+        userRepository.save(setUserFromDtoEditForm(existing, userEditDto));
+    }
+    
+    public User setUserFromDtoEditForm(User user, UserEditDto userEditDto) {
+        user.setFirstName(userEditDto.getFirstName());
+        user.setLastName(userEditDto.getLastName());
+        user.setMobile(Long.valueOf(userEditDto.getMobile()));
+        user.setAddress(userEditDto.getAddress());
+        user.setPostCode(userEditDto.getPostCode());
+        user.setCity(userEditDto.getCity());
+        return user;
+    }
+
+    public void deleteUser(Long id) {
+        userRepository.delete(id);
     }
 }
