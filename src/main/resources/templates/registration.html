@@ -21,9 +21,7 @@
                                 </div>
                             </div>
 
-                            <h4 class="text-monospace"><span class="btn-danger"
-                                                             th:text="#{register.title}">Registration</span></h4>
-                            <form th:action="@{/registration}" th:object="${user}" method="post">
+                            <form th:action="@{/api/admin/user/addUser}" th:object="${user}" method="post">
 
                                 <h6 class="error-message btn-outline-danger text-white"
                                     th:if="${#fields.hasGlobalErrors()}"

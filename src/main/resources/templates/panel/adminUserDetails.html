@@ -4,8 +4,9 @@
       layout:decorate="panel/template" lang="pl">
 <body>
 <div layout:fragment="top-bar">
-    <span class="text-white btn border-white"><span th:text="#{panel.text.details}">Details:</span> <span class=""
-                                                                                                          th:text="${user.email}"></span>
+    <span class="text-white btn border-white">
+        <span th:text="#{panel.text.details}">Details:</span>
+        <span th:text="${user.email}"></span>
                     <a class="btn btn-outline-light" th:href="@{/api/admin/server/}"
                        th:text="#{panel.text.servers}"></a>
                     <a class="btn btn-outline-light" th:href="@{/api/admin/payments/}"
@@ -62,8 +63,7 @@
                                 <th th:text="#{panel.text.payments}"></th>
                                 <th th:text="#{panel.text.isLocked}"></th>
                                 <th th:text="#{panel.text.isEnabled}"></th>
-                                <th th:text="#{panel.text.isAdmin}"></th>
-                                <th th:text="#{panel.text.isServerAdmin}"></th>
+                                <th th:text="#{panel.text.roles}"></th>
                             </tr>
                             </thead>
                             <tbody th:object="${user}">
@@ -77,12 +77,11 @@
                                 <td th:text="${user.postCode}"></td>
                                 <td th:text="${user.city}"></td>
                                 <td th:text="${user.created}"></td>
-                                <td>16</td>
-                                <td>16</td>
-                                <td>True</td>
-                                <td>False</td>
-                                <td>True</td>
-                                <td>True</td>
+                                <td>INPUT</td>
+                                <td>INPUT</td>
+                                <td>INPUT</td>
+                                <td>INPUT</td>
+                                <td>INPUT</td>
                             </tr>
                             </tbody>
 

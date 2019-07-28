@@ -1,11 +1,11 @@
 package com.github.bartlomiejpietrzyk.security;
-import java.util.Arrays;
-import java.util.Collection;
-import java.util.stream.Collectors;
 
+import com.github.bartlomiejpietrzyk.registration.UserCreateDto;
 import com.github.bartlomiejpietrzyk.registration.UserRegistrationDto;
 import com.github.bartlomiejpietrzyk.registration.UserRegistrationService;
-import com.github.bartlomiejpietrzyk.user.*;
+import com.github.bartlomiejpietrzyk.user.Role;
+import com.github.bartlomiejpietrzyk.user.User;
+import com.github.bartlomiejpietrzyk.user.UserRepository;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.security.core.GrantedAuthority;
 import org.springframework.security.core.authority.SimpleGrantedAuthority;
@@ -13,6 +13,10 @@ import org.springframework.security.core.userdetails.UserDetails;
 import org.springframework.security.core.userdetails.UsernameNotFoundException;
 import org.springframework.security.crypto.bcrypt.BCryptPasswordEncoder;
 import org.springframework.stereotype.Service;
+
+import java.util.Arrays;
+import java.util.Collection;
+import java.util.stream.Collectors;
 
 @Service
 public class UserRegistrationServiceImpl implements UserRegistrationService {
@@ -43,6 +47,15 @@ public class UserRegistrationServiceImpl implements UserRegistrationService {
         user.setEmail(registration.getEmail());
         user.setPassword(passwordEncoder.encode(registration.getPassword()));
         user.setRoles(Arrays.asList(new Role("ROLE_USER")));
+        return userRepository.save(user);
+    }
+
+    @Override
+    public User save(UserCreateDto registration) {
+        User user = new User();
+        user.setEmail(registration.getEmail());
+        user.setPassword(passwordEncoder.encode(registration.getPassword()));
+        user.setRoles(registration.getRoles());
         return userRepository.save(user);
     }
 

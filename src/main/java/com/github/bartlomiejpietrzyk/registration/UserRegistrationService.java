@@ -7,4 +7,6 @@ public interface UserRegistrationService extends UserDetailsService {
 
     User findByEmail(String email);
     User save(UserRegistrationDto registration);
+
+    User save(UserCreateDto registration);
 }

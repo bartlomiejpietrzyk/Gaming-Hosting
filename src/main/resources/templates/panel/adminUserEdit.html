@@ -9,6 +9,8 @@
         <span th:text="#{panel.text.details}">Details:</span>
         <span class="text-white btn border-white" th:text="${user.email}"></span>
         <span class="text-white btn border-white">ID: <span th:text="${user.id}"></span></span>
+        <a class="btn alert-dark" th:href="@{/api/admin/user/}"
+           th:text="#{panel.text.button.back}"></a></span>
 </div>
 <section layout:fragment="content">
 
@@ -106,6 +108,7 @@
                                        autofocus="autofocus"
                                        th:field="*{city}"/>
                             </div>
+
                             <div class="form-group text-monospace">
                                 <button type="submit" class="btn btn-outline-danger"
                                         th:text="#{panel.text.button.save}">Save

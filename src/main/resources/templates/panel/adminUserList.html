@@ -1,9 +1,17 @@
 <!DOCTYPE HTML>
 <html xmlns:th="http://www.thymeleaf.org"
       xmlns:layout="http://www.ultraq.net.nz/web/thymeleaf/layout"
-      layout:decorate="~{panel/template}" lang="pl"
->
+      layout:decorate="panel/template" lang="pl">
 <body>
+<div layout:fragment="top-bar">
+    <span class="text-white btn border-white"><span th:text="#{panel.text.add.create}"></span>
+                    <a class="btn btn-outline-light" th:href="@{/api/admin/user/addUser/}"
+                       th:text="#{panel.text.add.user}"></a>
+                    <a class="btn btn-outline-light" th:href="@{/api/admin/user/addAdmin/}"
+                       th:text="#{panel.text.add.admin}"></a>
+    <a class="btn btn-outline-light" th:href="@{/api/admin/user/addServerAdmin/}"
+       th:text="#{panel.text.add.serverAdmin}"></a>
+</div>
 <section layout:fragment="content">
 
     <!-- Begin Page Content -->
@@ -11,7 +19,7 @@
         <!---->
         <!-- Page Heading -->
         <div class="d-sm-flex align-items-center justify-content-between mb-4">
-            <h1 class="h3 mb-0 text-gray-800" th:text="#{panel.text.usersList}">List of Users</h1>
+            <h1 class="h3 mb-0 text-gray-800" th:text="#{panel.text.add.creatingUser}">Creating User</h1>
         </div>
 
         <!-- DataTales Example -->
