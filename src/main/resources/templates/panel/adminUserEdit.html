@@ -3,6 +3,13 @@
       xmlns:layout="http://www.ultraq.net.nz/web/thymeleaf/layout"
       layout:decorate="panel/template" lang="pl">
 <body>
+
+<div layout:fragment="top-bar">
+    <span class="text-white btn border-white">
+        <span th:text="#{panel.text.details}">Details:</span>
+        <span class="text-white btn border-white" th:text="${user.email}"></span>
+        <span class="text-white btn border-white">ID: <span th:text="${user.id}"></span></span>
+</div>
 <section layout:fragment="content">
 
     <!-- Begin Page Content -->
@@ -10,20 +17,16 @@
         <!---->
         <!-- Page Heading -->
         <div class="d-sm-flex align-items-center justify-content-between mb-4">
-            <h1 class="h3 mb-0 text-gray-800">List of Users</h1>
+            <h1 class="h3 mb-0 text-gray-800" th:text="#{panel.text.userEdit}">List of Users</h1>
         </div>
 
         <!-- DataTales Example -->
         <div class="card shadow mb-4">
-            <div class="card-header py-3">
-                <h6 class="m-0 font-weight-bold text-primary">User edit site</h6>
-            </div>
             <div class="card-body">
                 <div class="table-responsive">
                     <table>
                         <form th:action="@{/api/admin/user/edit(id=${userId})}" th:object="${user}" th:method="post">
 
-                            <p>User ID: <span th:text=" ${userId}"></span></p>
                             <!--                            <p>Locked: <span th:text="${locked}"></span></p>-->
 
                             <div class="form-group text-monospace">
@@ -104,10 +107,11 @@
                                        th:field="*{city}"/>
                             </div>
                             <div class="form-group text-monospace">
-                                <button type="submit" class="btn btn-danger" th:text="#{panel.text.button.save}">Save
+                                <button type="submit" class="btn btn-outline-danger"
+                                        th:text="#{panel.text.button.save}">Save
                                 </button>
 
-                            </div>
+
                         </form>
                     </table>
                     <br><br>

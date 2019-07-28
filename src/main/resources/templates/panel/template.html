@@ -1,7 +1,7 @@
 <!DOCTYPE HTML>
 <html xmlns:th="http://www.thymeleaf.org"
       xmlns:layout="http://www.ultraq.net.nz/web/thymeleaf/layout"
-      xmlns:sec="http://www.thymeleaf.org/thymeleaf-extras-springsecurity5">
+      xmlns:sec="http://www.thymeleaf.org/thymeleaf-extras-springsecurity5" lang="pl">
 
 <head>
 
@@ -104,13 +104,7 @@
                 <div id="collapseUser" class="collapse" aria-labelledby="headingTwo" data-parent="#accordionSidebar">
                     <div class="bg-white py-2 collapse-inner rounded">
                         <h6 class="collapse-header">Admin panel</h6>
-                        <a class="collapse-item" th:href="@{/api/admin/user/list}">Lista użytkowników</a>
-                        <a class="collapse-item" th:href="@{/api/admin/user/list}">Znajdź użytkownika</a>
-                        <a class="collapse-item" th:href="@{/api/admin/user/list}">Płatności użytkownika</a>
-                        <a class="collapse-item" th:href="@{/api/admin/user/list}">Serwery użytkownika</a>
-                        <a class="collapse-item" th:href="@{/api/admin/user/list}">Zablokuj użytkownika</a>
-                        <a class="collapse-item" th:href="@{/api/admin/user/list}">Odblokuj użytkownika</a>
-                        <a class="collapse-item" th:href="@{/api/admin/user/list}">Usuń użytkownika</a>
+                        <a class="collapse-item" th:href="@{/api/admin/user}">Lista użytkowników</a>
                     </div>
                 </div>
             </li>
@@ -200,11 +194,10 @@
                     </div>
                 </div>
             </li>
-
-
-            <!-- Divider -->
-            <hr class="sidebar-divider">
         </div>
+
+        <!-- Divider -->
+        <hr class="sidebar-divider">
 
         <!-- Sidebar Toggler (Sidebar) -->
         <div class="text-center d-none d-md-inline">
@@ -218,11 +211,11 @@
     <div id="content-wrapper" class="d-flex flex-column">
 
         <!-- Main Content -->
-        <div id="content">
+        <div id="content" class="bg-gradient-light">
 
             <!-- Topbar -->
-            <nav class="navbar navbar-expand navbar-light bg-white topbar mb-4 static-top shadow">
-
+            <nav class="navbar navbar-expand navbar-light bg-dark text-white topbar mb-4 static-top shadow">
+                <div class="align-baseline" layout:fragment="top-bar"></div>
                 <!-- Sidebar Toggle (Topbar) -->
                 <button id="sidebarToggleTop" class="btn btn-link d-md-none rounded-circle mr-3">
                     <i class="fa fa-bars"></i>
@@ -230,17 +223,19 @@
 
                 <!-- Topbar Navbar -->
                 <ul class="navbar-nav ml-auto">
-
                     <div class="topbar-divider d-none d-sm-block"></div>
 
                     <!-- Nav Item - User Information -->
                     <li class="nav-item dropdown no-arrow">
                         <a class="nav-link dropdown-toggle" href="#" id="userDropdown" role="button"
                            data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
-                            <span class="mr-2 d-none d-lg-inline text-gray-600 small" value="Name"></span>
+                            <span class="mr-2 d-none d-lg-inline text-gray-600 small" value="Name"><span
+                                    class="btn btn-outline-light" th:text="${loggedIn}"></span></span>
                             <img class="img-profile rounded-circle"
-                                 src="https://cdn0.iconfinder.com/data/icons/win8-and-ios-tab-bar-icons/60/Admin.png">
+                                 src="https://cdn0.iconfinder.com/data/icons/win8-and-ios-tab-bar-icons/60/Admin.png"
+                                 alt="av">
                         </a>
+
                         <!-- Dropdown - User Information -->
                         <div class="dropdown-menu dropdown-menu-right shadow animated--grow-in"
                              aria-labelledby="userDropdown">
@@ -281,10 +276,10 @@
     </div>
 </div>
 <!-- Footer -->
-<footer class="sticky-footer bg-white">
+<footer class="sticky-footer bg-dark">
     <div class="container my-auto">
-        <div class="copyright text-center my-auto">
-                    <span>Copyright &copy; By Head<span class="btn-danger">Masters</span>
+        <div class="copyright text-center text-white text-monospace my-auto">
+            <span>Copyright &copy; By Head<span class="btn-danger">Masters</span></span>
         </div>
     </div>
 </footer>
@@ -307,15 +302,18 @@
     <div class="modal-dialog" role="document">
         <div class="modal-content">
             <div class="modal-header">
-                <h5 class="modal-title" id="exampleModalLabel">Ready to Leave?</h5>
+                <h5 class="modal-title" id="exampleModalLabel" th:text="#{logout.leave}">Ready to Leave?</h5>
                 <button class="close" type="button" data-dismiss="modal" aria-label="Close">
                     <span aria-hidden="true">×</span>
                 </button>
             </div>
-            <div class="modal-body">Select "Logout" below if you are ready to end your current session.</div>
+            <div class="modal-body" th:text="#{logout.prompt}">Select "Logout" below if you are ready to end your
+                current session.
+            </div>
             <div class="modal-footer">
-                <button class="btn btn-secondary" type="button" data-dismiss="modal">Cancel</button>
-                <a class="btn btn-primary" th:href="@{/login}">Logout</a>
+                <button class="btn btn-secondary" type="button" data-dismiss="modal" th:text="#{logout.cancel}">Cancel
+                </button>
+                <a class="btn btn-primary" th:href="@{/logout}" th:text="#{logout.logout}">Logout</a>
             </div>
         </div>
     </div>

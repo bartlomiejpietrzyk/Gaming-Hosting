@@ -3,11 +3,35 @@
       xmlns:layout="http://www.ultraq.net.nz/web/thymeleaf/layout"
       layout:decorate="panel/template" lang="pl">
 <body>
+<div layout:fragment="top-bar">
+    <span class="text-white btn border-white"><span th:text="#{panel.text.details}">Details:</span> <span class=""
+                                                                                                          th:text="${user.email}"></span>
+                    <a class="btn btn-outline-light" th:href="@{/api/admin/server/}"
+                       th:text="#{panel.text.servers}"></a>
+                    <a class="btn btn-outline-light" th:href="@{/api/admin/payments/}"
+                       th:text="#{panel.text.payments}"></a>
+
+        <a th:href="@{/api/admin/user/edit(id=${user.id})}">
+            <input type="submit" th:value="#{panel.text.button.edit}"
+                   class="btn btn-outline-light"/> </a>
+        <a th:href="@{/api/admin/user/delete(id=${user.id})}" th:action="@{/api/admin/user/delete(id=${user.id})}"
+           method="post">
+            <input type="submit" th:value="#{panel.text.button.delete}"
+                   class="btn btn-outline-light"
+                   onclick="return confirm('Are you sure to delete?')"></a>
+    <a class="btn alert-dark" th:href="@{/api/admin/user/}"
+       th:text="#{panel.text.button.back}"></a></span>
+
+</div>
 <section layout:fragment="content">
 
     <!-- Begin Page Content -->
     <div class="container-fluid">
-        <!---->
+        <div class="form-group float-right">
+            <a th:href="@{/api/admin/user/list}"
+               method="get"> <input type="submit" th:value="#{panel.text.button.back}"
+                                    class="btn btn-outline-light"/></a>
+        </div>
         <!-- Page Heading -->
         <div class="d-sm-flex align-items-center justify-content-between mb-4">
             <h1 class="h3 mb-0 text-gray-800"></h1>
@@ -15,17 +39,6 @@
 
         <!-- DataTales Example -->
         <div class="card shadow mb-4">
-            <div class="card-header py-3">
-                <h5 class="alert alert-link"> Details: <span th:text="${user.email}"></span>
-                    <a class="btn btn-outline-dark" th:href="@{/api/admin/server/}" th:text="#{panel.text.servers}"></a>
-                    <a class="btn btn-outline-dark" th:href="@{/api/admin/payments/}"
-                       th:text="#{panel.text.payments}"></a>
-                    <div class="form-group float-right">
-                        <a th:href="@{/api/admin/user/list}"
-                           method="get"> <input type="submit" th:value="#{panel.text.button.back}"
-                                                class="btn btn-outline-light"/></a>
-                    </div>
-            </div>
             <div class="card-body">
                 <div class="table-responsive">
                     <div class="form-group">
@@ -72,22 +85,10 @@
                                 <td>True</td>
                             </tr>
                             </tbody>
+
                         </table>
                         <br><br>
-                        <div class="form-group float-right">
-                            <a th:href="@{/api/admin/user/edit(id=${user.id})}">
-                                <input type="hidden" name="id" th:value="${user.id}">
-                                <input type="submit" th:value="#{panel.text.button.edit}"
-                                       class="btn btn-info"/> </a>
-                        </div>
-                        <div class="form-group float-right">
-                            <a th:href="@{/api/admin/user/delete(id=${user.id})}"
-                               th:action="@{/api/admin/user/delete(id=${user.id})}"
-                               method="post">
-                                <input type="submit" th:value="#{panel.text.button.delete}"
-                                       class="btn btn-danger"
-                                       onclick="return confirm('Are you sure to delete?')"></a>
-                        </div>
+
 
                     </div>
                 </div>

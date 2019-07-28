@@ -1,6 +1,5 @@
 package com.github.bartlomiejpietrzyk.panel.admin;
 
-import com.github.bartlomiejpietrzyk.user.UserRepository;
 import com.github.bartlomiejpietrzyk.user.UserService;
 import com.github.bartlomiejpietrzyk.user.dto.UserDetailsDto;
 import com.github.bartlomiejpietrzyk.user.dto.UserEditDto;
@@ -12,6 +11,7 @@ import org.springframework.validation.BindingResult;
 import org.springframework.web.bind.annotation.*;
 
 import javax.validation.Valid;
+import java.security.Principal;
 import java.util.List;
 
 @Controller
@@ -19,16 +19,14 @@ import java.util.List;
 public class UsersPanelController {
 
     private UserService userService;
-    private UserRepository userRepository;
 
     @Autowired
     public UsersPanelController(UserService userService) {
         this.userService = userService;
     }
 
-    @GetMapping("/list")
+    @GetMapping
     public String userList(Model model) {
-//        model.addAttribute("usersList", userService.findAll());
         return "panel/adminUserList";
     }
 
@@ -67,5 +65,10 @@ public class UsersPanelController {
     public String deleteUser(@RequestParam String id) {
         userService.deleteUser(Long.valueOf(id));
         return "redirect:/api/admin/user/list";
+    }
+
+    @ModelAttribute("loggedIn")
+    public String currentUserName(Principal principal) {
+        return principal.getName();
     }
 }
