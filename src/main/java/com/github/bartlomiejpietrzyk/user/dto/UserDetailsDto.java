@@ -18,6 +18,7 @@ public class UserDetailsDto {
     private String created;
     private String locked;
     private String enable;
+    private String roles;
 
     public UserDetailsDto() {
     }
@@ -35,8 +36,9 @@ public class UserDetailsDto {
         this.city = that.getCity();
         this.created = String.valueOf(that.getCreated());
         this.payments = String.valueOf(that.getPayments());
-        this.locked = String.valueOf(that.getPayments());
+        this.locked = String.valueOf(that.getLocked());
         this.enable = String.valueOf(that.getEnable());
+        this.roles = String.valueOf(that.getRoles());
     }
 
     public String getId() {
@@ -151,12 +153,20 @@ public class UserDetailsDto {
         this.locked = locked;
     }
 
-    public String getEnabled() {
+    public String getEnable() {
         return enable;
     }
 
-    public void setEnabled(String enable) {
+    public void setEnable(String enable) {
         this.enable = enable;
+    }
+
+    public String getRoles() {
+        return roles;
+    }
+
+    public void setRoles(String roles) {
+        this.roles = roles;
     }
 }
 

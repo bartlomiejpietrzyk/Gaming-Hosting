@@ -30,6 +30,7 @@ public class UserRegistrationDto {
 
     @AssertTrue
     private Boolean terms;
+    private String created;
     private Boolean locked;
     private Boolean enable;
 
@@ -87,5 +88,13 @@ public class UserRegistrationDto {
 
     public void setEnable(Boolean enable) {
         this.enable = enable;
+    }
+
+    public String getCreated() {
+        return created;
+    }
+
+    public void setCreated(String created) {
+        this.created = created;
     }
 }

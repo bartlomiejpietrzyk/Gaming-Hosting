@@ -1,10 +1,8 @@
 package com.github.bartlomiejpietrzyk.user;
 
-import com.github.bartlomiejpietrzyk.converter.LocalDateTimeAttributeConverter;
 import com.github.bartlomiejpietrzyk.payment.Payment;
 import com.github.bartlomiejpietrzyk.server.Server;
 import org.hibernate.validator.constraints.Email;
-import org.springframework.data.annotation.CreatedDate;
 
 import javax.persistence.*;
 import java.time.LocalDateTime;
@@ -30,8 +28,6 @@ public class User {
     private String city;
     private Boolean locked;
     private Boolean enable;
-    @CreatedDate
-    @Convert(converter = LocalDateTimeAttributeConverter.class)
     private LocalDateTime created;
     @OneToMany(mappedBy = "user")
     private Set<Server> serversSet = new HashSet<>();
@@ -145,7 +141,7 @@ public class User {
     }
 
     public void setCreated(LocalDateTime created) {
-        this.created = LocalDateTime.now();
+        this.created = created;
     }
 
     public Set<Server> getServersSet() {

@@ -63,7 +63,7 @@ public class UsersPanelController {
     @RequestMapping("/delete")
     public String deleteUser(@RequestParam String id) {
         userService.deleteUser(Long.valueOf(id));
-        return "redirect:/api/admin/user/list";
+        return "redirect:/api/admin/user";
     }
 
     @ModelAttribute("loggedIn")

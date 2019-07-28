@@ -14,6 +14,7 @@ import java.util.List;
         @FieldMatch(first = "email", second = "confirmEmail", message = "The email fields must match")
 })
 public class UserCreateDto {
+
     @Length(min = 8, max = 32)
     @NotEmpty
     private String password;
@@ -21,16 +22,23 @@ public class UserCreateDto {
     @Length(min = 8, max = 32)
     @NotEmpty
     private String confirmPassword;
+
     @Email
     @NotEmpty
     private String email;
+
     @Email
     @NotEmpty
     private String confirmEmail;
+
     @AssertTrue
     private Boolean terms;
+    private String created;
+
     private List<Role> roles;
+
     private Boolean locked;
+
     private Boolean enable;
 
     public String getPassword() {
@@ -95,5 +103,13 @@ public class UserCreateDto {
 
     public void setRoles(List<Role> roles) {
         this.roles = roles;
+    }
+
+    public String getCreated() {
+        return created;
+    }
+
+    public void setCreated(String created) {
+        this.created = created;
     }
 }

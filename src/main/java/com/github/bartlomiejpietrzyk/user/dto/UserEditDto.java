@@ -2,7 +2,6 @@ package com.github.bartlomiejpietrzyk.user.dto;
 
 import com.github.bartlomiejpietrzyk.user.Role;
 import com.github.bartlomiejpietrzyk.user.User;
-import com.github.bartlomiejpietrzyk.validator.FieldMatch;
 import org.hibernate.validator.constraints.Email;
 import org.hibernate.validator.constraints.NotEmpty;
 import org.springframework.beans.factory.annotation.Autowired;
@@ -11,9 +10,6 @@ import javax.persistence.Column;
 import java.util.Collection;
 import java.util.stream.Collectors;
 
-@FieldMatch.List({
-        @FieldMatch(first = "email", second = "confirmEmail", message = "The email fields must match")
-})
 public class UserEditDto {
     @Autowired
     public UserEditDto() {
@@ -63,8 +59,10 @@ public class UserEditDto {
 
     @NotEmpty
     private Collection<String> roles;
+
     @Column(nullable = false)
     private Boolean enable;
+
     @Column(nullable = false)
     private Boolean locked;
 

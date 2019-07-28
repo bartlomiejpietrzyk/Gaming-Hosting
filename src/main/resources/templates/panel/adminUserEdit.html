@@ -91,6 +91,7 @@
                                        name="postCode"
                                        class="form-control"
                                        autofocus="autofocus"
+                                       th:maxlength="5"
                                        th:field="*{postCode}"/>
 
                             </div>
@@ -125,7 +126,6 @@
                                     </select>
                                 </label>
                             </div>
-
                             <div class="form-group">
                                 <span class="" th:text="#{panel.text.isLocked}"></span> <span
                                     th:text="${locked}"></span><br>
@@ -137,7 +137,9 @@
                                 </label>
                             </div>
                             <div class="form-group text-monospace">
-                                <button type="submit" class="btn btn-outline-danger"
+                                <button type="submit"
+                                        class="btn btn-outline-danger"
+                                        onclick="return confirm('Are you sure to update this user?')"
                                         th:text="#{panel.text.button.save}">Save
                                 </button>
                             </div>

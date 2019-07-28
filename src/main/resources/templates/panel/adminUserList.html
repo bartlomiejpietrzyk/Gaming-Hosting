@@ -4,13 +4,9 @@
       layout:decorate="panel/template" lang="pl">
 <body>
 <div layout:fragment="top-bar">
-    <span class="text-white btn border-white"><span th:text="#{panel.text.add.create}"></span>
+    <span class="text-white btn border-white"><span th:text="#{panel.text.add.create}"></span>:
                     <a class="btn btn-outline-light" th:href="@{/api/admin/user/addUser/}"
                        th:text="#{panel.text.add.usera}"></a>
-                    <a class="btn btn-outline-light" th:href="@{/api/admin/user/addAdmin/}"
-                       th:text="#{panel.text.add.admina}"></a>
-    <a class="btn btn-outline-light" th:href="@{/api/admin/user/addServerAdmin/}"
-       th:text="#{panel.text.add.serverAdmin}"></a>
 </div>
 <section layout:fragment="content">
 
@@ -31,7 +27,7 @@
                            cellspacing="0">
                         <thead>
 
-                        <tr class="alert-dark">
+                        <tr class="alert-outline-dark">
                             <th th:text="#{panel.text.id}">#ID#</th>
                             <th th:text="#{panel.text.email}">E-Mail</th>
                             <th th:text="#{panel.text.firstname}">First Name</th>
@@ -54,16 +50,18 @@
                             <td>
                                 <a th:href="@{/api/admin/user/details(id=${user.id})}">
                                     <input type="hidden" name="id" th:value="${user.id}">
-                                    <input type="submit" th:value="#{panel.text.button.details}" class="btn btn-dark"/></a>
+                                    <input type="submit" th:value="#{panel.text.button.details}"
+                                           class="btn btn-outline-dark"/></a>
 
                                 <a th:href="@{/api/admin/user/edit(id=${user.id})}">
                                     <input type="hidden" name="id" th:value="${user.id}">
-                                    <input type="submit" th:value="#{panel.text.button.edit}" class="btn btn-info"/></a>
+                                    <input type="submit" th:value="#{panel.text.button.edit}"
+                                           class="btn btn-outline-info"/></a>
 
                                 <a th:href="@{/api/admin/user/delete(id=${user.id})}"
                                    th:action="@{/api/admin/user/delete(id=${user.id})}" method="post">
                                     <input type="submit" th:value="#{panel.text.button.delete}"
-                                           class="btn btn-danger"
+                                           class="btn btn-outline-danger"
                                            onclick="return confirm('Are you sure to delete this user?')"></a>
                             </td>
                         </tr>
