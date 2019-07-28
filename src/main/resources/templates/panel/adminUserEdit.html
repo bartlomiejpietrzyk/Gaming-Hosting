@@ -1,0 +1,176 @@
+<!DOCTYPE HTML>
+<html xmlns:th="http://www.thymeleaf.org"
+      xmlns:layout="http://www.ultraq.net.nz/web/thymeleaf/layout"
+      layout:decorate="panel/template" lang="pl">
+<body>
+
+<div layout:fragment="top-bar">
+    <span class="text-white btn border-white">
+        <span th:text="#{panel.text.details}">Details:</span>
+        <span class="text-white btn border-white" th:text="${user.email}"></span>
+        <span class="text-white btn border-white">ID: <span th:text="${user.id}"></span></span>
+        <a class="btn alert-dark" th:href="@{/api/admin/user/}"
+           th:text="#{panel.text.button.back}"></a></span>
+</div>
+<section layout:fragment="content">
+
+    <!-- Begin Page Content -->
+    <div class="container-fluid">
+        <!---->
+        <!-- Page Heading -->
+        <div class="d-sm-flex align-items-center justify-content-between mb-4">
+            <h1 class="h3 mb-0 text-gray-800" th:text="#{panel.text.userEdit}">List of Users</h1>
+        </div>
+
+        <!-- DataTales Example -->
+        <div class="card shadow mb-4">
+            <div class="card-body">
+                <div class="table-responsive">
+                    <table>
+                        <form th:action="@{/api/admin/user/edit(id=${userId})}" th:object="${user}" th:method="post">
+                            <div class="form-group text-monospace">
+                                <label for="email" class="text-monospace card-title"
+                                       th:text="#{panel.text.email}">E-Mail</label>
+                                <input type="text"
+                                       id="email"
+                                       name="email"
+                                       class="form-control"
+                                       autofocus="autofocus"
+                                       th:field="*{email}"/>
+
+                            </div>
+                            <div class="form-group text-monospace">
+                                <label for="firstname" class="text-monospace card-title"
+                                       th:text="#{panel.text.firstname}">E-Mail</label>
+                                <input type="text"
+                                       id="firstname"
+                                       name="firstname"
+                                       class="form-control"
+                                       autofocus="autofocus"
+                                       th:field="*{firstName}"/>
+                            </div>
+                            <div class="form-group text-monospace">
+                                <label for="email" class="text-monospace card-title"
+                                       th:text="#{panel.text.lastname}">E-Mail</label>
+                                <input type="text"
+                                       id="lastname"
+                                       name="lastname"
+                                       class="form-control"
+                                       autofocus="autofocus"
+                                       th:field="*{lastName}"/>
+                            </div>
+                            <div class="form-group text-monospace">
+                                <label for="mobile" class="text-monospace card-title"
+                                       th:text="#{panel.text.mobile}">Mobile</label>
+                                <input th:type="text"
+                                       id="mobile"
+                                       name="mobile"
+                                       class="form-control"
+                                       autofocus="autofocus"
+                                       th:maxlength="9"
+                                       th:field="*{mobile}"/>
+
+                            </div>
+                            <div class="form-group text-monospace">
+                                <label for="address" class="text-monospace card-title"
+                                       th:text="#{panel.text.address}">Address</label>
+                                <input type="text"
+                                       id="address"
+                                       name="address"
+                                       class="form-control"
+                                       autofocus="autofocus"
+                                       th:field="*{address}"/>
+
+                            </div>
+
+                            <div class="form-group text-monospace">
+                                <label for="postCode" class="text-monospace card-title"
+                                       th:text="#{panel.text.postcode}">Post-Code</label>
+                                <input type="text"
+                                       id="postCode"
+                                       name="postCode"
+                                       class="form-control"
+                                       autofocus="autofocus"
+                                       th:maxlength="5"
+                                       th:field="*{postCode}"/>
+
+                            </div>
+
+                            <div class="form-group text-monospace">
+                                <label for="city" class="text-monospace card-title"
+                                       th:text="#{panel.text.city}">City</label>
+                                <input type="text"
+                                       id="city"
+                                       name="city"
+                                       class="form-control"
+                                       autofocus="autofocus"
+                                       th:field="*{city}"/>
+                            </div>
+
+                            <div class="form-group">
+                                <span class="" th:text="#{panel.text.roles}"></span><br>
+                                <label for="roles">
+                                    <select id="roles" class="btn btn-outline-dark" th:field="*{roles}">
+                                        <option th:value="ROLE_USER" th:text="#{panel.text.add.user}"></option>
+                                        <option th:value="ROLE_ADMIN" th:text="#{panel.text.add.admin}"></option>
+                                    </select>
+                                </label>
+                            </div>
+
+                            <div class="form-group">
+                                <span class="" th:text="#{panel.text.isEnabled}"></span><br>
+                                <label for="enable">
+                                    <select id="enable" class="btn btn-outline-dark" th:field="*{enable}">
+                                        <option th:value="true" th:text="#{panel.text.isEnabled}"></option>
+                                        <option th:value="false" th:text="#{panel.text.isDisabled}"></option>
+                                    </select>
+                                </label>
+                            </div>
+                            <div class="form-group">
+                                <span class="" th:text="#{panel.text.isLocked}"></span> <span
+                                    th:text="${locked}"></span><br>
+                                <label for="locked">
+                                    <select id="locked" class="btn btn-outline-dark" th:field="*{locked}">
+                                        <option th:value="true" th:text="#{panel.text.locked.true}"></option>
+                                        <option th:value="false" th:text="#{panel.text.locked.false}"></option>
+                                    </select>
+                                </label>
+                            </div>
+                            <div class="form-group text-monospace">
+                                <button type="submit"
+                                        class="btn btn-outline-danger"
+                                        onclick="return confirm('Are you sure to update this user?')"
+                                        th:text="#{panel.text.button.save}">Save
+                                </button>
+                            </div>
+                        </form>
+                    </table>
+                    <br><br>
+                </div>
+            </div>
+        </div>
+    </div>
+
+
+    <!-- Content Row -->
+    <div class="row">
+        <!---->
+        <!-- Content Column -->
+        <div class="col-lg-6 mb-4">
+            <!---->
+            <!---->
+        </div>
+        <!---->
+        <div class="col-lg-6 mb-4">
+            <!---->
+        </div>
+    </div>
+    <!---->
+    </div>
+    <!-- /.container-fluid -->
+    <!---->
+</section>
+
+
+</body>
+</html>

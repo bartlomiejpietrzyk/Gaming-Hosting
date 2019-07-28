@@ -1,0 +1,66 @@
+<html xmlns:layout="http://www.ultraq.net.nz/thymeleaf/layout"
+      xmlns:th="http://www.thymeleaf.org"
+      layout:decorate="~{layout}">
+
+<body>
+<div layout:fragment="fragOne">
+    <div id="preloder">
+        <div class="loader"></div>
+    </div>
+    <div class="hero-section">
+        <div class="hero-slider owl-carousel">
+            <div class="hs-item set-bg" data-setbg="img/bg6.jpg">
+                <div class="container">
+                    <div class="row">
+                        <div class="col-md-1"></div>
+                        <div class="col-md-9">
+                            <!-- TABLE STRIPED -->
+                            <div class="panel">
+                                <div class="panel-heading">
+                                    <h3 class="panel-title text-white ">Lista Serwerów</h3>
+                                    <div class="panel-body">
+                                        <table class="table ">
+                                            <thead>
+                                            <tr class="text-white">
+                                                <th th:text="#{panel.admin.table.server.name}"></th>
+                                                <th th:text="#{panel.admin.table.server.ip}"></th>
+                                                <th th:text="#{panel.admin.table.server.slot}"></th>
+                                                <th th:text="#{panel.admin.table.server.game}"></th>
+                                            </tr>
+                                            </thead>
+                                            <tbody>
+                                            <tr class="text-white" th:each="server : ${servers}">
+                                                <td th:text="${server.getName()}"></td>
+                                                <td th:text="${server.getIp()}"></td>
+                                                <td th:text="${server.getSlot()}"></td>
+                                                <td th:text="${server.getGameId().toString()}"></td>
+                                            </tr>
+                                            </tbody>
+                                        </table>
+                                    </div>
+                                </div>
+                                <!-- END TABLE STRIPED -->
+                            </div>
+                        </div>
+                        <div class="col-md-1"></div>
+
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+    <div layout:fragment="fragFour">
+        <!-- Banner section -->
+        <section class="banner-section set-bg" data-setbg="img/banner-bg.jpg">
+            <div class="container">
+                <div class="banner-card">
+                    <h2 th:text="#{banner.getStarted}"></h2>
+                    <h6 th:text="#{banner.promptRegister}"></h6>
+                    <a th:href="@{/register}" class="site-btn sb-c3">Start</a>
+                </div>
+            </div>
+        </section>
+        <!-- Banner section end -->
+    </div>
+</body>
+</html>

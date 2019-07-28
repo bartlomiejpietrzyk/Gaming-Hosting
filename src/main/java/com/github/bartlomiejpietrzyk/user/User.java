@@ -1,7 +1,14 @@
 package com.github.bartlomiejpietrzyk.user;
 
+import com.github.bartlomiejpietrzyk.payment.Payment;
+import com.github.bartlomiejpietrzyk.server.Server;
+import org.hibernate.validator.constraints.Email;
+
 import javax.persistence.*;
+import java.time.LocalDateTime;
 import java.util.Collection;
+import java.util.HashSet;
+import java.util.Set;
 
 @Entity
 @Table(uniqueConstraints = @UniqueConstraint(columnNames = "email"))
@@ -10,12 +17,22 @@ public class User {
     @Id
     @GeneratedValue(strategy = GenerationType.AUTO)
     private Long id;
-
     private String firstName;
     private String lastName;
+    @Email
     private String email;
     private String password;
-
+    private Long mobile;
+    private String address;
+    private String postCode;
+    private String city;
+    private Boolean locked;
+    private Boolean enable;
+    private LocalDateTime created;
+    @OneToMany(mappedBy = "user")
+    private Set<Server> serversSet = new HashSet<>();
+    @OneToMany(mappedBy = "user")
+    private Set<Payment> payments = new HashSet<>();
     @ManyToMany(fetch = FetchType.EAGER, cascade = CascadeType.ALL)
     @JoinTable(
             name = "users_roles",
@@ -28,16 +45,12 @@ public class User {
     public User() {
     }
 
-    public User(String firstName, String lastName, String email, String password) {
-        this.firstName = firstName;
-        this.lastName = lastName;
+    public User(String email, String password) {
         this.email = email;
         this.password = password;
     }
 
-    public User(String firstName, String lastName, String email, String password, Collection<Role> roles) {
-        this.firstName = firstName;
-        this.lastName = lastName;
+    public User(String email, String password, Collection<Role> roles) {
         this.email = email;
         this.password = password;
         this.roles = roles;
@@ -83,6 +96,70 @@ public class User {
         this.password = password;
     }
 
+    public Long getMobile() {
+        return mobile;
+    }
+
+    public void setMobile(Long mobile) {
+        this.mobile = mobile;
+    }
+
+    public String getAddress() {
+        return address;
+    }
+
+    public void setAddress(String address) {
+        this.address = address;
+    }
+
+    public String getPostCode() {
+        return postCode;
+    }
+
+    public void setPostCode(String postCode) {
+        this.postCode = postCode;
+    }
+
+    public String getCity() {
+        return city;
+    }
+
+    public void setCity(String city) {
+        this.city = city;
+    }
+
+    public Boolean getLocked() {
+        return locked;
+    }
+
+    public void setLocked(Boolean locked) {
+        this.locked = locked;
+    }
+
+    public LocalDateTime getCreated() {
+        return created;
+    }
+
+    public void setCreated(LocalDateTime created) {
+        this.created = created;
+    }
+
+    public Set<Server> getServersSet() {
+        return serversSet;
+    }
+
+    public void setServersSet(Set<Server> serversSet) {
+        this.serversSet = serversSet;
+    }
+
+    public Set<Payment> getPayments() {
+        return payments;
+    }
+
+    public void setPayments(Set<Payment> payments) {
+        this.payments = payments;
+    }
+
     public Collection<Role> getRoles() {
         return roles;
     }
@@ -91,15 +168,12 @@ public class User {
         this.roles = roles;
     }
 
-    @Override
-    public String toString() {
-        return "User{" +
-                "id=" + id +
-                ", firstName='" + firstName + '\'' +
-                ", lastName='" + lastName + '\'' +
-                ", email='" + email + '\'' +
-                ", password='" + "*********" + '\'' +
-                ", roles=" + roles +
-                '}';
+    public Boolean getEnable() {
+        return enable;
     }
+
+    public void setEnable(Boolean enable) {
+        this.enable = enable;
+    }
+
 }

@@ -3,10 +3,11 @@ package com.github.bartlomiejpietrzyk.main;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
 import org.springframework.web.bind.annotation.GetMapping;
+import org.springframework.web.bind.annotation.PostMapping;
+import org.springframework.web.bind.annotation.RequestMapping;
 
 @Controller
 public class HomeController {
-
 
     @GetMapping("/")
     public String root() {
@@ -18,13 +19,24 @@ public class HomeController {
         return "login";
     }
 
-    @GetMapping("/user")
-    public String userIndex() {
-        return "user/index";
+    @PostMapping("/login")
+    public String logged() {
+        return "redirect:/api/dashboard";
     }
 
-    @GetMapping("/help")
-    public String help() {
-        return "help";
+    @GetMapping("/user")
+    public String userIndex() {
+        return "panel/dashboard";
     }
+
+    @GetMapping("/about")
+    public String about() {
+        return "about";
+    }
+
+    @RequestMapping("/service")
+    public String service() {
+        return "service";
+    }
+
 }

@@ -1,10 +1,65 @@
 package com.github.bartlomiejpietrzyk.user;
 
-import org.springframework.security.core.userdetails.UserDetailsService;
+import com.github.bartlomiejpietrzyk.user.dto.UserDetailsDto;
+import com.github.bartlomiejpietrzyk.user.dto.UserEditDto;
+import com.github.bartlomiejpietrzyk.user.dto.UserListDto;
+import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.stereotype.Service;
+import org.springframework.transaction.annotation.Transactional;
 
-public interface UserService extends UserDetailsService {
+import java.util.List;
+import java.util.stream.Collectors;
 
-    User findByEmail(String email);
+@Service
+@Transactional
+public class UserService {
 
-    User save(UserRegistrationDto registration);
+    private UserRepository userRepository;
+
+    @Autowired
+    public UserService(UserRepository userRepository) {
+        this.userRepository = userRepository;
+    }
+
+    public List<UserListDto> findAll() {
+        return userRepository
+                .findAll()
+                .stream()
+                .map(UserListDto::new)
+                .collect(Collectors.toList());
+    }
+
+    public UserEditDto findUserById(String id) {
+        return new UserEditDto(userRepository.getOne(Long.valueOf(id)));
+    }
+
+    public UserDetailsDto findUserDetailsById(String id) {
+        return new UserDetailsDto(userRepository.getOne(Long.valueOf(id)));
+    }
+    public User save(User user) {
+        return userRepository.save(user);
+    }
+
+    public void editUpdate(UserEditDto userEditDto) {
+        User existing = userRepository.getOne(Long.valueOf(userEditDto.getId()));
+        userRepository.save(setUserFromDtoEditForm(existing, userEditDto));
+    }
+    
+    public User setUserFromDtoEditForm(User user, UserEditDto userEditDto) {
+        user.setEmail(userEditDto.getEmail());
+        user.setFirstName(userEditDto.getFirstName());
+        user.setLastName(userEditDto.getLastName());
+        user.setMobile(Long.valueOf(userEditDto.getMobile()));
+        user.setAddress(userEditDto.getAddress());
+        user.setPostCode(userEditDto.getPostCode());
+        user.setCity(userEditDto.getCity());
+        user.setLocked(userEditDto.getLocked());
+        user.setRoles(userEditDto.getRoles().stream().map(Role::new).collect(Collectors.toList()));
+        user.setEnable(userEditDto.getEnable());
+        return user;
+    }
+
+    public void deleteUser(Long id) {
+        userRepository.delete(id);
+    }
 }

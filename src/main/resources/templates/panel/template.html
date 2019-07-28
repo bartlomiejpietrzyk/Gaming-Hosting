@@ -1,0 +1,341 @@
+<!DOCTYPE HTML>
+<html xmlns:th="http://www.thymeleaf.org"
+      xmlns:layout="http://www.ultraq.net.nz/web/thymeleaf/layout"
+      xmlns:sec="http://www.thymeleaf.org/thymeleaf-extras-springsecurity5" lang="pl">
+
+<head>
+
+    <meta charset="utf-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no">
+    <meta name="description" content="">
+    <meta name="author" content="">
+
+    <title>HeadMasters - Administrator Panel</title>
+
+    <!-- Custom fonts for this template-->
+    <link href="/vendor/fontawesome-free/css/all.min.css" rel="stylesheet" type="text/css">
+    <link href="https://fonts.googleapis.com/css?family=Nunito:200,200i,300,300i,400,400i,600,600i,700,700i,800,800i,900,900i"
+          rel="stylesheet">
+
+    <!-- Custom styles for this template-->
+    <link href="/css/sb-admin-2.min.css" rel="stylesheet">
+
+</head>
+
+<body id="page-top">
+
+<!-- Page Wrapper -->
+<div id="wrapper">
+
+    <!-- Sidebar -->
+    <ul class="navbar-nav bg-gradient-dark sidebar sidebar-dark accordion" id="accordionSidebar">
+
+        <!-- Sidebar - Brand -->
+        <a class="sidebar-brand d-flex align-items-center justify-content-center text-white" th:href="@{/dashboard}">
+            <div class="sidebar-brand-icon rotate-n-15">
+                <i class="fa fa-angellist"></i>
+            </div>
+            <div class="sidebar-brand-text mx-3">Head<span class="btn-danger">Masters</span></div>
+        </a>
+
+        <!-- Divider -->
+
+        <hr class="sidebar-divider my-0">
+
+        <li class="nav-item active">
+            <a class="nav-link" th:href="@{/}">
+                <i class="fas fa-fw fa-pager"></i>
+                <span>Strona główna</span></a>
+        </li>
+
+        <hr class="sidebar-divider my-0">
+
+        <!-- Nav Item - Dashboard -->
+        <li class="nav-item active">
+            <a class="nav-link" th:href="@{/api/dashboard}">
+                <i class="fas fa-fw fa-address-card"></i>
+                <span>Panel użytkownika</span></a>
+        </li>
+
+        <!-- Divider -->
+        <hr class="sidebar-divider">
+
+        <!-- Heading -->
+        <div class="sidebar-heading">
+            User playground
+        </div>
+
+        <!-- Nav Item - Pages Collapse Menu -->
+        <li class="nav-item">
+            <a class="nav-link collapsed" href="#" data-toggle="collapse" data-target="#collapseOneUser"
+               aria-expanded="true" aria-controls="collapseOneUser">
+                <i class="fas fa-fw fa-user"></i>
+                <span>Panel użytkownika</span>
+            </a>
+            <div id="collapseOneUser" class="collapse" aria-labelledby="headingTwo" data-parent="#accordionSidebar">
+                <div class="bg-white py-2 collapse-inner rounded">
+                    <h6 class="collapse-header">User panel</h6>
+                    <a class="collapse-item" th:href="@{/api/user/myProfile}">Mój profil</a>
+                    <a class="collapse-item" th:href="@{/api/user/myServers}">Moje serwery</a>
+                    <a class="collapse-item" th:href="@{/api/user/myPayments}">Moje płatności</a>
+                </div>
+            </div>
+        </li>
+
+        <div sec:authorize="hasRole('ADMIN')">
+            <!-- Divider -->
+            <hr class="sidebar-divider">
+
+            <!-- Heading -->
+            <div class="sidebar-heading">
+                Administrator playground
+            </div>
+            <!-- Divider -->
+            <hr class="sidebar-divider">
+
+            <!-- Nav Item - Pages Collapse Menu -->
+            <li class="nav-item">
+                <a class="nav-link collapsed" href="#" data-toggle="collapse" data-target="#collapseUser"
+                   aria-expanded="true" aria-controls="collapseUser">
+                    <i class="fas fa-fw fa-address-book"></i>
+                    <span>Users Panel</span>
+                </a>
+                <div id="collapseUser" class="collapse" aria-labelledby="headingTwo" data-parent="#accordionSidebar">
+                    <div class="bg-white py-2 collapse-inner rounded">
+                        <h6 class="collapse-header">Admin panel</h6>
+                        <a class="collapse-item" th:href="@{/api/admin/user}">Lista użytkowników</a>
+                    </div>
+                </div>
+            </li>
+            <!-- Divider -->
+            <hr class="sidebar-divider">
+            <!-- Nav Item - Pages Collapse Menu -->
+            <li class="nav-item">
+                <a class="nav-link collapsed" href="#" data-toggle="collapse" data-target="#collapseServer  "
+                   aria-expanded="true"
+                   aria-controls="collapseServer">
+                    <i class="fas fa-fw fa-server"></i>
+                    <span>Servers Panel</span>
+                </a>
+                <div id="collapseServer" class="collapse" aria-labelledby="headingTwo" data-parent="#accordionSidebar">
+                    <div class="bg-white py-2 collapse-inner rounded">
+                        <h6 class="collapse-header">Admin panel</h6>
+                        <a class="collapse-item" th:href="@{/api/admin/server/list}">Lista serwerów</a>
+                        <a class="collapse-item" th:href="@{/api/admin/server/add}">Dodaj serwer</a>
+                        <a class="collapse-item" th:href="@{/api/admin/server/list}">Edytuj serwer</a>
+                        <a class="collapse-item" th:href="@{/api/admin/server/list}">Płatności serwerów</a>
+                        <a class="collapse-item" th:href="@{/api/admin/server/list}">Zablokuj serwer</a>
+                        <a class="collapse-item" th:href="@{/api/admin/server/list}">Odblokuj serwer</a>
+                        <a class="collapse-item" th:href="@{/api/admin/server/list}">Usuń serwer</a>
+                    </div>
+                </div>
+            </li>
+            <!-- Divider -->
+            <hr class="sidebar-divider">
+            <!-- Nav Item - Pages Collapse Menu -->
+            <li class="nav-item">
+                <a class="nav-link collapsed" href="#" data-toggle="collapse" data-target="#collapseGames"
+                   aria-expanded="true"
+                   aria-controls="collapseGames">
+                    <i class="fas fa-fw fa-gamepad"></i>
+                    <span>Games Panel</span>
+                </a>
+                <div id="collapseGames" class="collapse" aria-labelledby="headingTwo" data-parent="#accordionSidebar">
+                    <div class="bg-white py-2 collapse-inner rounded">
+                        <h6 class="collapse-header">Admin panel</h6>
+                        <a class="collapse-item" th:href="@{/api/admin/game/list}">Lista gier</a>
+                        <a class="collapse-item" th:href="@{/api/admin/game/add}">Dodaj gre</a>
+                        <a class="collapse-item" th:href="@{/api/admin/game/edit}">Edytuj gre</a>
+                        <a class="collapse-item" th:href="@{/api/admin/game/locker}">Blokady</a>
+                        <a class="collapse-item" th:href="@{/api/admin/game/delete}">Usuń gre</a>
+                    </div>
+                </div>
+            </li>
+            <!-- Divider -->
+            <hr class="sidebar-divider">
+            <!-- Nav Item - Pages Collapse Menu -->
+            <li class="nav-item">
+                <a class="nav-link collapsed" href="#" data-toggle="collapse" data-target="#collapseHosting"
+                   aria-expanded="true"
+                   aria-controls="collapseHosting">
+                    <i class="fas fa-fw fa-sitemap"></i>
+                    <span>Hosting Panel</span>
+                </a>
+                <div id="collapseHosting" class="collapse" aria-labelledby="headingTwo" data-parent="#accordionSidebar">
+                    <div class="bg-white py-2 collapse-inner rounded">
+                        <h6 class="collapse-header">Admin panel</h6>
+                        <a class="collapse-item" th:href="@{/api/admin/hosting/list}">Lista hostingów</a>
+                        <a class="collapse-item" th:href="@{/api/admin/hosting/add}">Dodaj hosting</a>
+                        <a class="collapse-item" th:href="@{/api/admin/hosting/edit}">Edytuj hosting</a>
+                        <a class="collapse-item" th:href="@{/api/admin/hosting/locker}">Blokady hostingów</a>
+                        <a class="collapse-item" th:href="@{/api/admin/hosting/delete}">Usuń hosting</a>
+                    </div>
+                </div>
+            </li>
+            <!-- Divider -->
+            <hr class="sidebar-divider">
+            <!-- Nav Item - Pages Collapse Menu -->
+            <li class="nav-item">
+                <a class="nav-link collapsed" href="#" data-toggle="collapse" data-target="#collapsePayment"
+                   aria-expanded="true"
+                   aria-controls="collapseHosting">
+                    <i class="fas fa-fw fa-cc-amazon-pay"></i>
+                    <span>Payment Panel</span>
+                </a>
+                <div id="collapsePayment" class="collapse" aria-labelledby="headingTwo" data-parent="#accordionSidebar">
+                    <div class="bg-white py-2 collapse-inner rounded">
+                        <h6 class="collapse-header">Admin panel</h6>
+                        <a class="collapse-item" th:href="@{/api/admin/payment/list}">Lista płatności</a>
+                        <a class="collapse-item" th:href="@{/api/admin/payment/debet}">Lista zaległych płatności</a>
+                        <a class="collapse-item" th:href="@{/api/admin/payment/add}">Dodaj pośrednika</a>
+                        <a class="collapse-item" th:href="@{/api/admin/payment/locker}">Blokady płatności</a>
+                        <a class="collapse-item" th:href="@{/api/admin/payment/payments}">Rozlicz płatności</a>
+                    </div>
+                </div>
+            </li>
+        </div>
+
+        <!-- Divider -->
+        <hr class="sidebar-divider">
+
+        <!-- Sidebar Toggler (Sidebar) -->
+        <div class="text-center d-none d-md-inline">
+            <button class="rounded-circle border-0" id="sidebarToggle"></button>
+        </div>
+
+    </ul>
+    <!-- End of Sidebar -->
+
+    <!-- Content Wrapper -->
+    <div id="content-wrapper" class="d-flex flex-column">
+
+        <!-- Main Content -->
+        <div id="content" class="bg-gradient-light">
+
+            <!-- Topbar -->
+            <nav class="navbar navbar-expand navbar-light bg-dark text-white topbar mb-4 static-top shadow">
+                <div class="align-baseline" layout:fragment="top-bar"></div>
+                <!-- Sidebar Toggle (Topbar) -->
+                <button id="sidebarToggleTop" class="btn btn-link d-md-none rounded-circle mr-3">
+                    <i class="fa fa-bars"></i>
+                </button>
+
+                <!-- Topbar Navbar -->
+                <ul class="navbar-nav ml-auto">
+                    <div class="topbar-divider d-none d-sm-block"></div>
+
+                    <!-- Nav Item - User Information -->
+                    <li class="nav-item dropdown no-arrow">
+                        <a class="nav-link dropdown-toggle" href="#" id="userDropdown" role="button"
+                           data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
+                            <span class="mr-2 d-none d-lg-inline text-gray-600 small" value="Name"><span
+                                    class="btn btn-outline-light" th:text="${loggedIn}"></span></span>
+                            <img class="img-profile rounded-circle"
+                                 src="https://cdn0.iconfinder.com/data/icons/win8-and-ios-tab-bar-icons/60/Admin.png"
+                                 alt="av">
+                        </a>
+
+                        <!-- Dropdown - User Information -->
+                        <div class="dropdown-menu dropdown-menu-right shadow animated--grow-in"
+                             aria-labelledby="userDropdown">
+                            <a class="dropdown-item" href="#">
+                                <i class="fas fa-user fa-sm fa-fw mr-2 text-gray-400"></i>
+                                Profile
+                            </a>
+                            <a class="dropdown-item" href="#">
+                                <i class="fas fa-cogs fa-sm fa-fw mr-2 text-gray-400"></i>
+                                Settings
+                            </a>
+                            <a class="dropdown-item" href="#">
+                                <i class="fas fa-list fa-sm fa-fw mr-2 text-gray-400"></i>
+                                Activity Log
+                            </a>
+                            <div class="dropdown-divider"></div>
+                            <a class="dropdown-item" th:href="@{/logout}" data-toggle="modal"
+                               data-target="#logoutModal">
+                                <i class="fas fa-sign-out-alt fa-sma fa-fw mr-2 text-gray-400"></i>
+                                Logout
+                            </a>
+                        </div>
+                    </li>
+
+                </ul>
+
+            </nav>
+            <!-- End of Topbar -->
+
+            <!-- Begin Page Content -->
+            <div class="container-fluid" layout:fragment="content">
+
+            </div>
+            <!-- /.container-fluid -->
+
+        </div>
+        <!-- End of Main Content -->
+    </div>
+</div>
+<!-- Footer -->
+<footer class="sticky-footer bg-dark">
+    <div class="container my-auto">
+        <div class="copyright text-center text-white text-monospace my-auto">
+            <span>Copyright &copy; By Head<span class="btn-danger">Masters</span></span>
+        </div>
+    </div>
+</footer>
+<!-- End of Footer -->
+
+</div>
+<!-- End of Content Wrapper -->
+
+</div>
+<!-- End of Page Wrapper -->
+
+<!-- Scroll to Top Button-->
+<a class="scroll-to-top rounded" href="#page-top">
+    <i class="fas fa-angle-up"></i>
+</a>
+
+<!-- Logout Modal-->
+<div class="modal fade" id="logoutModal" tabindex="-1" role="dialog" aria-labelledby="exampleModalLabel"
+     aria-hidden="true">
+    <div class="modal-dialog" role="document">
+        <div class="modal-content">
+            <div class="modal-header">
+                <h5 class="modal-title" id="exampleModalLabel" th:text="#{logout.leave}">Ready to Leave?</h5>
+                <button class="close" type="button" data-dismiss="modal" aria-label="Close">
+                    <span aria-hidden="true">×</span>
+                </button>
+            </div>
+            <div class="modal-body" th:text="#{logout.prompt}">Select "Logout" below if you are ready to end your
+                current session.
+            </div>
+            <div class="modal-footer">
+                <button class="btn btn-secondary" type="button" data-dismiss="modal" th:text="#{logout.cancel}">Cancel
+                </button>
+                <a class="btn btn-primary" th:href="@{/logout}" th:text="#{logout.logout}">Logout</a>
+            </div>
+        </div>
+    </div>
+</div>
+
+<!-- Bootstrap core JavaScript-->
+<script src="/vendor/jquery/jquery.min.js"></script>
+<script src="/vendor/bootstrap/js/bootstrap.bundle.min.js"></script>
+
+<!-- Core plugin JavaScript-->
+<script src="/vendor/jquery-easing/jquery.easing.min.js"></script>
+
+<!-- Custom scripts for all pages-->
+<script src="/js/sb-admin-2.min.js"></script>
+
+<!-- Page level plugins -->
+<script src="/vendor/chart.js/Chart.min.js"></script>
+
+<!-- Page level custom scripts -->
+<script src="/js/demo/chart-area-demo.js"></script>
+<script src="/js/demo/chart-pie-demo.js"></script>
+
+</body>
+
+</html>

@@ -1,26 +1,25 @@
-package com.github.bartlomiejpietrzyk.user;
+package com.github.bartlomiejpietrzyk.registration;
 
+import com.github.bartlomiejpietrzyk.user.Role;
 import com.github.bartlomiejpietrzyk.validator.FieldMatch;
 import org.hibernate.validator.constraints.Email;
+import org.hibernate.validator.constraints.Length;
 import org.hibernate.validator.constraints.NotEmpty;
 
 import javax.validation.constraints.AssertTrue;
+import java.util.List;
 
 @FieldMatch.List({
         @FieldMatch(first = "password", second = "confirmPassword", message = "The password fields must match"),
         @FieldMatch(first = "email", second = "confirmEmail", message = "The email fields must match")
 })
-public class UserRegistrationDto {
+public class UserCreateDto {
 
-    @NotEmpty
-    private String firstName;
-
-    @NotEmpty
-    private String lastName;
-
+    @Length(min = 8, max = 32)
     @NotEmpty
     private String password;
 
+    @Length(min = 8, max = 32)
     @NotEmpty
     private String confirmPassword;
 
@@ -34,22 +33,13 @@ public class UserRegistrationDto {
 
     @AssertTrue
     private Boolean terms;
+    private String created;
 
-    public String getFirstName() {
-        return firstName;
-    }
+    private List<Role> roles;
 
-    public void setFirstName(String firstName) {
-        this.firstName = firstName;
-    }
+    private Boolean locked;
 
-    public String getLastName() {
-        return lastName;
-    }
-
-    public void setLastName(String lastName) {
-        this.lastName = lastName;
-    }
+    private Boolean enable;
 
     public String getPassword() {
         return password;
@@ -89,5 +79,37 @@ public class UserRegistrationDto {
 
     public void setTerms(Boolean terms) {
         this.terms = terms;
+    }
+
+    public Boolean getLocked() {
+        return locked;
+    }
+
+    public void setLocked(Boolean locked) {
+        this.locked = locked;
+    }
+
+    public Boolean getEnable() {
+        return enable;
+    }
+
+    public void setEnable(Boolean enable) {
+        this.enable = enable;
+    }
+
+    public List<Role> getRoles() {
+        return roles;
+    }
+
+    public void setRoles(List<Role> roles) {
+        this.roles = roles;
+    }
+
+    public String getCreated() {
+        return created;
+    }
+
+    public void setCreated(String created) {
+        this.created = created;
     }
 }

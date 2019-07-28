@@ -1,5 +1,6 @@
-package com.github.bartlomiejpietrzyk.user;
+package com.github.bartlomiejpietrzyk.registration;
 
+import com.github.bartlomiejpietrzyk.user.User;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
@@ -15,11 +16,16 @@ import javax.validation.Valid;
 @RequestMapping("/registration")
 public class UserRegistrationController {
 
+    private UserRegistrationService userRegistrationService;
+
     @Autowired
-    private UserService userService;
+    public UserRegistrationController(UserRegistrationService userRegistrationService) {
+        this.userRegistrationService = userRegistrationService;
+    }
 
     @ModelAttribute("user")
     public UserRegistrationDto userRegistrationDto() {
+
         return new UserRegistrationDto();
     }
 
@@ -32,16 +38,17 @@ public class UserRegistrationController {
     public String registerUserAccount(@ModelAttribute("user") @Valid UserRegistrationDto userDto,
                                       BindingResult result) {
 
-        User existing = userService.findByEmail(userDto.getEmail());
-        if (existing != null) {
+        User existingEmail = userRegistrationService.findByEmail(userDto.getEmail());
+        if (existingEmail != null) {
             result.rejectValue("email", null, "There is already an account registered with that email");
         }
 
         if (result.hasErrors()) {
             return "registration";
         }
-
-        userService.save(userDto);
+        userDto.setLocked(false);
+        userDto.setEnable(true);
+        userRegistrationService.save(userDto);
         return "redirect:/registration?success";
     }
 }

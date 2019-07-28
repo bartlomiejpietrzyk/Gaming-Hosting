@@ -1,0 +1,161 @@
+<html xmlns:layout="http://www.ultraq.net.nz/thymeleaf/layout"
+      xmlns:th="http://www.thymeleaf.org"
+      layout:decorate="~{layout}" lang="pl">
+<body>
+<div layout:fragment="fragOne">
+    <div id="preloder">
+        <div class="loader"></div>
+    </div>
+    <div class="hero-section">
+        <div class="hero-slider owl-carousel">
+            <div class="hs-item set-bg" data-setbg="img/bg.jpg">
+                <div class="container">
+                    <h2 th:text="#{home.hero.title}"></h2>
+                    <p th:text="#{home.hero.text}"></p>
+                </div>
+            </div>
+        </div>
+    </div>
+</div>
+<div layout:fragment="fragOneBy">
+    <div class="container">
+        <div class="row">
+            <div class="col-md-2"></div>
+            <div class="align-content-md-center panel-danger col-md-8" style="margin-top: 10px;">
+                <h5>HeadMasters</h5>
+                <p>Lorem ipsum dolor sit amet, consectetur adipiscing elit. Donec malesuada lorem maximus
+                    mauris sceleri
+                    squeLorem ipsum dolor sit amet, consectetur adipiscing elit. Donec malesuada lorem
+                    maximus mauris
+                    sceleri
+                    squeLorem ipsum dolor sit amet, consectetur adipiscing elit. Donec malesuada lorem
+                    maximus mauris
+                    sceleri
+                    squeLorem ipsum dolor sit amet, consectetur adipiscing elit. Donec malesuada lorem
+                    maximus mauris
+                    sceleri
+                    sque</p>
+            </div>
+            <div class="col-md-2"></div>
+
+        </div>
+    </div>
+
+</div>
+<div layout:fragment="fragTwo">
+    <!---->
+    <!-- Feature section -->
+    <section class="feature-section spad">
+        <div class="container">
+            <div class="row">
+                <div class="col-md-4 feature">
+                    <img th:src="@{img/feature-icons/1.png}" alt="#">
+                    <h4 th:text="#{feature.support}"></h4>
+                    <p th:text="#{feature.support.text}"></p>
+                </div>
+                <div class="col-md-4 feature">
+                    <img th:src="@{img/feature-icons/2.png}" alt="#">
+                    <h4 th:text="#{feature.server}">Safe & Secure</h4>
+                    <p th:text="#{feature.server.text}"></p>
+                </div>
+                <div class="col-md-4 feature">
+                    <img th:src="@{img/feature-icons/3.png}" alt="#">
+                    <h4 th:text="#{feature.cloud}">Cloud Hosting</h4>
+                    <p th:text="#{feature.cloud.text}"></p>
+                </div>
+            </div>
+        </div>
+    </section>
+    <!--    Feature section end-->
+
+    <!-- About section -->
+    <section class="about-section spad">
+        <div class="container">
+            <div class="section-title">
+                <p>The only ones</p>
+                <h2>We Generate Trust</h2>
+            </div>
+            <div class="row">
+                <div class="col-lg-5 about-img">
+                    <img th:src="@{img/about.png}" alt="">
+                </div>
+                <div class="col-lg-7 about-text">
+                    <br><br><br>
+                    <p>Phasellus vehicula tempus orci vel consequat. Nullam lorem sem, viverra a rutrum sed, gravida
+                        mattis
+                        magna. Suspendisse vitae commodo quam. Quisque a enim et ante vulputate finibus nec laoreet
+                        ipsum.
+                        Etiam lobortis erat vel ullamcorper tristique. Morbi pellentesque orci augue, quis finibus justo
+                        accumsan nec. Donec imperdiet sodales lectus sed consectetur. Mauris dignissim</p>
+                    <ul class="about-list">
+                        <li>Nullam lorem sem, viverra a rutrum</li>
+                        <li>Etiam lobortis erat vel ullamcorper</li>
+                        <li>Sed ultrices interdum libero, laoreet</li>
+                    </ul>
+                </div>
+            </div>
+        </div>
+    </section>
+    <!-- About section end -->
+</div>
+<div layout:fragment="fragThree">
+    <!-- Milestones section -->
+    <section class="milestones-section">
+        <div class="container">
+            <div class="row">
+                <div class="col-lg-3 col-sm-6">
+                    <div class="milestone-icon">
+                        <img th:src="@{img/milestone-icons/1.png}" alt="">
+                    </div>
+                    <div class="milestone-text text-white">
+                        <h2 th:text="#{mile.clientsCount}"></h2>
+                        <p th:text="#{mile.clients}"></p>
+                    </div>
+                </div>
+                <div class="col-lg-3 col-sm-6">
+                    <div class="milestone-icon">
+                        <img th:src="@{img/milestone-icons/2.png}" alt="">
+                    </div>
+                    <div class="milestone-text text-white">
+                        <h2 th:text="#{mile.serversCount}"></h2>
+                        <p th:text="#{mile.servers}"></p>
+                    </div>
+                </div>
+                <div class="col-lg-3 col-sm-6">
+                    <div class="milestone-icon">
+                        <img th:src="@{img/milestone-icons/3.png}" alt="">
+                    </div>
+                    <div class="milestone-text text-white">
+                        <h2 th:text="#{mile.hostsCount}"></h2>
+                        <p th:text="#{mile.hosts}"></p>
+                    </div>
+                </div>
+                <div class="col-lg-3 col-sm-6">
+                    <div class="milestone-icon">
+                        <img th:src="@{img/milestone-icons/4.png}" alt="">
+                    </div>
+                    <div class="milestone-text text-white">
+                        <h2 th:text="#{mile.playersPlayedCount}"></h2>
+                        <p th:text="#{mile.playersPlayed}"></p>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </section>
+    <!-- Milestones section end -->
+</div>
+<div layout:fragment="fragFour">
+    <!-- Banner section -->
+    <section class="banner-section set-bg" data-setbg="img/banner-bg.jpg">
+        <div class="container">
+            <div class="banner-card">
+                <h2 th:text="#{banner.getStarted}"></h2>
+                <h6 th:text="#{banner.promptRegister}"></h6>
+                <a th:href="@{/register}" class="site-btn sb-c3">Start</a>
+            </div>
+        </div>
+    </section>
+    <!-- Banner section end -->
+</div>
+</body>
+</html>
