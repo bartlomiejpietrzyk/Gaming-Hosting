@@ -2,6 +2,9 @@ package com.github.bartlomiejpietrzyk.panel.admin;
 
 import com.github.bartlomiejpietrzyk.user.UserRepository;
 import com.github.bartlomiejpietrzyk.user.UserService;
+import com.github.bartlomiejpietrzyk.user.dto.UserDetailsDto;
+import com.github.bartlomiejpietrzyk.user.dto.UserEditDto;
+import com.github.bartlomiejpietrzyk.user.dto.UserListDto;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
@@ -25,13 +28,21 @@ public class UsersPanelController {
 
     @GetMapping("/list")
     public String userList(Model model) {
-        model.addAttribute("usersList", userService.findAll());
+//        model.addAttribute("usersList", userService.findAll());
         return "panel/adminUserList";
     }
 
     @ModelAttribute("usersList")
     public List<UserListDto> list() {
         return userService.findAll();
+    }
+
+    @GetMapping("/details")
+    public String userDetails(@RequestParam String id, Model model) {
+        UserDetailsDto detailsDto = userService.findUseretailsById(id);
+        //todo payments counts n values
+        model.addAttribute("user", detailsDto);
+        return "panel/adminUserDetails";
     }
 
     @GetMapping("/edit")

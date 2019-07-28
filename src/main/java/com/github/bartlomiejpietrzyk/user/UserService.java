@@ -1,7 +1,8 @@
 package com.github.bartlomiejpietrzyk.user;
 
-import com.github.bartlomiejpietrzyk.panel.admin.UserEditDto;
-import com.github.bartlomiejpietrzyk.panel.admin.UserListDto;
+import com.github.bartlomiejpietrzyk.user.dto.UserDetailsDto;
+import com.github.bartlomiejpietrzyk.user.dto.UserEditDto;
+import com.github.bartlomiejpietrzyk.user.dto.UserListDto;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 import org.springframework.transaction.annotation.Transactional;
@@ -32,6 +33,9 @@ public class UserService {
         return new UserEditDto(userRepository.getOne(Long.valueOf(id)));
     }
 
+    public UserDetailsDto findUseretailsById(String id) {
+        return new UserDetailsDto(userRepository.getOne(Long.valueOf(id)));
+    }
     public User save(User user) {
         return userRepository.save(user);
     }
@@ -48,15 +52,10 @@ public class UserService {
         user.setAddress(userEditDto.getAddress());
         user.setPostCode(userEditDto.getPostCode());
         user.setCity(userEditDto.getCity());
-        user.setLocked(userEditDto.getLocked());
         return user;
     }
 
     public void deleteUser(Long id) {
         userRepository.delete(id);
-    }
-
-    public void deleteUser(User user) {
-        userRepository.delete(user);
     }
 }

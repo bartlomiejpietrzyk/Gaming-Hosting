@@ -29,6 +29,7 @@ public class User {
     private String postCode;
     private String city;
     private Boolean locked;
+    private Boolean enable;
     @CreatedDate
     @Convert(converter = LocalDateTimeAttributeConverter.class)
     private LocalDateTime created;
@@ -57,6 +58,8 @@ public class User {
         this.email = email;
         this.password = password;
         this.roles = roles;
+        this.locked = false;
+        this.enable = false;
     }
 
     public Long getId() {
@@ -144,7 +147,7 @@ public class User {
     }
 
     public void setCreated(LocalDateTime created) {
-        this.created = created;
+        this.created = LocalDateTime.now();
     }
 
     public Set<Server> getServersSet() {
@@ -169,5 +172,13 @@ public class User {
 
     public void setRoles(Collection<Role> roles) {
         this.roles = roles;
+    }
+
+    public Boolean getEnable() {
+        return enable;
+    }
+
+    public void setEnable(Boolean enable) {
+        this.enable = enable;
     }
 }

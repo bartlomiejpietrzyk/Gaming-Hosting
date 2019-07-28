@@ -1,4 +1,4 @@
-package com.github.bartlomiejpietrzyk.panel.admin;
+package com.github.bartlomiejpietrzyk.user.dto;
 
 import com.github.bartlomiejpietrzyk.user.User;
 import com.github.bartlomiejpietrzyk.validator.FieldMatch;
@@ -15,6 +15,7 @@ public class UserEditDto {
     }
 
     public UserEditDto(User that) {
+        this.id = String.valueOf(that.getId());
         this.firstName = that.getFirstName();
         this.lastName = that.getLastName();
         this.email = that.getEmail();
@@ -22,7 +23,6 @@ public class UserEditDto {
         this.address = that.getAddress();
         this.postCode = that.getPostCode();
         this.city = that.getCity();
-//        this.locked = that.getLocked();
     }
 
     private String id;
@@ -53,9 +53,9 @@ public class UserEditDto {
     @NotEmpty
     private String city;
 
-    private Boolean enabled;
-
-    private Boolean locked;
+//    private Boolean enabled;
+//
+//    private Boolean locked;
 
     public String getId() {
         return id;
@@ -127,21 +127,5 @@ public class UserEditDto {
 
     public void setCity(String city) {
         this.city = city;
-    }
-
-    public Boolean getLocked() {
-        return locked;
-    }
-
-    public void setLocked(Boolean locked) {
-        this.locked = locked;
-    }
-
-    public Boolean getEnabled() {
-        return enabled;
-    }
-
-    public void setEnabled(Boolean enabled) {
-        this.enabled = enabled;
     }
 }

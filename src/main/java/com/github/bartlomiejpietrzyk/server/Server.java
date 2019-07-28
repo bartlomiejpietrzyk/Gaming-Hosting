@@ -181,10 +181,4 @@ public class Server {
     public void setServerAdmin(String serverAdmin) {
         this.serverAdmin = serverAdmin;
     }
-//
-//    @Override
-//    public String toString() {
-//        return String.format("%s, %s, %s\n", ip, name, game);
-
-//    }
 }

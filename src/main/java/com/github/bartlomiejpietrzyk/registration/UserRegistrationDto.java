@@ -30,6 +30,8 @@ public class UserRegistrationDto {
 
     @AssertTrue
     private Boolean terms;
+    private Boolean locked;
+    private Boolean enable;
 
     public String getPassword() {
         return password;
@@ -69,5 +71,21 @@ public class UserRegistrationDto {
 
     public void setTerms(Boolean terms) {
         this.terms = terms;
+    }
+
+    public Boolean getLocked() {
+        return locked;
+    }
+
+    public void setLocked(Boolean locked) {
+        this.locked = locked;
+    }
+
+    public Boolean getEnable() {
+        return enable;
+    }
+
+    public void setEnable(Boolean enable) {
+        this.enable = enable;
     }
 }

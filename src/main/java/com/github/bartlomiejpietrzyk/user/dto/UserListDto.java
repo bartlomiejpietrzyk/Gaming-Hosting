@@ -1,4 +1,4 @@
-package com.github.bartlomiejpietrzyk.panel.admin;
+package com.github.bartlomiejpietrzyk.user.dto;
 
 import com.github.bartlomiejpietrzyk.user.User;
 
