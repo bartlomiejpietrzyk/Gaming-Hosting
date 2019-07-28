@@ -3,6 +3,8 @@ package com.github.bartlomiejpietrzyk.user;
 import com.github.bartlomiejpietrzyk.payment.Payment;
 import com.github.bartlomiejpietrzyk.server.Server;
 import org.hibernate.validator.constraints.Email;
+import org.springframework.data.annotation.CreatedDate;
+import org.springframework.data.jpa.domain.support.AuditingEntityListener;
 
 import javax.persistence.*;
 import java.time.LocalDateTime;
@@ -12,6 +14,7 @@ import java.util.Set;
 
 @Entity
 @Table(uniqueConstraints = @UniqueConstraint(columnNames = "email"))
+@EntityListeners(AuditingEntityListener.class)
 public class User {
 
     @Id
@@ -28,6 +31,8 @@ public class User {
     private String city;
     private Boolean locked;
     private Boolean enable;
+    @CreatedDate
+    @Column(nullable = false, updatable = false)
     private LocalDateTime created;
     @OneToMany(mappedBy = "user")
     private Set<Server> serversSet = new HashSet<>();

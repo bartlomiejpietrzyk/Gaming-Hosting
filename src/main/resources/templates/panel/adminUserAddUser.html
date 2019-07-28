@@ -29,7 +29,7 @@
                                     You've successfully registered!</span>
                         </div>
                     </div>
-                    <form th:action="@{/api/admin/user/addUser}" th:object="${user}" method="post">
+                    <form th:action="@{/api/admin/user/addUser}" th:object="${user}" th:method="post">
 
                         <h6 class="error-message btn-outline-danger text-white"
                             th:if="${#fields.hasGlobalErrors()}"
@@ -119,10 +119,7 @@
                 </div>
             </div>
         </div>
-
     </div>
-
-
     <!-- Content Row -->
     <div class="row">
         <!---->

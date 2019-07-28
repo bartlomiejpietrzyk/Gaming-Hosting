@@ -1,5 +1,6 @@
 package com.github.bartlomiejpietrzyk.user;
 
+import com.github.bartlomiejpietrzyk.user.dto.AdminUserEditDto;
 import com.github.bartlomiejpietrzyk.user.dto.UserDetailsDto;
 import com.github.bartlomiejpietrzyk.user.dto.UserEditDto;
 import com.github.bartlomiejpietrzyk.user.dto.UserListDto;
@@ -29,8 +30,8 @@ public class UserService {
                 .collect(Collectors.toList());
     }
 
-    public UserEditDto findUserById(String id) {
-        return new UserEditDto(userRepository.getOne(Long.valueOf(id)));
+    public AdminUserEditDto findUserById(String id) {
+        return new AdminUserEditDto(userRepository.getOne(Long.valueOf(id)));
     }
 
     public UserDetailsDto findUserDetailsById(String id) {
@@ -40,11 +41,30 @@ public class UserService {
         return userRepository.save(user);
     }
 
-    public void editUpdate(UserEditDto userEditDto) {
+    public void adminEditUpdate(AdminUserEditDto adminUserEditDto) {
+        User existing = userRepository.getOne(Long.valueOf(adminUserEditDto.getId()));
+        userRepository.save(setAdminUserFromDtoEditForm(existing, adminUserEditDto));
+    }
+
+    public void userEditUpdate(UserEditDto userEditDto) {
         User existing = userRepository.getOne(Long.valueOf(userEditDto.getId()));
         userRepository.save(setUserFromDtoEditForm(existing, userEditDto));
     }
-    
+
+    public User setAdminUserFromDtoEditForm(User user, AdminUserEditDto adminUserEditDto) {
+        user.setEmail(adminUserEditDto.getEmail());
+        user.setFirstName(adminUserEditDto.getFirstName());
+        user.setLastName(adminUserEditDto.getLastName());
+        user.setMobile(Long.valueOf(adminUserEditDto.getMobile()));
+        user.setAddress(adminUserEditDto.getAddress());
+        user.setPostCode(adminUserEditDto.getPostCode());
+        user.setCity(adminUserEditDto.getCity());
+        user.setLocked(adminUserEditDto.getLocked());
+        user.setRoles(adminUserEditDto.getRoles().stream().map(Role::new).collect(Collectors.toList()));
+        user.setEnable(adminUserEditDto.getEnable());
+        return user;
+    }
+
     public User setUserFromDtoEditForm(User user, UserEditDto userEditDto) {
         user.setEmail(userEditDto.getEmail());
         user.setFirstName(userEditDto.getFirstName());
@@ -53,12 +73,12 @@ public class UserService {
         user.setAddress(userEditDto.getAddress());
         user.setPostCode(userEditDto.getPostCode());
         user.setCity(userEditDto.getCity());
-        user.setLocked(userEditDto.getLocked());
-        user.setRoles(userEditDto.getRoles().stream().map(Role::new).collect(Collectors.toList()));
-        user.setEnable(userEditDto.getEnable());
         return user;
     }
 
+    public UserEditDto findUserByEmail(String email) {
+        return new UserEditDto(userRepository.findUserByEmail(email));
+    }
     public void deleteUser(Long id) {
         userRepository.delete(id);
     }

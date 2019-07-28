@@ -6,111 +6,88 @@
 <div layout:fragment="top-bar">
     <span class="text-white btn border-white">
         <span th:text="#{panel.text.details}">Details:</span>
-        <span th:text="${user.email}"></span>
-                    <a class="btn btn-outline-light" th:href="@{/api/admin/server/}"
-                       th:text="#{panel.text.servers}"></a>
-                    <a class="btn btn-outline-light" th:href="@{/api/admin/payments/}"
-                       th:text="#{panel.text.payments}"></a>
-
-        <a th:href="@{/api/admin/user/edit(id=${user.id})}">
+        <span th:text="${userAccount.email}"></span>
+                    <a class="btn btn-outline-light" th:href="@{/api/user/server/}"
+                       th:text="#{panel.text.myservers}"></a>
+                    <a class="btn btn-outline-light" th:href="@{/api/user/payments/}"
+                       th:text="#{panel.text.mypayments}"></a>
+        <a th:href="@{/api/user/edit(id=${userAccount.id})}">
             <input type="submit" th:value="#{panel.text.button.edit}"
                    class="btn btn-outline-light"/> </a>
-        <a th:href="@{/api/admin/user/delete(id=${user.id})}" th:action="@{/api/admin/user/delete(id=${user.id})}"
-           method="post">
-            <input type="submit" th:value="#{panel.text.button.delete}"
-                   class="btn btn-outline-light"
-                   onclick="return confirm('Are you sure to delete?')"></a>
-    <a class="btn alert-dark" th:href="@{/api/admin/user/}"
+    <a class="btn alert-dark" th:href="@{/api/dashboard}"
        th:text="#{panel.text.button.back}"></a></span>
-
 </div>
 <section layout:fragment="content">
 
     <!-- Begin Page Content -->
     <div class="container-fluid">
         <div class="form-group float-right">
-            <!--            <a th:href="@{/api/admin/user/list}"-->
-            <!--               method="get"> <input type="submit" th:value="#{panel.text.button.back}"-->
-            <!--                                    class="btn btn-outline-light"/></a>-->
-            <!--        </div>-->
-            <!--        &lt;!&ndash; Page Heading &ndash;&gt;-->
-            <!--        <div class="d-sm-flex align-items-center justify-content-between mb-4">-->
-            <!--            <h1 class="h3 mb-0 text-gray-800" th:text="#{panel.text.button.details.user}"></h1>-->
-            <!--        </div>-->
+            <a th:href="@{/api/admin/user/list}"
+               method="get"> <input type="submit" th:value="#{panel.text.button.back}"
+                                    class="btn btn-outline-light"/></a>
+        </div>
+        <!-- Page Heading -->
+        <div class="d-sm-flex align-items-center justify-content-between mb-4">
+            <h1 class="h3 mb-0 text-gray-800" th:text="#{panel.text.button.details.user}"></h1>
+        </div>
 
-            <!--        &lt;!&ndash; DataTales Example &ndash;&gt;-->
-            <!--        <div class="card shadow mb-4">-->
-            <!--            <div class="card-body">-->
-            <!--                <div class="table-responsive">-->
-            <!--                    <div class="form-group">-->
-            <!--                        <h3></h3>-->
-
-            <!--                        &lt;!&ndash;            Details Table                    &ndash;&gt;-->
-            <!--                        <table class="table table-hover table-fixed table-bordered" id="dataTable"-->
-            <!--                               width="100%" cellspacing="0">-->
-            <!--                            <thead>-->
-            <!--                            <tr class="alert-dark">-->
-            <!--                                <th th:text="#{panel.text.id}">#ID#</th>-->
-            <!--                                <th th:text="#{panel.text.firstname}"></th>-->
-            <!--                                <th th:text="#{panel.text.lastname}"></th>-->
-            <!--                                <th th:text="#{panel.text.email}"></th>-->
-            <!--                                <th th:text="#{panel.text.mobile}">Mobile</th>-->
-            <!--                                <th th:text="#{panel.text.address}"></th>-->
-            <!--                                <th th:text="#{panel.text.postcode}"></th>-->
-            <!--                                <th th:text="#{panel.text.city}">City</th>-->
-            <!--                                <th th:text="#{panel.text.created}"></th>-->
-            <!--                                <th th:text="#{panel.text.servers}"></th>-->
-            <!--                                <th th:text="#{panel.text.payments}"></th>-->
-            <!--                                <th th:text="#{panel.text.isLocked}"></th>-->
-            <!--                                <th th:text="#{panel.text.isEnabled}"></th>-->
-            <!--                                <th th:text="#{panel.text.roles}"></th>-->
-            <!--                            </tr>-->
-            <!--                            </thead>-->
-            <!--                            <tbody th:object="${user}">-->
-            <!--                            <tr>-->
-            <!--                                <td th:text="${user.id}"></td>-->
-            <!--                                <td th:text="${user.firstName}"></td>-->
-            <!--                                <td th:text="${user.lastName}"></td>-->
-            <!--                                <td th:text="${user.email}"></td>-->
-            <!--                                <td th:text="${user.mobile}"></td>-->
-            <!--                                <td th:text="${user.address}"></td>-->
-            <!--                                <td th:text="${user.postCode}"></td>-->
-            <!--                                <td th:text="${user.city}"></td>-->
-            <!--                                <td th:text="${user.created}"></td>-->
-            <!--                                <td>Servers</td>-->
-            <!--                                <td>Payments</td>-->
-            <!--                                <td th:text="${user.locked}"></td>-->
-            <!--                                <td th:text="${user.enable}"></td>-->
-            <!--                                <td th:text="${user.roles}"></td>-->
-            <!--                            </tr>-->
-            <!--                            </tbody>-->
-
-            <!--                        </table>-->
-            <!--                        <br><br>-->
-
-
-            <!--                    </div>-->
-            <!--                </div>-->
-            <!--            </div>-->
-            <!--        </div>-->
-            <!--    </div>-->
-            <!-- Content Row -->
-            <div class="row">
-                <!---->
-                <!-- Content Column -->
-                <div class="col-lg-6 mb-4">
-                    <!---->
-                    <!---->
-                </div>
-                <!---->
-                <div class="col-lg-6 mb-4">
-                    <!---->
+        <!-- DataTales Example -->
+        <div class="card shadow mb-4">
+            <div class="card-body">
+                <div class="table-responsive">
+                    <div class="form-group">
+                        <h3></h3>
+                        <!---->
+                        <!--            Details Table                    -->
+                        <table class="table table-hover table-fixed table-bordered" id="dataTable"
+                               width="100%" cellspacing="0">
+                            <thead>
+                            <tr class="alert-dark">
+                                <th th:text="#{panel.text.firstname}"></th>
+                                <th th:text="#{panel.text.lastname}"></th>
+                                <th th:text="#{panel.text.email}"></th>
+                                <th th:text="#{panel.text.mobile}">Mobile</th>
+                                <th th:text="#{panel.text.address}"></th>
+                                <th th:text="#{panel.text.postcode}"></th>
+                                <th th:text="#{panel.text.city}">City</th>
+                                <th th:text="#{panel.text.isLocked}"></th>
+                            </tr>
+                            </thead>
+                            <tbody th:object="${userAccount}">
+                            <tr>
+                                <td th:text="${userAccount.firstName}"></td>
+                                <td th:text="${userAccount.lastName}"></td>
+                                <td th:text="${userAccount.email}"></td>
+                                <td th:text="${userAccount.mobile}"></td>
+                                <td th:text="${userAccount.address}"></td>
+                                <td th:text="${userAccount.postCode}"></td>
+                                <td th:text="${userAccount.city}"></td>
+                                <td th:text="${userAccount.locked}"></td>
+                            </tr>
+                            </tbody>
+                        </table>
+                    </div>
                 </div>
             </div>
+        </div>
+    </div>
+    <!-- Content Row -->
+    <div class="row">
+        <!---->
+        <!-- Content Column -->
+        <div class="col-lg-6 mb-4">
+            <!---->
             <!---->
         </div>
-        <!-- /.container-fluid -->
         <!---->
+        <div class="col-lg-6 mb-4">
+            <!---->
+        </div>
+    </div>
+    <!---->
+    </div>
+    <!-- /.container-fluid -->
+    <!---->
 </section>
 </body>
 </html>

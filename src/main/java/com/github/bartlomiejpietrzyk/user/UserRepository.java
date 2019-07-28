@@ -13,6 +13,7 @@ public interface UserRepository extends JpaRepository<User, Long> {
 
     User getOne(Long aLong);
 
+    User findUserByEmail(String email);
     void delete(Long id);
 
     <S extends User> S save(S s);
