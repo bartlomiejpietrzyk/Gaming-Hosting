@@ -16,17 +16,21 @@
         <!-- DataTales Example -->
         <div class="card shadow mb-4">
             <div class="card-header py-3">
-                <h6 class="m-0 font-weight-bold text-primary">User details</h6>
+                <h5 class="alert alert-link"> Details: <span th:text="${user.email}"></span>
+                    <a class="btn btn-outline-dark" th:href="@{/api/admin/server/}" th:text="#{panel.text.servers}"></a>
+                    <a class="btn btn-outline-dark" th:href="@{/api/admin/payments/}"
+                       th:text="#{panel.text.payments}"></a>
+                    <div class="form-group float-right">
+                        <a th:href="@{/api/admin/user/list}"
+                           method="get"> <input type="submit" th:value="#{panel.text.button.back}"
+                                                class="btn btn-outline-light"/></a>
+                    </div>
             </div>
             <div class="card-body">
                 <div class="table-responsive">
                     <div class="form-group">
-                        <h3>Details: <span th:text="${user.email}"></span></h3>
-                        <div class="form-group float-right">
-                            <a th:href="@{/api/admin/user/list}"
-                               method="get"> <input type="submit" th:value="#{panel.text.button.back}"
-                                                    class="btn btn-light"/></a>
-                        </div>
+                        <h3></h3>
+
                         <!--            Details Table                    -->
                         <table class="table table-hover table-fixed table-bordered" id="dataTable"
                                width="100%" cellspacing="0">
@@ -45,6 +49,8 @@
                                 <th th:text="#{panel.text.payments}"></th>
                                 <th th:text="#{panel.text.isLocked}"></th>
                                 <th th:text="#{panel.text.isEnabled}"></th>
+                                <th th:text="#{panel.text.isAdmin}"></th>
+                                <th th:text="#{panel.text.isServerAdmin}"></th>
                             </tr>
                             </thead>
                             <tbody th:object="${user}">
@@ -62,6 +68,8 @@
                                 <td>16</td>
                                 <td>True</td>
                                 <td>False</td>
+                                <td>True</td>
+                                <td>True</td>
                             </tr>
                             </tbody>
                         </table>
