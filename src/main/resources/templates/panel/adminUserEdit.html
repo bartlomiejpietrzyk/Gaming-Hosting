@@ -28,9 +28,6 @@
                 <div class="table-responsive">
                     <table>
                         <form th:action="@{/api/admin/user/edit(id=${userId})}" th:object="${user}" th:method="post">
-
-                            <!--                            <p>Locked: <span th:text="${locked}"></span></p>-->
-
                             <div class="form-group text-monospace">
                                 <label for="email" class="text-monospace card-title"
                                        th:text="#{panel.text.email}">E-Mail</label>
@@ -109,12 +106,41 @@
                                        th:field="*{city}"/>
                             </div>
 
+                            <div class="form-group">
+                                <span class="" th:text="#{panel.text.roles}"></span><br>
+                                <label for="roles">
+                                    <select id="roles" class="btn btn-outline-dark" th:field="*{roles}">
+                                        <option th:value="ROLE_USER" th:text="#{panel.text.add.user}"></option>
+                                        <option th:value="ROLE_ADMIN" th:text="#{panel.text.add.admin}"></option>
+                                    </select>
+                                </label>
+                            </div>
+
+                            <div class="form-group">
+                                <span class="" th:text="#{panel.text.isEnabled}"></span><br>
+                                <label for="enable">
+                                    <select id="enable" class="btn btn-outline-dark" th:field="*{enable}">
+                                        <option th:value="true" th:text="#{panel.text.isEnabled}"></option>
+                                        <option th:value="false" th:text="#{panel.text.isDisabled}"></option>
+                                    </select>
+                                </label>
+                            </div>
+
+                            <div class="form-group">
+                                <span class="" th:text="#{panel.text.isLocked}"></span> <span
+                                    th:text="${locked}"></span><br>
+                                <label for="locked">
+                                    <select id="locked" class="btn btn-outline-dark" th:field="*{locked}">
+                                        <option th:value="true" th:text="#{panel.text.locked.true}"></option>
+                                        <option th:value="false" th:text="#{panel.text.locked.false}"></option>
+                                    </select>
+                                </label>
+                            </div>
                             <div class="form-group text-monospace">
                                 <button type="submit" class="btn btn-outline-danger"
                                         th:text="#{panel.text.button.save}">Save
                                 </button>
-
-
+                            </div>
                         </form>
                     </table>
                     <br><br>

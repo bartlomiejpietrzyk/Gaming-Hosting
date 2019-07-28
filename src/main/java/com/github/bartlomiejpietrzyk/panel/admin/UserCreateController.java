@@ -2,7 +2,6 @@ package com.github.bartlomiejpietrzyk.panel.admin;
 
 import com.github.bartlomiejpietrzyk.registration.UserCreateDto;
 import com.github.bartlomiejpietrzyk.registration.UserRegistrationService;
-import com.github.bartlomiejpietrzyk.user.Role;
 import com.github.bartlomiejpietrzyk.user.User;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
@@ -15,8 +14,6 @@ import org.springframework.web.bind.annotation.RequestMapping;
 
 import javax.validation.Valid;
 import java.security.Principal;
-import java.util.ArrayList;
-import java.util.List;
 
 @Controller
 @RequestMapping("/api/admin/user/addUser")
@@ -61,11 +58,4 @@ public class UserCreateController {
         return principal.getName();
     }
 
-    @ModelAttribute("roleList")
-    public List<Role> rolesList() {
-        ArrayList<Role> roles = new ArrayList<>();
-        roles.add(new Role("ROLE_USER"));
-        roles.add(new Role("ROLE_ADMIN"));
-        return roles;
-    }
 }

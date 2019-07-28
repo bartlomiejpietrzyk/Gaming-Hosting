@@ -84,11 +84,30 @@
                         </div>
 
                         <div class="form-group">
-                            Role:<br>
+                            <span class="" th:text="#{panel.text.roles}"></span><br>
                             <select class="btn btn-outline-dark" th:field="*{roles}">
-                                <option th:each="role : ${roleList}" th:value="${role.name}" th:text="${role}"></option>
+                                <option th:value="ROLE_USER" th:text="#{panel.text.add.user}"></option>
+                                <option th:value="ROLE_ADMIN" th:text="#{panel.text.add.admin}"></option>
                             </select>
                         </div>
+
+                        <div class="form-group">
+                            <span class="" th:text="#{panel.text.isEnabled}"></span><br>
+                            <select class="btn btn-outline-dark" th:field="*{enable}">
+                                <option th:value="true" th:text="#{panel.text.isEnabled}"></option>
+                                <option th:value="false" th:text="#{panel.text.isDisabled}"></option>
+                            </select>
+                        </div>
+
+                        <div class="form-group">
+                            <span class="" th:text="#{panel.text.isLocked}"></span> <span
+                                th:text="${locked}"></span><br>
+                            <select class="btn btn-outline-dark" th:field="*{locked}">
+                                <option th:value="true" th:text="#{panel.text.locked.true}"></option>
+                                <option th:value="false" th:text="#{panel.text.locked.false}"></option>
+                            </select>
+                        </div>
+
                         <div class="form-group">
                             <button type="submit" class="btn btn-danger" th:text="#{register.button.submit}">
                                 Register

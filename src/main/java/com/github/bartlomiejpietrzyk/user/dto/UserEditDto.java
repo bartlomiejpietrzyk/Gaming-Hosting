@@ -1,10 +1,15 @@
 package com.github.bartlomiejpietrzyk.user.dto;
 
+import com.github.bartlomiejpietrzyk.user.Role;
 import com.github.bartlomiejpietrzyk.user.User;
 import com.github.bartlomiejpietrzyk.validator.FieldMatch;
 import org.hibernate.validator.constraints.Email;
 import org.hibernate.validator.constraints.NotEmpty;
 import org.springframework.beans.factory.annotation.Autowired;
+
+import javax.persistence.Column;
+import java.util.Collection;
+import java.util.stream.Collectors;
 
 @FieldMatch.List({
         @FieldMatch(first = "email", second = "confirmEmail", message = "The email fields must match")
@@ -23,6 +28,9 @@ public class UserEditDto {
         this.address = that.getAddress();
         this.postCode = that.getPostCode();
         this.city = that.getCity();
+        this.roles = that.getRoles().stream().map(Role::toString).collect(Collectors.toList());
+        this.locked = that.getLocked();
+        this.enable = that.getEnable();
     }
 
     private String id;
@@ -53,9 +61,12 @@ public class UserEditDto {
     @NotEmpty
     private String city;
 
-//    private Boolean enabled;
-//
-//    private Boolean locked;
+    @NotEmpty
+    private Collection<String> roles;
+    @Column(nullable = false)
+    private Boolean enable;
+    @Column(nullable = false)
+    private Boolean locked;
 
     public String getId() {
         return id;
@@ -127,5 +138,29 @@ public class UserEditDto {
 
     public void setCity(String city) {
         this.city = city;
+    }
+
+    public Boolean getLocked() {
+        return locked;
+    }
+
+    public void setLocked(Boolean locked) {
+        this.locked = locked;
+    }
+
+    public Boolean getEnable() {
+        return enable;
+    }
+
+    public void setEnable(Boolean enable) {
+        this.enable = enable;
+    }
+
+    public Collection<String> getRoles() {
+        return roles;
+    }
+
+    public void setRoles(Collection<String> roles) {
+        this.roles = roles;
     }
 }

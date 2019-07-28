@@ -46,6 +46,8 @@ public class UserRegistrationController {
         if (result.hasErrors()) {
             return "registration";
         }
+        userDto.setLocked(false);
+        userDto.setEnable(true);
         userRegistrationService.save(userDto);
         return "redirect:/registration?success";
     }

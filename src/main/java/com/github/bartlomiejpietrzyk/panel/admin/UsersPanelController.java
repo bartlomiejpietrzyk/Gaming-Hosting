@@ -37,8 +37,7 @@ public class UsersPanelController {
 
     @GetMapping("/details")
     public String userDetails(@RequestParam String id, Model model) {
-        UserDetailsDto detailsDto = userService.findUseretailsById(id);
-        //todo payments counts n values
+        UserDetailsDto detailsDto = userService.findUserDetailsById(id);
         model.addAttribute("user", detailsDto);
         return "panel/adminUserDetails";
     }
@@ -71,4 +70,5 @@ public class UsersPanelController {
     public String currentUserName(Principal principal) {
         return principal.getName();
     }
+
 }

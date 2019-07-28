@@ -1,0 +1,35 @@
+<html xmlns:layout="http://www.ultraq.net.nz/thymeleaf/layout"
+      xmlns:th="http://www.thymeleaf.org"
+      layout:decorate="~{layout}">
+
+<body>
+<div layout:fragment="fragOne">
+    <div id="preloder">
+        <div class="loader"></div>
+    </div>
+    <div class="hero-section">
+        <div class="hero-slider owl-carousel">
+            <div class="hs-item set-bg" data-setbg="img/403.jpg">
+                <div class="container">
+                    <!---->
+                </div>
+            </div>
+        </div>
+    </div>
+</div>
+</div>
+<div layout:fragment="fragFour">
+    <!-- Banner section -->
+    <section class="banner-section set-bg" data-setbg="img/banner-bg1.jpg">
+        <div class="container">
+            <div class="banner-card">
+                <h2 th:text="#{banner.getStarted}"></h2>
+                <h6 th:text="#{banner.promptRegister}"></h6>
+                <a th:href="@{/register}" class="site-btn sb-c3">Start</a>
+            </div>
+        </div>
+    </section>
+    <!-- Banner section end -->
+</div>
+</body>
+</html>

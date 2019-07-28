@@ -58,8 +58,6 @@ public class User {
         this.email = email;
         this.password = password;
         this.roles = roles;
-        this.locked = false;
-        this.enable = false;
     }
 
     public Long getId() {
@@ -181,4 +179,5 @@ public class User {
     public void setEnable(Boolean enable) {
         this.enable = enable;
     }
+
 }

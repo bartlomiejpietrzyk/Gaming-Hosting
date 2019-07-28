@@ -33,7 +33,7 @@ public class UserService {
         return new UserEditDto(userRepository.getOne(Long.valueOf(id)));
     }
 
-    public UserDetailsDto findUseretailsById(String id) {
+    public UserDetailsDto findUserDetailsById(String id) {
         return new UserDetailsDto(userRepository.getOne(Long.valueOf(id)));
     }
     public User save(User user) {
@@ -46,12 +46,16 @@ public class UserService {
     }
     
     public User setUserFromDtoEditForm(User user, UserEditDto userEditDto) {
+        user.setEmail(userEditDto.getEmail());
         user.setFirstName(userEditDto.getFirstName());
         user.setLastName(userEditDto.getLastName());
         user.setMobile(Long.valueOf(userEditDto.getMobile()));
         user.setAddress(userEditDto.getAddress());
         user.setPostCode(userEditDto.getPostCode());
         user.setCity(userEditDto.getCity());
+        user.setLocked(userEditDto.getLocked());
+        user.setRoles(userEditDto.getRoles().stream().map(Role::new).collect(Collectors.toList()));
+        user.setEnable(userEditDto.getEnable());
         return user;
     }
 
