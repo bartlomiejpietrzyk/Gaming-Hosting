@@ -16,12 +16,12 @@ import java.util.List;
 
 @Controller
 @RequestMapping("/api/admin/user")
-public class UsersPanelController {
+public class AdminUsersPanelController {
 
     private UserService userService;
 
     @Autowired
-    public UsersPanelController(UserService userService) {
+    public AdminUsersPanelController(UserService userService) {
         this.userService = userService;
     }
 
