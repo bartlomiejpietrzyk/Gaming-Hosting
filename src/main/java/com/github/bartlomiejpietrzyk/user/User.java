@@ -29,10 +29,10 @@ public class User {
     private String address;
     private String postCode;
     private String city;
-    private Boolean locked;
-    private Boolean enable;
+    private Boolean locked = false;
+    private Boolean enable = true;
     @CreatedDate
-    @Column(nullable = false, updatable = false)
+    @Column(updatable = false)
     private LocalDateTime created;
     @OneToMany(mappedBy = "user")
     private Set<Server> serversSet = new HashSet<>();

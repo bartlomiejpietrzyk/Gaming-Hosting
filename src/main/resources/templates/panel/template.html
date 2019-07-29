@@ -1,7 +1,7 @@
 <!DOCTYPE HTML>
 <html xmlns:th="http://www.thymeleaf.org"
       xmlns:layout="http://www.ultraq.net.nz/web/thymeleaf/layout"
-      xmlns:sec="http://www.thymeleaf.org/thymeleaf-extras-springsecurity5" lang="pl">
+      lang="pl">
 
 <head>
 
@@ -83,10 +83,11 @@
             </div>
         </li>
 
-        <div sec:authorize="hasRole('ADMIN')">
-            <!-- Divider -->
-            <hr class="sidebar-divider">
+        <!-- Divider -->
+        <hr class="sidebar-divider">
 
+        <!--END OF FRAGMENT MENU-->
+        <div layout:fragment="admin-menu">
             <!-- Heading -->
             <div class="sidebar-heading">
                 Administrator playground
@@ -173,6 +174,7 @@
                     <i class="fas fa-fw fa-cc-amazon-pay"></i>
                     <span>Payment Panel</span>
                 </a>
+
                 <div id="collapsePayment" class="collapse" aria-labelledby="headingTwo" data-parent="#accordionSidebar">
                     <div class="bg-white py-2 collapse-inner rounded">
                         <h6 class="collapse-header">Admin panel</h6>
@@ -184,16 +186,17 @@
                     </div>
                 </div>
             </li>
+
+
+            <!-- Divider -->
+            <hr class="sidebar-divider">
+
+            <!-- Sidebar Toggler (Sidebar) -->
+            <div class="text-center d-none d-md-inline">
+                <button class="rounded-circle border-0" id="sidebarToggle"></button>
+            </div>
         </div>
-
-        <!-- Divider -->
-        <hr class="sidebar-divider">
-
-        <!-- Sidebar Toggler (Sidebar) -->
-        <div class="text-center d-none d-md-inline">
-            <button class="rounded-circle border-0" id="sidebarToggle"></button>
-        </div>
-
+        <!--END OF FRAGMENT MENU-->
     </ul>
     <!-- End of Sidebar -->
 

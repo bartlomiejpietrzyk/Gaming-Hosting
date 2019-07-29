@@ -15,6 +15,7 @@ import java.util.stream.Collectors;
         @FieldMatch(first = "email", second = "confirmEmail", message = "The email fields must match")
 })
 public class UserEditDto {
+
     @Autowired
     public UserEditDto() {
     }

@@ -7,11 +7,13 @@ import org.springframework.context.annotation.Configuration;
 import org.springframework.security.authentication.dao.DaoAuthenticationProvider;
 import org.springframework.security.config.annotation.authentication.builders.AuthenticationManagerBuilder;
 import org.springframework.security.config.annotation.web.builders.HttpSecurity;
+import org.springframework.security.config.annotation.web.configuration.EnableWebSecurity;
 import org.springframework.security.config.annotation.web.configuration.WebSecurityConfigurerAdapter;
 import org.springframework.security.config.http.SessionCreationPolicy;
 import org.springframework.security.crypto.bcrypt.BCryptPasswordEncoder;
 import org.springframework.security.web.util.matcher.AntPathRequestMatcher;
 
+@EnableWebSecurity
 @Configuration
 class SpringSecurity extends WebSecurityConfigurerAdapter {
     @Autowired
@@ -19,12 +21,6 @@ class SpringSecurity extends WebSecurityConfigurerAdapter {
 
     @Override
     protected void configure(HttpSecurity http) throws Exception {
-        http
-                .csrf().disable();
-//                .authorizeRequests()
-//                .antMatchers("/api/admin/**").hasRole("ADMIN")
-//                .antMatchers("/api/user/**").hasRole("USER")
-//                .anyRequest().authenticated();
         http
                 .authorizeRequests()
                 .antMatchers(
@@ -43,14 +39,14 @@ class SpringSecurity extends WebSecurityConfigurerAdapter {
                         "/css/**",
                         "/img/**",
                         "/webjars/**").permitAll()
-//                .antMatchers("/api/admin/**").access("hasRole('ADMIN')")
-//                .antMatchers("/api/user/**").hasRole("USER")
+                .antMatchers("/api/user/**").hasAnyRole("USER", "ADMIN")
+                .antMatchers("/api/admin/**").access("hasRole('ADMIN')")
                 .anyRequest().authenticated()
                 .and()
                 .formLogin()
-                .defaultSuccessUrl("/api/dashboard", true)
                 .loginPage("/login")
                 .permitAll()
+                .defaultSuccessUrl("/api/dashboard", true)
                 .and()
                 .logout()
                 .invalidateHttpSession(true)
