@@ -5,7 +5,7 @@ public class ServerDetailsDto {
     private String ip;
     private String name;
     private String type;
-    private String gameId;
+    private String game;
     private String hosting;
     private String slot;
     private String user;
@@ -25,7 +25,7 @@ public class ServerDetailsDto {
         this.ip = that.getIp();
         this.name = that.getName();
         this.type = String.valueOf(that.getType());
-        this.gameId = that.getGame().getTitle();
+        this.game = that.getGame().getTitle();
         this.hosting = String.valueOf(that.getHosting());
         this.slot = that.getSlot();
         this.user = String.valueOf(that.getUser());
@@ -33,7 +33,6 @@ public class ServerDetailsDto {
         this.rentStart = String.valueOf(that.getRentStart());
         this.rentExpire = String.valueOf(that.getRentExpire());
         this.serverOwner = that.getServerOwner();
-        this.serverAdmin = that.getServerAdmin();
         this.payments = String.valueOf(that.getPayments());
     }
 
@@ -70,11 +69,11 @@ public class ServerDetailsDto {
     }
 
     public String getGameId() {
-        return gameId;
+        return game;
     }
 
     public void setGameId(String gameId) {
-        this.gameId = gameId;
+        this.game = gameId;
     }
 
     public String getHosting() {

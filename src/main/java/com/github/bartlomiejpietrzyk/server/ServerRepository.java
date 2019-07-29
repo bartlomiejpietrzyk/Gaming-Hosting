@@ -13,6 +13,8 @@ public interface ServerRepository extends JpaRepository<Server, Long> {
 
     List<Server> findAll();
 
+    Server save(ServerOrderDto orderDto);
+
     <S extends Server> S save(S s);
 
     boolean exists(Long id);
