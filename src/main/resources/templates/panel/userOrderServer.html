@@ -21,7 +21,7 @@
 
         <!-- DataTales Example -->
         <div class="card shadow mb-4">
-            <div class="card-body col-md-4">
+            <div class="card-body">
                 <div class="table-responsive">
                     <div th:if="${param.success}">
                         <div class="alert alert-info">
@@ -56,18 +56,17 @@
 
 
                         <div class="form-group">
-                            <span class="" th:text="#{panel.text.roles}"></span><br>
-                            <select class="btn btn-outline-dark" th:field="*{roles}">
-                                <option th:value="ROLE_USER" th:text="#{panel.text.add.user}"></option>
-                                <option th:value="ROLE_ADMIN" th:text="#{panel.text.add.admin}"></option>
+                            <span class="" th:text="#{panel.text.server.type}"></span><br>
+                            <select class="btn btn-outline-dark" th:field="*{type}">
+                                <option th:value="public" th:text="#{panel.text.server.type.priv}"></option>
+                                <option th:value="private" th:text="#{panel.text.server.type.pub}"></option>
                             </select>
                         </div>
 
                         <div class="form-group">
-                            <span class="" th:text="#{panel.text.isEnabled}"></span><br>
-                            <select class="btn btn-outline-dark" th:field="*{enable}">
-                                <option th:value="true" th:text="#{panel.text.isEnabled}"></option>
-                                <option th:value="false" th:text="#{panel.text.isDisabled}"></option>
+                            <span class="" th:text="#{panel.text.server.game}"></span><br>
+                            <select class="btn btn-outline-dark" th:field="*{game}">
+                                <option th:each="game : ${game}" th:value="${game.id}" th:text="${game.title}"></option>
                             </select>
                         </div>
 
