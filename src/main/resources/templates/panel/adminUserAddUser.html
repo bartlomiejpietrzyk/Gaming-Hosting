@@ -29,7 +29,7 @@
                                     You've successfully registered!</span>
                         </div>
                     </div>
-                    <form th:action="@{/api/admin/user/addUser}" th:object="${user}" method="post">
+                    <form th:action="@{/api/admin/user/addUser}" th:object="${user}" th:method="post">
 
                         <h6 class="error-message btn-outline-danger text-white"
                             th:if="${#fields.hasGlobalErrors()}"
@@ -100,8 +100,8 @@
                         </div>
 
                         <div class="form-group">
-                            <span class="" th:text="#{panel.text.isLocked}"></span> <span
-                                th:text="${locked}"></span><br>
+                            <span class="" th:text="#{panel.text.isLocked}"></span>
+                            <span th:text="${locked}"></span><br>
                             <select class="btn btn-outline-dark" th:field="*{locked}">
                                 <option th:value="true" th:text="#{panel.text.locked.true}"></option>
                                 <option th:value="false" th:text="#{panel.text.locked.false}"></option>
@@ -119,10 +119,7 @@
                 </div>
             </div>
         </div>
-
     </div>
-
-
     <!-- Content Row -->
     <div class="row">
         <!---->

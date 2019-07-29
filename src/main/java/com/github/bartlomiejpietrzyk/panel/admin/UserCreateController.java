@@ -49,6 +49,8 @@ public class UserCreateController {
         if (result.hasErrors()) {
             return "panel/adminUserAddUser";
         }
+        userDto.setLocked(false);
+        userDto.setEnable(true);
         userRegistrationService.save(userDto);
         return "redirect:/api/admin/user/addUser?success";
     }

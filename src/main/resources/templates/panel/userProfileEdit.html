@@ -1,0 +1,171 @@
+<!DOCTYPE HTML>
+<html xmlns:th="http://www.thymeleaf.org"
+      xmlns:layout="http://www.ultraq.net.nz/web/thymeleaf/layout"
+      layout:decorate="panel/template" lang="pl">
+<body>
+
+<div layout:fragment="top-bar">
+    <span class="text-white btn border-white">
+        <span th:text="#{panel.text.details}">Details:</span>
+        <span class="text-white btn border-white" th:text="${userAccount.email}"></span>
+        <span class="text-white btn border-white">ID: <span th:text="${userAccount.id}"></span></span>
+        <a class="btn alert-dark" th:href="@{/api/user/myProfile}"
+           th:text="#{panel.text.button.back}"></a></span>
+</div>
+<section layout:fragment="content">
+
+    <!-- Begin Page Content -->
+    <div class="container-fluid">
+        <!---->
+        <!-- Page Heading -->
+        <div class="d-sm-flex align-items-center justify-content-between mb-4">
+            <h1 class="h3 mb-0 text-gray-800" th:text="#{panel.text.userEdit}">List of Users</h1>
+        </div>
+
+        <!-- DataTales Example -->
+        <div class="card shadow mb-4">
+            <div class="card-body">
+                <div class="table-responsive">
+                    <table>
+                        <form th:action="@{/api/user/edit(id=${userAccount.id})}" th:object="${userAccount}"
+                              th:method="post">
+
+                            <h6 class="error-message btn-outline-danger text-white"
+                                th:if="${#fields.hasGlobalErrors()}"
+                                th:each="error : ${#fields.errors('global')}">
+                                <span class="btn-danger" th:text="${error}">Validation error</span></h6>
+
+                            <div class="form-group text-monospace"
+                                 th:classappend="${#fields.hasErrors('email')}? 'has-error':''">
+                                <label for="email" class="text-monospace card-title"
+                                       th:text="#{panel.text.email}">E-Mail</label>
+                                <input type="text"
+                                       id="email"
+                                       name="email"
+                                       class="form-control"
+                                       autofocus="autofocus"
+                                       th:field="*{email}"/>
+                                <h6 class="error-message btn-outline-danger text-white"
+                                    th:each="error : ${#fields.errors('email')}">
+                                    <span class="btn-danger" th:text="${error}">Validation error</span></h6>
+
+                            </div>
+                            <div class="form-group text-monospace"
+                                 th:classappend="${#fields.hasErrors('confirmEmail')}? 'has-error':''">
+                                <label for="confirmEmail" class="text-monospace card-title"
+                                       th:text="#{panel.text.confirm.email}">E-Mail</label>
+                                <input type="text"
+                                       id="confirmEmail"
+                                       name="confirmEmail"
+                                       class="form-control"
+                                       autofocus="autofocus"
+                                       th:field="*{confirmEmail}"/>
+                                <h6 class="error-message btn-outline-danger text-white"
+                                    th:each="error : ${#fields.errors('confirmEmail')}">
+                                    <span class="btn-danger" th:text="${error}">Validation error</span></h6>
+                            </div>
+                            <div class="form-group text-monospace">
+                                <label for="firstname" class="text-monospace card-title"
+                                       th:text="#{panel.text.firstname}">E-Mail</label>
+                                <input type="text"
+                                       id="firstname"
+                                       name="firstname"
+                                       class="form-control"
+                                       autofocus="autofocus"
+                                       th:field="*{firstName}"/>
+                            </div>
+                            <div class="form-group text-monospace">
+                                <label for="email" class="text-monospace card-title"
+                                       th:text="#{panel.text.lastname}">E-Mail</label>
+                                <input type="text"
+                                       id="lastname"
+                                       name="lastname"
+                                       class="form-control"
+                                       autofocus="autofocus"
+                                       th:field="*{lastName}"/>
+                            </div>
+                            <div class="form-group text-monospace">
+                                <label for="mobile" class="text-monospace card-title"
+                                       th:text="#{panel.text.mobile}">Mobile</label>
+                                <input th:type="text"
+                                       id="mobile"
+                                       name="mobile"
+                                       class="form-control"
+                                       autofocus="autofocus"
+                                       th:maxlength="9"
+                                       th:field="*{mobile}"/>
+
+                            </div>
+                            <div class="form-group text-monospace">
+                                <label for="address" class="text-monospace card-title"
+                                       th:text="#{panel.text.address}">Address</label>
+                                <input type="text"
+                                       id="address"
+                                       name="address"
+                                       class="form-control"
+                                       autofocus="autofocus"
+                                       th:field="*{address}"/>
+
+                            </div>
+
+                            <div class="form-group text-monospace">
+                                <label for="postCode" class="text-monospace card-title"
+                                       th:text="#{panel.text.postcode}">Post-Code</label>
+                                <input type="text"
+                                       id="postCode"
+                                       name="postCode"
+                                       class="form-control"
+                                       autofocus="autofocus"
+                                       th:maxlength="5"
+                                       th:field="*{postCode}"/>
+
+                            </div>
+
+                            <div class="form-group text-monospace">
+                                <label for="city" class="text-monospace card-title"
+                                       th:text="#{panel.text.city}">City</label>
+                                <input type="text"
+                                       id="city"
+                                       name="city"
+                                       class="form-control"
+                                       autofocus="autofocus"
+                                       th:field="*{city}"/>
+                            </div>
+                            <div class="form-group text-monospace">
+                                <button type="submit"
+                                        class="btn btn-outline-danger"
+                                        onclick="return confirm('Are you sure to update Your details?')"
+                                        th:text="#{panel.text.button.save}">Save
+                                </button>
+                            </div>
+                        </form>
+                    </table>
+                    <br><br>
+                </div>
+            </div>
+        </div>
+    </div>
+
+
+    <!-- Content Row -->
+    <div class="row">
+        <!---->
+        <!-- Content Column -->
+        <div class="col-lg-6 mb-4">
+            <!---->
+            <!---->
+        </div>
+        <!---->
+        <div class="col-lg-6 mb-4">
+            <!---->
+        </div>
+    </div>
+    <!---->
+    </div>
+    <!-- /.container-fluid -->
+    <!---->
+</section>
+
+
+</body>
+</html>
