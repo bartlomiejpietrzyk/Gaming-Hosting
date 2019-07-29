@@ -1,11 +1,11 @@
 package com.github.bartlomiejpietrzyk.security;
 
-import com.github.bartlomiejpietrzyk.registration.UserCreateDto;
-import com.github.bartlomiejpietrzyk.registration.UserRegistrationDto;
 import com.github.bartlomiejpietrzyk.registration.UserRegistrationService;
 import com.github.bartlomiejpietrzyk.user.Role;
 import com.github.bartlomiejpietrzyk.user.User;
 import com.github.bartlomiejpietrzyk.user.UserRepository;
+import com.github.bartlomiejpietrzyk.user.dto.UserCreateDto;
+import com.github.bartlomiejpietrzyk.user.dto.UserRegistrationDto;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.security.core.GrantedAuthority;
 import org.springframework.security.core.authority.SimpleGrantedAuthority;

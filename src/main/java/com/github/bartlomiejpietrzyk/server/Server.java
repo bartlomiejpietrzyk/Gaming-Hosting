@@ -23,11 +23,11 @@ public class Server {
     private String name;
     private String type;
     private String slot;
-    private boolean active;
-    private boolean isPaid;
+    private Boolean active;
+    private Boolean isPaid;
 
     @CreatedDate
-    @Convert(converter = LocalDateTimeAttributeConverter.class)
+    @Column(updatable = false)
     private LocalDateTime rentStart;
 
     @Convert(converter = LocalDateTimeAttributeConverter.class)
@@ -46,13 +46,8 @@ public class Server {
     @OneToMany(mappedBy = "server")
     private List<Payment> payments = new ArrayList<>();
 
-    /**
-     * ServerDetails
-     */
-
     private String paymentStatus;
     private String serverOwner;
-    private String serverAdmin;
 
     public Long getId() {
         return id;
@@ -78,14 +73,6 @@ public class Server {
         this.name = name;
     }
 
-    public String getType() {
-        return type;
-    }
-
-    public void setType(String type) {
-        this.type = type;
-    }
-
     public String getSlot() {
         return slot;
     }
@@ -94,19 +81,27 @@ public class Server {
         this.slot = slot;
     }
 
-    public boolean isActive() {
+    public String getType() {
+        return type;
+    }
+
+    public void setType(String type) {
+        this.type = type;
+    }
+
+    public Boolean getActive() {
         return active;
     }
 
-    public void setActive(boolean active) {
+    public void setActive(Boolean active) {
         this.active = active;
     }
 
-    public boolean isPaid() {
+    public Boolean getPaid() {
         return isPaid;
     }
 
-    public void setPaid(boolean paid) {
+    public void setPaid(Boolean paid) {
         isPaid = paid;
     }
 
@@ -174,11 +169,4 @@ public class Server {
         this.serverOwner = serverOwner;
     }
 
-    public String getServerAdmin() {
-        return serverAdmin;
-    }
-
-    public void setServerAdmin(String serverAdmin) {
-        this.serverAdmin = serverAdmin;
-    }
 }

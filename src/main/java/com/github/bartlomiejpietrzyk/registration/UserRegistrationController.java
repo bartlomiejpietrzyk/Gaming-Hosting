@@ -1,6 +1,7 @@
 package com.github.bartlomiejpietrzyk.registration;
 
 import com.github.bartlomiejpietrzyk.user.User;
+import com.github.bartlomiejpietrzyk.user.dto.UserRegistrationDto;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
