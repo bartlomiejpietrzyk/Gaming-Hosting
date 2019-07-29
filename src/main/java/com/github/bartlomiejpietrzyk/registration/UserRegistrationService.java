@@ -1,6 +1,8 @@
 package com.github.bartlomiejpietrzyk.registration;
 
 import com.github.bartlomiejpietrzyk.user.User;
+import com.github.bartlomiejpietrzyk.user.dto.UserCreateDto;
+import com.github.bartlomiejpietrzyk.user.dto.UserRegistrationDto;
 import org.springframework.security.core.userdetails.UserDetailsService;
 
 public interface UserRegistrationService extends UserDetailsService {

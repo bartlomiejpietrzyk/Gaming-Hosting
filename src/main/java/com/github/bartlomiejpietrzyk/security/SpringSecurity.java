@@ -57,7 +57,6 @@ class SpringSecurity extends WebSecurityConfigurerAdapter {
                 .and()
                 .sessionManagement()
                 .sessionCreationPolicy(SessionCreationPolicy.ALWAYS);
-
     }
 
     @Bean

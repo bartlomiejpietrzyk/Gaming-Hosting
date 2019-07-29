@@ -1,23 +1,19 @@
-package com.github.bartlomiejpietrzyk.registration;
+package com.github.bartlomiejpietrzyk.user.dto;
 
+import com.github.bartlomiejpietrzyk.user.Role;
 import com.github.bartlomiejpietrzyk.validator.FieldMatch;
 import org.hibernate.validator.constraints.Email;
 import org.hibernate.validator.constraints.Length;
 import org.hibernate.validator.constraints.NotEmpty;
-import org.springframework.beans.factory.annotation.Autowired;
-import org.springframework.data.annotation.CreatedDate;
 
 import javax.validation.constraints.AssertTrue;
+import java.util.List;
 
 @FieldMatch.List({
         @FieldMatch(first = "password", second = "confirmPassword", message = "The password fields must match"),
         @FieldMatch(first = "email", second = "confirmEmail", message = "The email fields must match")
 })
-public class UserRegistrationDto {
-
-    @Autowired
-    public UserRegistrationDto() {
-    }
+public class UserCreateDto {
 
     @Length(min = 8, max = 32)
     @NotEmpty
@@ -27,10 +23,10 @@ public class UserRegistrationDto {
     @NotEmpty
     private String confirmPassword;
 
-
     @Email
     @NotEmpty
     private String email;
+
     @Email
     @NotEmpty
     private String confirmEmail;
@@ -38,8 +34,9 @@ public class UserRegistrationDto {
     @AssertTrue
     private Boolean terms;
 
-    @CreatedDate
     private String created;
+
+    private List<Role> roles;
 
     private Boolean locked;
 
@@ -99,6 +96,14 @@ public class UserRegistrationDto {
 
     public void setEnable(Boolean enable) {
         this.enable = enable;
+    }
+
+    public List<Role> getRoles() {
+        return roles;
+    }
+
+    public void setRoles(List<Role> roles) {
+        this.roles = roles;
     }
 
     public String getCreated() {

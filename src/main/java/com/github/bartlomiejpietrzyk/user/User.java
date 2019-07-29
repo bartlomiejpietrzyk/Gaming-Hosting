@@ -31,13 +31,17 @@ public class User {
     private String city;
     private Boolean locked = false;
     private Boolean enable = true;
+
     @CreatedDate
     @Column(updatable = false)
     private LocalDateTime created;
+
     @OneToMany(mappedBy = "user")
     private Set<Server> serversSet = new HashSet<>();
+
     @OneToMany(mappedBy = "user")
     private Set<Payment> payments = new HashSet<>();
+
     @ManyToMany(fetch = FetchType.EAGER, cascade = CascadeType.ALL)
     @JoinTable(
             name = "users_roles",

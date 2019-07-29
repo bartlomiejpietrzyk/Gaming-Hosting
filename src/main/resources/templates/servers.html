@@ -1,6 +1,6 @@
 <html xmlns:layout="http://www.ultraq.net.nz/thymeleaf/layout"
       xmlns:th="http://www.thymeleaf.org"
-      layout:decorate="~{layout}">
+      layout:decorate="layout">
 
 <body>
 <div layout:fragment="fragOne">
@@ -56,7 +56,7 @@
                 <div class="banner-card">
                     <h2 th:text="#{banner.getStarted}"></h2>
                     <h6 th:text="#{banner.promptRegister}"></h6>
-                    <a th:href="@{/register}" class="site-btn sb-c3">Start</a>
+                    <a th:href="@{/registration}" class="site-btn sb-c3">Start</a>
                 </div>
             </div>
         </section>

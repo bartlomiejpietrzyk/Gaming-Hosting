@@ -99,6 +99,29 @@
     <!-- About section end -->
 </div>
 <div layout:fragment="fragThree">
+    <div class="container">
+        <h3 class="el-title">Accordions & Tabs</h3>
+        <div class="row">
+            <div class="col-lg-3 col-sm-6 cp-item">
+                <div class="circle-progress" data-cptitle="Satisfaction" data-cpid="id-1" data-cpvalue="100"
+                     data-cpcolor="#25ae88"></div>
+            </div>
+            <div class="col-lg-3 col-sm-6 cp-item">
+                <div class="circle-progress" data-cptitle="Public Servers" data-cpid="id-2" data-cpvalue="65"
+                     data-cpcolor="#252a3a"></div>
+            </div>
+            <div class="col-lg-3 col-sm-6 cp-item">
+                <div class="circle-progress" data-cptitle="Players Online" data-cpid="id-3" data-cpvalue="55"
+                     data-cpcolor="#7fabda"></div>
+            </div>
+            <div class="col-lg-3 col-sm-6 cp-item">
+                <div class="circle-progress" data-cptitle="Players come back" data-cpid="id-4" data-cpvalue="70"
+                     data-cpcolor="#556080"></div>
+            </div>
+        </div>
+    </div>
+</div>
+<div layout:fragment="fragFour">
     <!-- Milestones section -->
     <section class="milestones-section">
         <div class="container">
@@ -144,14 +167,15 @@
     </section>
     <!-- Milestones section end -->
 </div>
-<div layout:fragment="fragFour">
+
+<div layout:fragment="fragSix">
     <!-- Banner section -->
     <section class="banner-section set-bg" data-setbg="img/banner-bg.jpg">
         <div class="container">
             <div class="banner-card">
                 <h2 th:text="#{banner.getStarted}"></h2>
                 <h6 th:text="#{banner.promptRegister}"></h6>
-                <a th:href="@{/register}" class="site-btn sb-c3">Start</a>
+                <a th:href="@{/registration}" class="site-btn sb-c3">Start</a>
             </div>
         </div>
     </section>
