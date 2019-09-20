@@ -49,11 +49,6 @@
                         </div>
 
                         <!--                        SELECT TYPE-->
-                        <!--                        SELECT GAME-->
-                        <!--                        SELECT SLOT-->
-                        <!--                        SELECT RENT START-->
-                        <!--                        SELECT RENT TIME-->
-
 
                         <div class="form-group">
                             <span class="" th:text="#{panel.text.server.type}"></span><br>
@@ -62,22 +57,30 @@
                                 <option th:value="private" th:text="#{panel.text.server.type.pub}"></option>
                             </select>
                         </div>
-
+                        <!--                        SELECT GAME-->
                         <div class="form-group">
                             <span class="" th:text="#{panel.text.server.game}"></span><br>
                             <select class="btn btn-outline-dark" th:field="*{game}">
                                 <option th:each="game : ${game}" th:value="${game.id}" th:text="${game.title}"></option>
+
                             </select>
                         </div>
-
+                        <!--                        SELECT SLOT-->
                         <div class="form-group">
-                            <span class="" th:text="#{panel.text.isLocked}"></span>
-                            <span th:text="${locked}"></span><br>
-                            <select class="btn btn-outline-dark" th:field="*{locked}">
-                                <option th:value="true" th:text="#{panel.text.locked.true}"></option>
+                            <span class="" th:text="#{panel.text.server.slot}"></span>
+                            <select class="btn btn-outline-dark" th:field="*{slot}">
+                                <option th:each="slot : ${game}" th:value="${game.slot}"
+                                        th:text="${game.slot}"></option>
+                                <option th:each="slot : ${game}" th:value="${game.maxPlayers}"
+                                        th:text="${game.maxPlayers}"></option>
+
                                 <option th:value="false" th:text="#{panel.text.locked.false}"></option>
                             </select>
                         </div>
+
+
+                        <!--                        SELECT RENT START-->
+                        <!--                        SELECT RENT TIME-->
 
                         <div class="form-group">
                             <button type="submit" class="btn btn-danger" th:text="#{register.button.submit}">
