@@ -1,6 +1,6 @@
 package com.github.bartlomiejpietrzyk.server;
 
-public class ServerDetailsDto {
+public class ServerOrderDto {
     private String id;
     private String ip;
     private String name;
@@ -12,15 +12,14 @@ public class ServerDetailsDto {
     private String paymentStatus;
     private String rentStart;
     private String rentExpire;
-    private String serverOwner;
-    private String serverAdmin;
-    private String payments;
+    private String isPaid;
+    private String active;
 
 
-    public ServerDetailsDto() {
+    public ServerOrderDto() {
     }
 
-    public ServerDetailsDto(Server that) {
+    public ServerOrderDto(Server that) {
         this.id = String.valueOf(that.getId());
         this.ip = that.getIp();
         this.name = that.getName();
@@ -32,8 +31,8 @@ public class ServerDetailsDto {
         this.paymentStatus = that.getPaymentStatus();
         this.rentStart = String.valueOf(that.getRentStart());
         this.rentExpire = String.valueOf(that.getRentExpire());
-        this.serverOwner = that.getServerOwner();
-        this.payments = String.valueOf(that.getPayments());
+        this.isPaid = String.valueOf(that.getPaid());
+        this.active = String.valueOf(that.getActive());
     }
 
     public String getId() {
@@ -66,14 +65,6 @@ public class ServerDetailsDto {
 
     public void setType(String type) {
         this.type = type;
-    }
-
-    public String getGameId() {
-        return game;
-    }
-
-    public void setGameId(String gameId) {
-        this.game = gameId;
     }
 
     public String getHosting() {
@@ -124,27 +115,27 @@ public class ServerDetailsDto {
         this.rentExpire = rentExpire;
     }
 
-    public String getServerOwner() {
-        return serverOwner;
+    public void setGame(String game) {
+        this.game = game;
     }
 
-    public void setServerOwner(String serverOwner) {
-        this.serverOwner = serverOwner;
+    public String getGame() {
+        return game;
     }
 
-    public String getServerAdmin() {
-        return serverAdmin;
+    public String getIsPaid() {
+        return isPaid;
     }
 
-    public void setServerAdmin(String serverAdmin) {
-        this.serverAdmin = serverAdmin;
+    public void setIsPaid(String isPaid) {
+        this.isPaid = isPaid;
     }
 
-    public String getPayments() {
-        return payments;
+    public String getActive() {
+        return active;
     }
 
-    public void setPayments(String payments) {
-        this.payments = payments;
+    public void setActive(String active) {
+        this.active = active;
     }
 }

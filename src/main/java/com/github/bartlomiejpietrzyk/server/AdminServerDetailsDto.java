@@ -1,6 +1,6 @@
 package com.github.bartlomiejpietrzyk.server;
 
-public class ServerDetailsDto {
+public class AdminServerDetailsDto {
     private String id;
     private String ip;
     private String name;
@@ -17,10 +17,10 @@ public class ServerDetailsDto {
     private String payments;
 
 
-    public ServerDetailsDto() {
+    public AdminServerDetailsDto() {
     }
 
-    public ServerDetailsDto(Server that) {
+    public AdminServerDetailsDto(Server that) {
         this.id = String.valueOf(that.getId());
         this.ip = that.getIp();
         this.name = that.getName();
