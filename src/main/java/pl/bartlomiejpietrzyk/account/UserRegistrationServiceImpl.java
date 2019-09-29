@@ -38,7 +38,6 @@ public class UserRegistrationServiceImpl implements UserRegistrationService {
         user.setPassword(passwordEncoder.encode(userDto.getPassword()));
         user.setLocked(userDto.getLocked());
         user.setEnabled(userDto.getEnabled());
-        user.setUsername(userDto.getUsername());
         user.setEmail(userDto.getEmail());
         Role userRole = roleRepository.findByName("ROLE_USER");
         user.setRoles(new HashSet<>(Arrays.asList(userRole)));

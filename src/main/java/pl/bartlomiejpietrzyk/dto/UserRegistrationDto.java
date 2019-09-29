@@ -24,10 +24,6 @@ public class UserRegistrationDto {
     public UserRegistrationDto() {
     }
 
-    @NotEmpty
-    @Length(min = 4, max = 16)
-    private String username;
-
     @Length(min = 8, max = 32)
     @NotEmpty
     private String password;
