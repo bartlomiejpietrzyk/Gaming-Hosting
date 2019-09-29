@@ -4,6 +4,7 @@ import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.security.crypto.bcrypt.BCryptPasswordEncoder;
 import org.springframework.stereotype.Service;
 import org.springframework.transaction.annotation.Transactional;
+import pl.bartlomiejpietrzyk.dto.UserRegistrationDto;
 import pl.bartlomiejpietrzyk.entity.Role;
 import pl.bartlomiejpietrzyk.entity.User;
 import pl.bartlomiejpietrzyk.repository.RoleRepository;
@@ -32,9 +33,13 @@ public class UserRegistrationServiceImpl implements UserRegistrationService {
     }
 
     @Override
-    public void saveUser(User user) {
-        user.setPassword(passwordEncoder.encode(user.getPassword()));
-        user.setEnabled(false);
+    public void saveUser(UserRegistrationDto userDto) {
+        User user = new User();
+        user.setPassword(passwordEncoder.encode(userDto.getPassword()));
+        user.setLocked(userDto.getLocked());
+        user.setEnabled(userDto.getEnabled());
+        user.setUsername(userDto.getUsername());
+        user.setEmail(userDto.getEmail());
         Role userRole = roleRepository.findByName("ROLE_USER");
         user.setRoles(new HashSet<>(Arrays.asList(userRole)));
         userRepository.save(user);

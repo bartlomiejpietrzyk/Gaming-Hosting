@@ -7,6 +7,7 @@ import org.hibernate.validator.constraints.Length;
 import javax.persistence.*;
 import javax.validation.constraints.Email;
 import javax.validation.constraints.NotEmpty;
+import java.time.LocalDateTime;
 import java.util.Set;
 
 @Getter
@@ -17,16 +18,25 @@ public class User extends UUIDgenerator {
     @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)
     private Long id;
-    @Length(min = 2)
+
+    @Length(min = 4)
     @NotEmpty
     private String username;
+
     @Email
     @NotEmpty
     private String email;
+
     @NotEmpty
     private String password;
+
     private Boolean enabled;
-    @ManyToMany(cascade = CascadeType.PERSIST, fetch = FetchType.EAGER)
+
+    private Boolean locked;
+
+    private LocalDateTime created;
+
+    @ManyToMany(cascade = CascadeType.ALL, fetch = FetchType.EAGER)
     @JoinTable(name = "user_role",
             joinColumns = @JoinColumn(name = "user_id"),
             inverseJoinColumns = @JoinColumn(name = "role_id"))
