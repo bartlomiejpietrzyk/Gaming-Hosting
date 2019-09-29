@@ -14,8 +14,8 @@ import javax.validation.Valid;
 import java.security.Principal;
 import java.util.List;
 
-@Controller
-@RequestMapping("/api/admin/user")
+//@Controller
+//@RequestMapping("/api/admin/user")
 public class AdminUsersPanelController {
 
     private UserService userService;

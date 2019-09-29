@@ -1,4 +1,4 @@
-package pl.bartlomiejpietrzyk.validator;
+package pl.copy.validator;
 
 import javax.validation.Constraint;
 import javax.validation.Payload;

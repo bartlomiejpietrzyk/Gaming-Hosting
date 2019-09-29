@@ -15,7 +15,6 @@ public interface UserRepository extends JpaRepository<User, Long> {
     @Override
     User getOne(Long aLong);
 
-    @Override
     void delete(Long id);
 
     @Override

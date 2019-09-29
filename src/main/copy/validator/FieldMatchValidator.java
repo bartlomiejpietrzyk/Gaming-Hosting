@@ -1,4 +1,4 @@
-package pl.bartlomiejpietrzyk.validator;
+package pl.copy.validator;
 
 import org.apache.commons.beanutils.BeanUtils;
 

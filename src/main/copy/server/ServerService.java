@@ -52,7 +52,7 @@ public class ServerService {
     public Server setServerFromDtoOrderForm(Server server, ServerOrderDto serverOrderDto) {
         server.setName(serverOrderDto.getName());
         server.setType(serverOrderDto.getType());
-        server.setGame(gameRepository.findOne(Long.valueOf(serverOrderDto.getId())));
+//        server.setGame(gameRepository.findOne(Long.valueOf(serverOrderDto.getId())));
         server.setUser(userRepository.getOne(Long.valueOf(serverOrderDto.getUser())));
         server.setPaid(Boolean.valueOf(serverOrderDto.getPaymentStatus()));
         server.setActive(Boolean.valueOf(serverOrderDto.getActive()));
