@@ -5,7 +5,7 @@ import pl.bartlomiejpietrzyk.user.User;
 import pl.bartlomiejpietrzyk.user.dto.UserCreateDto;
 import pl.bartlomiejpietrzyk.user.dto.UserRegistrationDto;
 
-public interface UserRegistrationService extends UserDetailsService {
+public interface UserRegistrationService {
 
     User findByEmail(String email);
 

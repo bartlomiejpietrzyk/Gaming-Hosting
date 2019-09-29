@@ -12,7 +12,7 @@ import pl.bartlomiejpietrzyk.entity.User;
 import java.util.HashSet;
 import java.util.Set;
 
-public class UserDetailsServiceImpl implements UserDetailsService {
+public class SpringDataUserDetailsService implements UserDetailsService {
     private UserRegistrationService userRegistrationService;
 
     @Autowired
@@ -21,7 +21,7 @@ public class UserDetailsServiceImpl implements UserDetailsService {
     }
 
     @Override
-    public UserDetails loadUserByUsername(String email) {
+    public UserDetails loadUserByUsername(String email) throws UsernameNotFoundException {
         User user = userRegistrationService.findByEmail(email);
         if (user == null) {
             throw new UsernameNotFoundException(email);
