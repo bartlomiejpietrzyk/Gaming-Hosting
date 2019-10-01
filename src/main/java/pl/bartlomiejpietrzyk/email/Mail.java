@@ -1,16 +1,14 @@
-package pl.bartlomiejpietrzyk.entity;
+package pl.bartlomiejpietrzyk.email;
 
 import lombok.Getter;
 import lombok.Setter;
 
-import javax.persistence.Entity;
 import javax.validation.constraints.Email;
 import javax.validation.constraints.NotNull;
 import javax.validation.constraints.Size;
 
 @Getter
 @Setter
-@Entity
 public class Mail {
     @Email
     @NotNull

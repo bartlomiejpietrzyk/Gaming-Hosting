@@ -20,7 +20,6 @@ public class User extends UUIDgenerator {
     private Long id;
 
     @Length(min = 4)
-    @NotEmpty
     private String username;
 
     @Email
@@ -41,10 +40,4 @@ public class User extends UUIDgenerator {
             joinColumns = @JoinColumn(name = "user_id"),
             inverseJoinColumns = @JoinColumn(name = "role_id"))
     private Set<Role> roles;
-
-    @ManyToMany(cascade = CascadeType.ALL, fetch = FetchType.EAGER)
-    @JoinTable(name = "user_mail",
-            joinColumns = @JoinColumn(name = "user_id"),
-            inverseJoinColumns = @JoinColumn(name = "mail_id"))
-    private Set<Mail> mail;
 }

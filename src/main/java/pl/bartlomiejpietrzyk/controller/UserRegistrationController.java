@@ -4,10 +4,7 @@ import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
 import org.springframework.validation.BindingResult;
-import org.springframework.web.bind.annotation.GetMapping;
-import org.springframework.web.bind.annotation.ModelAttribute;
-import org.springframework.web.bind.annotation.PostMapping;
-import org.springframework.web.bind.annotation.RequestMapping;
+import org.springframework.web.bind.annotation.*;
 import pl.bartlomiejpietrzyk.account.UserRegistrationService;
 import pl.bartlomiejpietrzyk.dto.UserRegistrationDto;
 import pl.bartlomiejpietrzyk.entity.User;
@@ -15,7 +12,7 @@ import pl.bartlomiejpietrzyk.entity.User;
 import javax.validation.Valid;
 
 @Controller
-@RequestMapping("/registration")
+@RequestMapping
 public class UserRegistrationController {
 
     private UserRegistrationService userRegistrationService;
@@ -31,12 +28,12 @@ public class UserRegistrationController {
         return new UserRegistrationDto();
     }
 
-    @GetMapping
+    @GetMapping("/registration")
     public String showRegistrationForm(Model model) {
         return "registration";
     }
 
-    @PostMapping
+    @PostMapping("/registration")
     public String registerUserAccount(@ModelAttribute("user") @Valid UserRegistrationDto userDto,
                                       BindingResult result) {
 
@@ -52,5 +49,11 @@ public class UserRegistrationController {
         userDto.setEnabled(true);
         userRegistrationService.saveUser(userDto);
         return "redirect:/registration?success";
+    }
+
+    @GetMapping("/account")
+    public String activateAccount(@RequestParam("uuid") String uuid) {
+        userRegistrationService.unlockAccount(uuid);
+        return "redirect:/registration?active";
     }
 }

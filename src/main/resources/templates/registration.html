@@ -16,7 +16,13 @@
 
                             <div th:if="${param.success}">
                                 <div class="alert alert-info">
-                                <span class="text-dark text-monospace" th:text="#{register.message.success}">
+                                <span class="text-dark text-monospace" th:text="#{register.message.succqess}">
+                                    You've successfully registered!</span>
+                                </div>
+                            </div>
+                            <div th:if="${param.active}">
+                                <div class="alert alert-info">
+                                <span class="text-dark text-monospace" th:text="#{register.message.active}">
                                     You've successfully registered!</span>
                                 </div>
                             </div>
