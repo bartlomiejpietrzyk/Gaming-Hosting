@@ -7,4 +7,6 @@ public interface UserRegistrationService {
     User findByEmail(String email);
 
     void saveUser(UserRegistrationDto user);
+
+    void unlockAccount(String uuid);
 }
