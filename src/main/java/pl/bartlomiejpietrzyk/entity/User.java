@@ -31,6 +31,9 @@ public class User extends UUIDgenerator {
     @NotEmpty
     private String email;
 
+    @Length(min = 9, max = 9)
+    private String mobile;
+
     @NotEmpty
     private String password;
 
@@ -50,5 +53,5 @@ public class User extends UUIDgenerator {
     @JoinTable(name = "user_address",
             joinColumns = @JoinColumn(name = "user_id"),
             inverseJoinColumns = @JoinColumn(name = "address_id"))
-    private Address addresses;
+    private Address address;
 }
