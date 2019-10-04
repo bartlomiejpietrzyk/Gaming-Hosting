@@ -2,7 +2,6 @@ package pl.bartlomiejpietrzyk.dto;
 
 import lombok.Getter;
 import lombok.Setter;
-import org.hibernate.validator.constraints.Length;
 import org.springframework.beans.factory.annotation.Autowired;
 import pl.bartlomiejpietrzyk.validator.FieldMatch;
 
@@ -22,14 +21,14 @@ public class UserRegistrationDto {
     public UserRegistrationDto() {
     }
 
-    @Length(min = 4)
+    //    @Length(min = 4)
     @NotEmpty
     private String username;
-    @Length(min = 8, max = 32)
+    //    @Length(min = 8, max = 32)
     @NotEmpty
     private String password;
 
-    @Length(min = 8, max = 32)
+    //    @Length(min = 8, max = 32)
     @NotEmpty
     private String confirmPassword;
 

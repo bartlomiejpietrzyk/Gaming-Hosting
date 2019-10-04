@@ -13,13 +13,34 @@
                     <div class="col-md-3"></div>
                     <div class="row">
                         <div class="col-md-12 col-md-offset-6">
+                            <div th:if="${param.error}">
+                                <div class="alert alert-info">
+                                <span class="text-dark text-monospace" th:text="#{register.message.error}">
+                                    Registration failed, try again!</span>
+                                </div>
+                            </div>
+
+                            <div th:if="${param.emailExist}">
+                                <div class="alert alert-danger">
+                                <span class="text-dark text-monospace" th:text="#{register.message.email.exist}">
+                                    Registration failed, try again!</span>
+                                </div>
+                            </div>
+
+                            <div th:if="${param.notMatch}">
+                                <div class="alert alert-danger">
+                                <span class="text-dark text-monospace" th:text="#{register.message.not.match}">
+                                    Registration failed, try again!</span>
+                                </div>
+                            </div>
 
                             <div th:if="${param.success}">
                                 <div class="alert alert-info">
-                                <span class="text-dark text-monospace" th:text="#{register.message.succqess}">
+                                <span class="text-dark text-monospace" th:text="#{register.message.success}">
                                     You've successfully registered!</span>
                                 </div>
                             </div>
+
                             <div th:if="${param.active}">
                                 <div class="alert alert-info">
                                 <span class="text-dark text-monospace" th:text="#{register.message.active}">
@@ -27,14 +48,36 @@
                                 </div>
                             </div>
 
-                            <h4 class="text-monospace"><span class="btn-danger"
-                                                             th:text="#{register.title}">Registration</span></h4>
+                            <div th:if="${param.notActive}">
+                                <div class="alert alert-warning">
+                                <span class="text-dark text-monospace" th:text="#{register.message.not.active}">
+                                    You've successfully registered!</span>
+                                </div>
+                            </div>
+
+                            <h4 class="text-monospace">
+                                <span class="btn-danger"
+                                      th:text="#{register.title}">Registration</span></h4>
+
                             <form th:action="@{/registration}" th:object="${user}" method="post">
 
                                 <h6 class="error-message btn-outline-danger text-white"
                                     th:if="${#fields.hasGlobalErrors()}"
                                     th:each="error : ${#fields.errors('global')}">
-                                    <span class="btn-danger" th:text="${error}">Validation error</span></h6>
+                                    <span class="btn-danger" th:text="${error}">Validation error</span>
+                                </h6>
+
+                                <qdiv class="form-group"
+                                      th:classappend="${#fields.hasErrors('username')}? 'has-error':''">
+                                    <label for="email" class="control-label"
+                                           th:text="#{login.form.username}">Username</label>
+                                    <input id="username"
+                                           class="form-control"
+                                           th:field="*{username}"/>
+                                    <h6 class="error-message btn-outline-danger text-white"
+                                        th:each="error : ${#fields.errors('username')}">
+                                        <span class="btn-danger" th:text="${error}">Validation error</span></h6>
+                                </qdiv>
 
                                 <div class="form-group"
                                      th:classappend="${#fields.hasErrors('email')}? 'has-error':''">
@@ -47,6 +90,7 @@
                                         th:each="error : ${#fields.errors('email')}">
                                         <span class="btn-danger" th:text="${error}">Validation error</span></h6>
                                 </div>
+
                                 <div class="form-group"
                                      th:classappend="${#fields.hasErrors('confirmEmail')}? 'has-error':''">
                                     <label for="confirmEmail" class="control-label"
@@ -58,6 +102,7 @@
                                         th:each="error : ${#fields.errors('confirmEmail')}">
                                         <span class="btn-danger" th:text="${error}">Validation error</span></h6>
                                 </div>
+
                                 <div class="form-group"
                                      th:classappend="${#fields.hasErrors('password')}? 'has-error':''">
                                     <label for="password" class="control-label" th:text="#{register.form.password}">Password</label>
