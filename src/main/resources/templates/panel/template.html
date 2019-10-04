@@ -14,12 +14,11 @@
     <title>HeadMasters - Administrator Panel</title>
 
     <!-- Custom fonts for this template-->
-    <link href="/vendor/fontawesome-free/css/all.min.css" rel="stylesheet" type="text/css">
-    <link href="https://fonts.googleapis.com/css?family=Nunito:200,200i,300,300i,400,400i,600,600i,700,700i,800,800i,900,900i"
+    <link th:href="@{/vendor/fontawesome-free/css/all.min.css}" rel="stylesheet" type="text/css">
+    <link th:href="@{https://fonts.googleapis.com/css?family=Nunito:200,200i,300,300i,400,400i,600,600i,700,700i,800,800i,900,900i}"
           rel="stylesheet">
-
     <!-- Custom styles for this template-->
-    <link href="/css/sb-admin-2.min.css" rel="stylesheet">
+    <link id="mainCss" th:href="@{/css/sb-admin-2.min.css}" rel="stylesheet">
 
 </head>
 
@@ -58,144 +57,12 @@
                 <span>Panel użytkownika</span></a>
         </li>
 
-        <!-- Divider -->
-        <hr class="sidebar-divider">
-
-        <!-- Heading -->
-        <div class="sidebar-heading">
-            User playground
+        <div layout:fragment="user_menu">
         </div>
 
-        <!-- Nav Item - Pages Collapse Menu -->
-        <li class="nav-item">
-            <a class="nav-link collapsed" href="#" data-toggle="collapse" data-target="#collapseOneUser"
-               aria-expanded="true" aria-controls="collapseOneUser">
-                <i class="fas fa-fw fa-user"></i>
-                <span>Panel użytkownika</span>
-            </a>
-            <div id="collapseOneUser" class="collapse" aria-labelledby="headingTwo" data-parent="#accordionSidebar">
-                <div class="bg-white py-2 collapse-inner rounded">
-                    <h6 class="collapse-header">User panel</h6>
-                    <a class="collapse-item" th:href="@{/api/user/myProfile}">Mój profil</a>
-                    <a class="collapse-item" th:href="@{/api/user/myServers}">Moje serwery</a>
-                    <a class="collapse-item" th:href="@{/api/user/myPayments}">Moje płatności</a>
-                    <a class="collapse-item" th:href="@{/api/user/server/order}">Zamów serwer</a>
-                </div>
-            </div>
-        </li>
-
-        <!-- Divider -->
-        <hr class="sidebar-divider">
 
         <!--END OF FRAGMENT MENU-->
-        <div layout:fragment="admin-menu">
-            <!-- Heading -->
-            <div class="sidebar-heading">
-                Administrator playground
-            </div>
-            <!-- Divider -->
-            <hr class="sidebar-divider">
-
-            <!-- Nav Item - Pages Collapse Menu -->
-            <li class="nav-item">
-                <a class="nav-link collapsed" href="#" data-toggle="collapse" data-target="#collapseUser"
-                   aria-expanded="true" aria-controls="collapseUser">
-                    <i class="fas fa-fw fa-address-book"></i>
-                    <span>Users Panel</span>
-                </a>
-                <div id="collapseUser" class="collapse" aria-labelledby="headingTwo" data-parent="#accordionSidebar">
-                    <div class="bg-white py-2 collapse-inner rounded">
-                        <h6 class="collapse-header">Admin panel</h6>
-                        <a class="collapse-item" th:href="@{/api/admin/user}">Lista użytkowników</a>
-                    </div>
-                </div>
-            </li>
-            <!-- Divider -->
-            <hr class="sidebar-divider">
-            <!-- Nav Item - Pages Collapse Menu -->
-            <li class="nav-item">
-                <a class="nav-link collapsed" href="#" data-toggle="collapse" data-target="#collapseServer  "
-                   aria-expanded="true"
-                   aria-controls="collapseServer">
-                    <i class="fas fa-fw fa-server"></i>
-                    <span>Servers Panel</span>
-                </a>
-                <div id="collapseServer" class="collapse" aria-labelledby="headingTwo" data-parent="#accordionSidebar">
-                    <div class="bg-white py-2 collapse-inner rounded">
-                        <h6 class="collapse-header">Admin panel</h6>
-                        <a class="collapse-item" th:href="@{/api/admin/server}">Lista serwerów</a>
-                    </div>
-                </div>
-            </li>
-            <!-- Divider -->
-            <hr class="sidebar-divider">
-            <!-- Nav Item - Pages Collapse Menu -->
-            <li class="nav-item">
-                <a class="nav-link collapsed" href="#" data-toggle="collapse" data-target="#collapseGames"
-                   aria-expanded="true"
-                   aria-controls="collapseGames">
-                    <i class="fas fa-fw fa-gamepad"></i>
-                    <span>Games Panel</span>
-                </a>
-                <div id="collapseGames" class="collapse" aria-labelledby="headingTwo" data-parent="#accordionSidebar">
-                    <div class="bg-white py-2 collapse-inner rounded">
-                        <h6 class="collapse-header">Admin panel</h6>
-                        <a class="collapse-item" th:href="@{/api/admin/game}">Lista gier</a>
-                    </div>
-                </div>
-            </li>
-            <!-- Divider -->
-            <hr class="sidebar-divider">
-            <!-- Nav Item - Pages Collapse Menu -->
-            <li class="nav-item">
-                <a class="nav-link collapsed" href="#" data-toggle="collapse" data-target="#collapseHosting"
-                   aria-expanded="true"
-                   aria-controls="collapseHosting">
-                    <i class="fas fa-fw fa-sitemap"></i>
-                    <span>Hosting Panel</span>
-                </a>
-                <div id="collapseHosting" class="collapse" aria-labelledby="headingTwo" data-parent="#accordionSidebar">
-                    <div class="bg-white py-2 collapse-inner rounded">
-                        <h6 class="collapse-header">Admin panel</h6>
-                        <a class="collapse-item" th:href="@{/api/admin/hosting/list}">Lista hostingów</a>
-                        <a class="collapse-item" th:href="@{/api/admin/hosting/add}">Dodaj hosting</a>
-                        <a class="collapse-item" th:href="@{/api/admin/hosting/edit}">Edytuj hosting</a>
-                        <a class="collapse-item" th:href="@{/api/admin/hosting/locker}">Blokady hostingów</a>
-                        <a class="collapse-item" th:href="@{/api/admin/hosting/delete}">Usuń hosting</a>
-                    </div>
-                </div>
-            </li>
-            <!-- Divider -->
-            <hr class="sidebar-divider">
-            <!-- Nav Item - Pages Collapse Menu -->
-            <li class="nav-item">
-                <a class="nav-link collapsed" href="#" data-toggle="collapse" data-target="#collapsePayment"
-                   aria-expanded="true"
-                   aria-controls="collapseHosting">
-                    <i class="fas fa-fw fa-cc-amazon-pay"></i>
-                    <span>Payment Panel</span>
-                </a>
-
-                <div id="collapsePayment" class="collapse" aria-labelledby="headingTwo" data-parent="#accordionSidebar">
-                    <div class="bg-white py-2 collapse-inner rounded">
-                        <h6 class="collapse-header">Admin panel</h6>
-                        <a class="collapse-item" th:href="@{/api/admin/payment/list}">Lista płatności</a>
-                        <a class="collapse-item" th:href="@{/api/admin/payment/debet}">Lista zaległych płatności</a>
-                        <a class="collapse-item" th:href="@{/api/admin/payment/add}">Dodaj pośrednika</a>
-                        <a class="collapse-item" th:href="@{/api/admin/payment/locker}">Blokady płatności</a>
-                        <a class="collapse-item" th:href="@{/api/admin/payment/payments}">Rozlicz płatności</a>
-                    </div>
-                </div>
-            </li>
-
-
-            <!-- Divider -->
-            <hr class="sidebar-divider">
-
-            <!-- Sidebar Toggler (Sidebar) -->
-            <div class="text-center d-none d-md-inline">
-                <button class="rounded-circle border-0" id="sidebarToggle"></button>
-            </div>
+        <div layout:fragment="admin_menu">
         </div>
         <!--END OF FRAGMENT MENU-->
     </ul>
