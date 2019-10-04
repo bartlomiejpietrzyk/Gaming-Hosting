@@ -7,9 +7,9 @@ import org.springframework.validation.BindingResult;
 import org.springframework.web.bind.annotation.*;
 import pl.bartlomiejpietrzyk.account.UserRegistrationService;
 import pl.bartlomiejpietrzyk.dto.UserRegistrationDto;
-import pl.bartlomiejpietrzyk.entity.User;
 
 import javax.validation.Valid;
+import java.sql.SQLIntegrityConstraintViolationException;
 
 @Controller
 @RequestMapping
@@ -35,24 +35,26 @@ public class UserRegistrationController {
 
     @PostMapping("/registration")
     public String registerUserAccount(@ModelAttribute("user") @Valid UserRegistrationDto userDto,
-                                      BindingResult result) {
-
-        User existingEmail = userRegistrationService.findByEmail(userDto.getEmail());
-        if (existingEmail != null) {
-            result.rejectValue("email", null, "There is already an account registered with that email");
+                                      BindingResult result) throws SQLIntegrityConstraintViolationException {
+        if (!userDto.getPassword().equals(userDto.getConfirmPassword())) {
+            return "redirect:/registration?notMatch";
+        }
+        if (userRegistrationService.findByEmail(userDto.getEmail()) != null) {
+            return "redirect:/registration?emailExist";
         }
 
         if (result.hasErrors()) {
-            return "registration";
+            return "redirect:/registration?error";
         }
-        userDto.setLocked(false);
-        userDto.setEnabled(true);
         userRegistrationService.saveUser(userDto);
         return "redirect:/registration?success";
     }
 
     @GetMapping("/account")
-    public String activateAccount(@RequestParam("uuid") String uuid) {
+    public String activateAccount(@RequestParam("uuid") String uuid, BindingResult result) {
+        if (result.hasErrors()) {
+            return "redirect:/registration?notActive";
+        }
         userRegistrationService.unlockAccount(uuid);
         return "redirect:/registration?active";
     }

@@ -42,17 +42,19 @@ public class UserRegistrationServiceImpl implements UserRegistrationService {
     @Override
     public void saveUser(UserRegistrationDto userDto) {
         User user = new User();
+        user.setUsername(userDto.getUsername());
         user.setPassword(passwordEncoder.encode(userDto.getPassword()));
-        user.setLocked(userDto.getLocked());
-        user.setEnabled(userDto.getEnabled());
+        user.setLocked(false);
+        user.setEnabled(false);
         user.setEmail(userDto.getEmail());
         Role userRole = roleRepository.findByName("ROLE_USER");
         user.setRoles(new HashSet<>(Arrays.asList(userRole)));
         User save = userRepository.save(user);
         emailService.sendMessage(save.getEmail(),
                 String.format("Hello %s! Account created!",
-                        save.getEmail()),
-                "To activate proceed: " + GamingHostingApplication.URL + "account?uuid=" + save.getUuid());
+                        save.getUsername()),
+                "To activate proceed: " + GamingHostingApplication.URL
+                        + "account?uuid=" + save.getUuid());
     }
 
     @Override

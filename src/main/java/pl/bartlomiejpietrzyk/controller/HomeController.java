@@ -22,6 +22,11 @@ public class HomeController {
         return "panel/dashboard";
     }
 
+    @GetMapping("/admin")
+    public String adminIndex() {
+        return "panel/dashboard";
+    }
+
     @GetMapping("/about")
     public String about() {
         return "about";

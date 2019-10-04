@@ -2,10 +2,8 @@ package pl.bartlomiejpietrzyk.dto;
 
 import lombok.Getter;
 import lombok.Setter;
-import org.hibernate.annotations.CreationTimestamp;
 import org.hibernate.validator.constraints.Length;
 import org.springframework.beans.factory.annotation.Autowired;
-import org.springframework.format.annotation.DateTimeFormat;
 import pl.bartlomiejpietrzyk.validator.FieldMatch;
 
 import javax.validation.constraints.AssertTrue;
@@ -24,6 +22,9 @@ public class UserRegistrationDto {
     public UserRegistrationDto() {
     }
 
+    @Length(min = 4)
+    @NotEmpty
+    private String username;
     @Length(min = 8, max = 32)
     @NotEmpty
     private String password;
@@ -42,12 +43,4 @@ public class UserRegistrationDto {
 
     @AssertTrue
     private Boolean terms;
-
-    private Boolean locked;
-
-    private Boolean enabled;
-
-    @CreationTimestamp
-    @DateTimeFormat(pattern = "yyyy-MM-dd HH:mm:ss")
-    private String created;
 }
