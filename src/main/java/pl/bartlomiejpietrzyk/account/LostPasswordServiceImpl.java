@@ -37,9 +37,15 @@ public class LostPasswordServiceImpl implements LostPasswordService {
 
     @Override
     public SimpleMailMessage constructResetTokenEmail(String token, User user) {
-        String url = GamingHostingApplication.URL + "/account/reset?id=" + user.getId() + "&token=" + token;
+        String url = new StringBuffer()
+                .append(GamingHostingApplication.URL)
+                .append("/account/reset?id=").append(user.getId())
+                .append("&token=").append(token).toString();
 
-        String message = "Witaj " + user.getFirstName() + "!\nBy zresetować hasło kliknij w poniższy link!\n";
+        String message = new StringBuffer()
+                .append("Witaj ")
+                .append(user.getFirstName())
+                .append("!\nBy zresetować hasło kliknij w poniższy link!\n").toString();
         return constructEmail(user, "Reset Password", message + " \r\n" + url);
     }
 
@@ -52,11 +58,12 @@ public class LostPasswordServiceImpl implements LostPasswordService {
     }
 
     @Override
-    public void createPasswordToken(User user) {
+    public PasswordToken createPasswordToken(User user) {
         PasswordToken token = new PasswordToken();
         token.setUser(user);
         token.setToken(UUID.randomUUID().toString());
-        passwordTokenRepository.save(token);
+        PasswordToken savedToken = passwordTokenRepository.save(token);
+        return savedToken;
     }
 
     @Override

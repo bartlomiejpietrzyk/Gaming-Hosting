@@ -1,12 +1,13 @@
 package pl.bartlomiejpietrzyk.account;
 
 import org.springframework.mail.SimpleMailMessage;
+import pl.bartlomiejpietrzyk.entity.PasswordToken;
 import pl.bartlomiejpietrzyk.entity.User;
 
 public interface LostPasswordService {
     SimpleMailMessage constructResetTokenEmail(String token, User user);
 
-    void createPasswordToken(User user);
+    PasswordToken createPasswordToken(User user);
 
     String validatePasswordToken(Long id, String token);
 
