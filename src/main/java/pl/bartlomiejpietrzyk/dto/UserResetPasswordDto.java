@@ -16,7 +16,7 @@ import javax.validation.constraints.NotEmpty;
 @FieldMatch.List({
         @FieldMatch(first = "password", second = "passwordConfirm", message = "The password fields must match"),
 })
-public class UserLostPasswordDto {
+public class UserResetPasswordDto {
     @NotEmpty
     private String id;
     @Email
@@ -33,10 +33,10 @@ public class UserLostPasswordDto {
     public String token;
 
     @Autowired
-    public UserLostPasswordDto() {
+    public UserResetPasswordDto() {
     }
 
-    public UserLostPasswordDto(User that) {
+    public UserResetPasswordDto(User that) {
         this.id = String.valueOf(that.getId());
         this.email = that.getEmail();
         this.password = that.getPassword();
