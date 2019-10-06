@@ -29,12 +29,13 @@ public class UserEditServiceImpl implements UserEditService {
         user.setLastName(userDto.getLastName());
         user.setMobile(userDto.getMobile());
         user.setEmail(userDto.getEmail());
-        address.setBuilding(Integer.valueOf(userDto.getBuilding()));
+        address.setBuilding(userDto.getBuilding());
         address.setCity(userDto.getCity());
-        address.setHomeNumber(Integer.valueOf(userDto.getHome()));
+        address.setHomeNumber(userDto.getHome());
         address.setStreet(userDto.getStreet());
         address.setPostCode(userDto.getPostCode());
-        user.setAddress(address);
+        Address savedAddress = addressRepository.save(address);
+        user.setAddress(savedAddress);
         userRepository.save(user);
     }
 }
