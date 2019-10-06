@@ -14,12 +14,11 @@
     <title>HeadMasters - Administrator Panel</title>
 
     <!-- Custom fonts for this template-->
-    <link href="/vendor/fontawesome-free/css/all.min.css" rel="stylesheet" type="text/css">
-    <link href="https://fonts.googleapis.com/css?family=Nunito:200,200i,300,300i,400,400i,600,600i,700,700i,800,800i,900,900i"
+    <link th:href="@{/vendor/fontawesome-free/css/all.min.css}" rel="stylesheet" type="text/css">
+    <link th:href="@{https://fonts.googleapis.com/css?family=Nunito:200,200i,300,300i,400,400i,600,600i,700,700i,800,800i,900,900i}"
           rel="stylesheet">
-
     <!-- Custom styles for this template-->
-    <link href="/css/sb-admin-2.min.css" rel="stylesheet">
+    <link id="mainCss" th:href="@{/css/sb-admin-2.min.css}" rel="stylesheet">
 
 </head>
 
@@ -53,7 +52,7 @@
 
         <!-- Nav Item - Dashboard -->
         <li class="nav-item active">
-            <a class="nav-link" th:href="@{/api/dashboard}">
+            <a class="nav-link" th:href="@{/dashboard}">
                 <i class="fas fa-fw fa-address-card"></i>
                 <span>Panel użytkownika</span></a>
         </li>
@@ -76,9 +75,10 @@
             <div id="collapseOneUser" class="collapse" aria-labelledby="headingTwo" data-parent="#accordionSidebar">
                 <div class="bg-white py-2 collapse-inner rounded">
                     <h6 class="collapse-header">User panel</h6>
-                    <a class="collapse-item" th:href="@{/api/user/myProfile}">Mój profil</a>
-                    <a class="collapse-item" th:href="@{/api/user/myServers}">Moje serwery</a>
-                    <a class="collapse-item" th:href="@{/api/user/myPayments}">Moje płatności</a>
+                    <a class="collapse-item" th:href="@{/user/profile}">Mój profil</a>
+                    <a class="collapse-item" th:href="@{/user/servers}">Moje serwery</a>
+                    <a class="collapse-item" th:href="@{/user/payments}">Moje płatności</a>
+                    <a class="collapse-item" th:href="@{/user/order}">Zamów serwer</a>
                 </div>
             </div>
         </li>
@@ -105,7 +105,7 @@
                 <div id="collapseUser" class="collapse" aria-labelledby="headingTwo" data-parent="#accordionSidebar">
                     <div class="bg-white py-2 collapse-inner rounded">
                         <h6 class="collapse-header">Admin panel</h6>
-                        <a class="collapse-item" th:href="@{/api/admin/user}">Lista użytkowników</a>
+                        <a class="collapse-item" th:href="@{/admin/user}">Lista użytkowników</a>
                     </div>
                 </div>
             </li>
@@ -122,7 +122,7 @@
                 <div id="collapseServer" class="collapse" aria-labelledby="headingTwo" data-parent="#accordionSidebar">
                     <div class="bg-white py-2 collapse-inner rounded">
                         <h6 class="collapse-header">Admin panel</h6>
-                        <a class="collapse-item" th:href="@{/api/admin/server}">Lista serwerów</a>
+                        <a class="collapse-item" th:href="@{/admin/server}">Lista serwerów</a>
                     </div>
                 </div>
             </li>
@@ -139,7 +139,7 @@
                 <div id="collapseGames" class="collapse" aria-labelledby="headingTwo" data-parent="#accordionSidebar">
                     <div class="bg-white py-2 collapse-inner rounded">
                         <h6 class="collapse-header">Admin panel</h6>
-                        <a class="collapse-item" th:href="@{/api/admin/game}">Lista gier</a>
+                        <a class="collapse-item" th:href="@{/admin/game}">Lista gier</a>
                     </div>
                 </div>
             </li>
@@ -156,11 +156,11 @@
                 <div id="collapseHosting" class="collapse" aria-labelledby="headingTwo" data-parent="#accordionSidebar">
                     <div class="bg-white py-2 collapse-inner rounded">
                         <h6 class="collapse-header">Admin panel</h6>
-                        <a class="collapse-item" th:href="@{/api/admin/hosting/list}">Lista hostingów</a>
-                        <a class="collapse-item" th:href="@{/api/admin/hosting/add}">Dodaj hosting</a>
-                        <a class="collapse-item" th:href="@{/api/admin/hosting/edit}">Edytuj hosting</a>
-                        <a class="collapse-item" th:href="@{/api/admin/hosting/locker}">Blokady hostingów</a>
-                        <a class="collapse-item" th:href="@{/api/admin/hosting/delete}">Usuń hosting</a>
+                        <a class="collapse-item" th:href="@{/admin/hosting/list}">Lista hostingów</a>
+                        <a class="collapse-item" th:href="@{/admin/hosting/add}">Dodaj hosting</a>
+                        <a class="collapse-item" th:href="@{/admin/hosting/edit}">Edytuj hosting</a>
+                        <a class="collapse-item" th:href="@{/admin/hosting/locker}">Blokady hostingów</a>
+                        <a class="collapse-item" th:href="@{/admin/hosting/delete}">Usuń hosting</a>
                     </div>
                 </div>
             </li>
@@ -178,11 +178,11 @@
                 <div id="collapsePayment" class="collapse" aria-labelledby="headingTwo" data-parent="#accordionSidebar">
                     <div class="bg-white py-2 collapse-inner rounded">
                         <h6 class="collapse-header">Admin panel</h6>
-                        <a class="collapse-item" th:href="@{/api/admin/payment/list}">Lista płatności</a>
-                        <a class="collapse-item" th:href="@{/api/admin/payment/debet}">Lista zaległych płatności</a>
-                        <a class="collapse-item" th:href="@{/api/admin/payment/add}">Dodaj pośrednika</a>
-                        <a class="collapse-item" th:href="@{/api/admin/payment/locker}">Blokady płatności</a>
-                        <a class="collapse-item" th:href="@{/api/admin/payment/payments}">Rozlicz płatności</a>
+                        <a class="collapse-item" th:href="@{/admin/payment/list}">Lista płatności</a>
+                        <a class="collapse-item" th:href="@{/admin/payment/debet}">Lista zaległych płatności</a>
+                        <a class="collapse-item" th:href="@{/admin/payment/add}">Dodaj pośrednika</a>
+                        <a class="collapse-item" th:href="@{/admin/payment/locker}">Blokady płatności</a>
+                        <a class="collapse-item" th:href="@{/admin/payment/payments}">Rozlicz płatności</a>
                     </div>
                 </div>
             </li>
@@ -232,7 +232,7 @@
                         <!-- Dropdown - User Information -->
                         <div class="dropdown-menu dropdown-menu-right shadow animated--grow-in"
                              aria-labelledby="userDropdown">
-                            <a class="dropdown-item" th:href="@{/api/user/myProfile}">
+                            <a class="dropdown-item" th:href="@{/user/myProfile}">
                                 <i class="fas fa-user fa-sm fa-fw mr-2 text-gray-400"></i>
                                 <span th:text="#{panel.menu.user.myprofile}">Profile</span>
                             </a>

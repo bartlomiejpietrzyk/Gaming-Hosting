@@ -1,0 +1,118 @@
+<!DOCTYPE HTML>
+<html xmlns:th="http://www.thymeleaf.org"
+      xmlns:layout="http://www.ultraq.net.nz/web/thymeleaf/layout"
+      layout:decorate="panel/template" lang="pl">
+<body>
+
+<div layout:fragment="top-bar">
+    <span class="text-white btn border-white">
+        <a class="btn alert-dark" th:href="@{/api/user/server}"
+           th:text="#{panel.text.button.back}"></a></span>
+</div>
+<section layout:fragment="content">
+
+    <!-- Begin Page Content -->
+    <div class="container-fluid">
+        <!---->
+        <!-- Page Heading -->
+        <div class="d-sm-flex align-items-center justify-content-between mb-4">
+            <h1 class="h3 mb-0 text-gray-800" th:text="#{panel.text.add.orderServerDetails}">Rent details</h1>
+        </div>
+
+        <!-- DataTales Example -->
+        <div class="card shadow mb-4">
+            <div class="card-body">
+                <div class="table-responsive">
+                    <div th:if="${param.success}">
+                        <div class="alert alert-info">
+                                <span class="text-dark text-monospace" th:text="#{panel.text.orderServer.success}">
+                                    You've successfully ordered Server!</span>
+                        </div>
+                    </div>
+                    <form th:action="@{/api/user/server/order}" th:object="${server}" th:method="post">
+
+                        <h6 class="error-message btn-outline-danger text-white"
+                            th:if="${#fields.hasGlobalErrors()}"
+                            th:each="error : ${#fields.errors('global')}">
+                            <span class="btn-danger" th:text="${error}">Validation error</span></h6>
+
+                        <div class="form-group"
+                             th:classappend="${#fields.hasErrors('name')}? 'has-error':''">
+                            <label for="name" class="control-label"
+                                   th:text="#{panel.text.server.name}">Name</label>
+                            <input id="name"
+                                   class="form-control"
+                                   th:field="*{name}"/>
+                            <h6 class="error-message btn-outline-danger text-white"
+                                th:each="error : ${#fields.errors('name')}">
+                                <span class="btn-danger" th:text="${error}">Validation error</span></h6>
+                        </div>
+
+                        <!--                        SELECT TYPE-->
+
+                        <div class="form-group">
+                            <span class="" th:text="#{panel.text.server.type}"></span><br>
+                            <select class="btn btn-outline-dark" th:field="*{type}">
+                                <option th:value="public" th:text="#{panel.text.server.type.priv}"></option>
+                                <option th:value="private" th:text="#{panel.text.server.type.pub}"></option>
+                            </select>
+                        </div>
+                        <!--                        SELECT GAME-->
+                        <div class="form-group">
+                            <span class="" th:text="#{panel.text.server.game}"></span><br>
+                            <select class="btn btn-outline-dark" th:field="*{game}">
+                                <option th:each="game : ${game}" th:value="${game.id}" th:text="${game.title}"></option>
+
+                            </select>
+                        </div>
+                        <!--                        SELECT SLOT-->
+                        <div class="form-group">
+                            <span class="" th:text="#{panel.text.server.slot}"></span>
+                            <select class="btn btn-outline-dark" th:field="*{slot}">
+                                <option th:each="slot : ${game}" th:value="${game.slot}"
+                                        th:text="${game.slot}"></option>
+                                <option th:each="slot : ${game}" th:value="${game.maxPlayers}"
+                                        th:text="${game.maxPlayers}"></option>
+
+                                <option th:value="false" th:text="#{panel.text.locked.false}"></option>
+                            </select>
+                        </div>
+
+
+                        <!--                        SELECT RENT START-->
+                        <!--                        SELECT RENT TIME-->
+
+                        <div class="form-group">
+                            <button type="submit" class="btn btn-danger" th:text="#{register.button.submit}">
+                                Register
+                            </button>
+                        </div>
+                    </form>
+
+                    <br><br>
+                </div>
+            </div>
+        </div>
+    </div>
+    <!-- Content Row -->
+    <div class="row">
+        <!---->
+        <!-- Content Column -->
+        <div class="col-lg-6 mb-4">
+            <!---->
+            <!---->
+        </div>
+        <!---->
+        <div class="col-lg-6 mb-4">
+            <!---->
+        </div>
+    </div>
+    <!---->
+    </div>
+    <!-- /.container-fluid -->
+    <!---->
+</section>
+
+
+</body>
+</html>
