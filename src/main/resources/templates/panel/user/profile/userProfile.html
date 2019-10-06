@@ -11,11 +11,13 @@
                        th:text="#{panel.text.myservers}"></a>
                     <a class="btn btn-outline-light" th:href="@{/user/payments/}"
                        th:text="#{panel.text.mypayments}"></a>
-        <a th:href="@{/user/edit(id=${user.id})}">
+        <a th:href="@{/user/profile/edit(id=${user.id})}">
             <input type="submit" th:value="#{panel.text.button.edit}"
-                   class="btn btn-outline-light"/> </a>
-    <a class="btn alert-dark" href="javascript:history.back()"
-       th:text="#{panel.text.button.back}"></a></span>
+                   class="btn btn-outline-light"/>
+        </a>
+        <a href="javascript:history.back()"
+           class="btn btn-outline-secondary"
+           th:text="#{panel.text.button.back}"></a>
 </div>
 <section layout:fragment="content">
 
@@ -41,55 +43,55 @@
                         <!--            Details Table                    -->
                         <table class="table table-hover table-fixed table-bordered" id="dataTable"
                                width="100%" cellspacing="0">
-                            <thead th:object="${user}">
+
+                            <thead>
+                            <tr>
+                                <th colspan="2">
+                                    Test
+                                </th>
+                            </tr>
+                            </thead>
+                            <tbody th:object="${user}">
                             <tr>
                                 <th class="alert" th:text="#{panel.text.username}"></th>
                                 <td th:text="${user.username}"></td>
                             </tr>
                             <tr>
-                                <th class="alert-dark" th:text="#{panel.text.firstname}"></th>
+                                <th class="alert" th:text="#{panel.text.firstname}"></th>
                                 <td th:text="${user.firstName}"></td>
                             </tr>
                             <tr>
-                                <th class="alert-dark" th:text="#{panel.text.lastname}"></th>
+                                <th class="alert" th:text="#{panel.text.lastname}"></th>
                                 <td th:text="${user.lastName}"></td>
                             </tr>
                             <tr>
-                                <th class="alert-dark" th:text="#{panel.text.email}"></th>
+                                <th class="alert" th:text="#{panel.text.email}"></th>
                                 <td th:text="${user.email}"></td>
                             </tr>
                             <tr>
-                                <th class="alert-dark" th:text="#{panel.text.mobile}">Mobile</th>
+                                <th class="alert" th:text="#{panel.text.mobile}">Mobile</th>
                                 <td th:text="${user.mobile}"></td>
                             </tr>
                             <tr>
-                                <th class="alert-dark" th:text="#{panel.text.address}"></th>
-                                <td th:text="${user.address.street} + ' ' + ${user.address.building}
-                                + '/' + ${user.address.homeNumber} + ', ' + ${user.address.city}
-                                + ' ' ${user.address.postCode} "></td>
+                                <th class="alert" th:text="#{panel.text.address}"></th>
+                                <td th:text="${user.address.street  + ' ' + user.address.building
+                                + '/' + user.address.homeNumber + ', ' + user.address.city
+                                + ' ' + user.address.postCode} "></td>
                             </tr>
                             <tr>
-                                <th class="alert-dark" th:text="#{panel.text.isEnabled}"></th>
+                                <th class="alert" th:text="#{panel.text.isEnabled}"></th>
                                 <td th:text="${user.enabled}"></td>
                             </tr>
                             <tr>
-                                <th class="alert-dark" th:text="#{panel.text.isLocked}"></th>
+                                <th class="alert" th:text="#{panel.text.isLocked}"></th>
                                 <td th:text="${user.locked}"></td>
                             </tr>
                             <tr>
-                                <th class="alert-dark" th:text="#{panel.text.created}"></th>
+                                <th class="alert" th:text="#{panel.text.created}"></th>
                                 <td th:text="${user.created}"></td>
-                            </tr>
-                            </thead>
-                            <!--                                                            <td th:text="${user.address.street}"></td>-->
-                            <!--                                <td th:text="${user.address.building}"></td>-->
-                            <!--                                <td th:text="${user.address.homeNumber}"></td>-->
-                            <!--                                <td th:text="${user.address.city}"></td>-->
-                            <!--                                <td th:text="${user.address.postCode}"></td>-->
                             </tr>
                             </tbody>
                         </table>
-                        <p class="btn btn-outline-secondary">Edytuj</p>
                     </div>
                 </div>
             </div>

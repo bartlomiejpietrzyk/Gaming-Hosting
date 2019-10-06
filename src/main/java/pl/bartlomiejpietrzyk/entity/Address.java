@@ -4,7 +4,6 @@ import lombok.Getter;
 import lombok.Setter;
 
 import javax.persistence.*;
-import javax.validation.constraints.NotEmpty;
 
 @Getter
 @Setter
@@ -15,18 +14,13 @@ public class Address {
     @GeneratedValue(strategy = GenerationType.IDENTITY)
     private Long id;
 
-    @NotEmpty
     private String street;
 
-    @NotEmpty
     private Integer building;
 
-    @NotEmpty
     private Integer homeNumber;
 
-    @NotEmpty
     private String city;
 
-    @NotEmpty
     private String postCode;
 }
