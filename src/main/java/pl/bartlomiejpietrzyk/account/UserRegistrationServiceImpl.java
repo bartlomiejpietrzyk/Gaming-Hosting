@@ -1,5 +1,7 @@
 package pl.bartlomiejpietrzyk.account;
 
+import org.slf4j.Logger;
+import org.slf4j.LoggerFactory;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.security.crypto.bcrypt.BCryptPasswordEncoder;
 import org.springframework.stereotype.Service;
@@ -12,12 +14,14 @@ import pl.bartlomiejpietrzyk.entity.User;
 import pl.bartlomiejpietrzyk.repository.RoleRepository;
 import pl.bartlomiejpietrzyk.repository.UserRepository;
 
+import java.time.LocalDateTime;
 import java.util.Arrays;
 import java.util.HashSet;
 
 @Service
 @Transactional
 public class UserRegistrationServiceImpl implements UserRegistrationService {
+    private final Logger LOG = LoggerFactory.getLogger(UserRegistrationServiceImpl.class);
     private final UserRepository userRepository;
     private final RoleRepository roleRepository;
     private final BCryptPasswordEncoder passwordEncoder;
@@ -55,12 +59,18 @@ public class UserRegistrationServiceImpl implements UserRegistrationService {
                         save.getUsername()),
                 "To activate proceed: " + GamingHostingApplication.URL
                         + "account?uuid=" + save.getUuid());
+        LOG.info(String.format("%s :: User Account:: [ID: %s, Username: %s, Mail: %s has been created!")
+                , LocalDateTime.now().format(GamingHostingApplication.formatter),
+                save.getUsername(), save.getEmail());
     }
 
     @Override
     public void unlockAccount(String uuid) {
-        User oneByUuid = userRepository.findOneByUuid(uuid);
-        oneByUuid.setEnabled(true);
-        userRepository.save(oneByUuid);
+        User user = userRepository.findOneByUuid(uuid);
+        user.setEnabled(true);
+        userRepository.save(user);
+        LOG.info(String.format("%s :: User Account:: [ID: %s, Username: %s, Mail: %s] has been activated!")
+                , LocalDateTime.now().format(GamingHostingApplication.formatter),
+                user.getUsername(), user.getEmail());
     }
 }

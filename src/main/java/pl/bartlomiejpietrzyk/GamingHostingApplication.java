@@ -8,13 +8,14 @@ import org.springframework.mail.SimpleMailMessage;
 import org.springframework.mail.javamail.JavaMailSender;
 import org.springframework.mail.javamail.JavaMailSenderImpl;
 
+import java.time.format.DateTimeFormatter;
 import java.util.Properties;
 
 @EnableJpaRepositories
 @SpringBootApplication(scanBasePackages = "pl.bartlomiejpietrzyk")
 public class GamingHostingApplication {
     public static String URL = "http://localhost:8080/";
-
+    public static DateTimeFormatter formatter = DateTimeFormatter.ofPattern("yyyy-MM-dd HH:mm:ss");
     public static void main(String[] args) {
         SpringApplication.run(GamingHostingApplication.class, args);
     }
