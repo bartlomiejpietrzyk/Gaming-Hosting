@@ -6,4 +6,5 @@ import pl.bartlomiejpietrzyk.entity.PasswordToken;
 
 @Repository
 public interface PasswordTokenRepository extends JpaRepository<PasswordToken, Long> {
+    PasswordToken findByToken(String token);
 }
