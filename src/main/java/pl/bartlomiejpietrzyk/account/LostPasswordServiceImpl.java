@@ -42,16 +42,20 @@ public class LostPasswordServiceImpl implements LostPasswordService {
     public SimpleMailMessage constructResetTokenEmail(String token, User user) {
         String url = new StringBuffer()
                 .append(GamingHostingApplication.URL)
-                .append("/account/reset?id=").append(user.getId())
+                .append("account/reset?id=").append(user.getId())
                 .append("&token=").append(token).toString();
 
         String message = new StringBuffer()
                 .append("Witaj ")
                 .append(user.getFirstName())
                 .append("!\nBy zresetować hasło kliknij w poniższy link!\n").toString();
-        LOG.info(String.format("%s :: User Account:: [ID: %s, Username: %s, Mail: %s] lost password message sent!")
-                , LocalDateTime.now().format(GamingHostingApplication.formatter),
-                user.getUsername(), user.getEmail());
+        LOG.info(new StringBuilder()
+                .append(LocalDateTime.now().format(GamingHostingApplication.FORMATTER))
+                .append(" :: User Account:: ")
+                .append("[ID: ").append(user.getId())
+                .append(", Username: ").append(user.getUsername())
+                .append(", Mail: ").append(user.getEmail())
+                .append("] lost password message sent!").toString());
         return constructEmail(user, "Reset Password", message + " \r\n" + url);
     }
 
@@ -69,9 +73,13 @@ public class LostPasswordServiceImpl implements LostPasswordService {
         token.setUser(user);
         token.setToken(UUID.randomUUID().toString());
         PasswordToken savedToken = passwordTokenRepository.save(token);
-        LOG.info(String.format("%s :: User Account:: [ID: %s, Username: %s, Mail: %s] created password reset token!")
-                , LocalDateTime.now().format(GamingHostingApplication.formatter),
-                user.getUsername(), user.getEmail());
+        LOG.info(new StringBuilder()
+                .append(LocalDateTime.now().format(GamingHostingApplication.FORMATTER))
+                .append(" :: User Account:: ")
+                .append("[ID: ").append(user.getId())
+                .append(", Username: ").append(user.getUsername())
+                .append(", Mail: ").append(user.getEmail())
+                .append("] created password reset token!").toString());
         return savedToken;
     }
 
@@ -80,8 +88,9 @@ public class LostPasswordServiceImpl implements LostPasswordService {
         PasswordToken passwordToken = passwordTokenRepository.findByToken(token);
 
         if (passwordToken == null || (passwordToken.getUser().getId() != id)) {
-            LOG.error(String.format("%s :: Lost Password :: error occured! Wrong token!")
-                    , LocalDateTime.now().format(GamingHostingApplication.formatter));
+            LOG.error(new StringBuilder()
+                    .append(LocalDateTime.now().format(GamingHostingApplication.FORMATTER))
+                    .append(" :: Lost Password:: error occured! Wrong token!").toString());
             return 0;
         }
 
@@ -91,10 +100,13 @@ public class LostPasswordServiceImpl implements LostPasswordService {
                 new UsernamePasswordAuthenticationToken(user, null,
                         Arrays.asList(new SimpleGrantedAuthority("CHANGE_PASSWORD_AUTH")));
         SecurityContextHolder.getContext().setAuthentication(authentication);
-        LOG.info(String.format("%s :: User Account:: [ID: %s, Username: %s, Mail: %s] lost password message sent!")
-                , LocalDateTime.now().format(GamingHostingApplication.formatter),
-                user.getUsername(), user.getEmail());
-
+        LOG.info(new StringBuilder()
+                .append(LocalDateTime.now().format(GamingHostingApplication.FORMATTER))
+                .append(" :: User Account:: ")
+                .append("[ID: ").append(user.getId())
+                .append(", Username: ").append(user.getUsername())
+                .append(", Mail: ").append(user.getEmail())
+                .append("] lost password message sent!").toString());
         return null;
     }
 
@@ -103,8 +115,11 @@ public class LostPasswordServiceImpl implements LostPasswordService {
         PasswordToken passwordToken = passwordTokenRepository.findByToken(token);
         passwordToken.setTokenUsed(LocalDateTime.now());
         passwordTokenRepository.save(passwordToken);
-        LOG.info(String.format("%s :: Token Invalidate :: Token ID: %s invalidated!")
-                , LocalDateTime.now().format(GamingHostingApplication.formatter), passwordToken.getId());
+        LOG.info(new StringBuilder()
+                .append(LocalDateTime.now().format(GamingHostingApplication.FORMATTER))
+                .append(" :: Token Invalidate :: Token ID: ")
+                .append(passwordToken.getToken())
+                .append(" invalidated!").toString());
     }
 
     @Override
@@ -113,8 +128,11 @@ public class LostPasswordServiceImpl implements LostPasswordService {
         existing.setPassword(passwordEncoder.encode(password));
         userRepository.save(existing);
         invalidatePasswordToken(token);
-        LOG.info(String.format("%s :: Reset Password :: User '%s' successfully reseted password!")
-                , LocalDateTime.now().format(GamingHostingApplication.formatter), existing.getEmail());
+        LOG.info(new StringBuilder()
+                .append(LocalDateTime.now().format(GamingHostingApplication.FORMATTER))
+                .append(" :: Reset Password:: User ")
+                .append(existing.getEmail())
+                .append(" successfully reseted password!").toString());
 
     }
 }

@@ -60,7 +60,7 @@ public class UserRegistrationServiceImpl implements UserRegistrationService {
                 "To activate proceed: " + GamingHostingApplication.URL
                         + "account?uuid=" + save.getUuid());
         LOG.info(String.format("%s :: User Account:: [ID: %s, Username: %s, Mail: %s has been created!")
-                , LocalDateTime.now().format(GamingHostingApplication.formatter),
+                , LocalDateTime.now().format(GamingHostingApplication.FORMATTER),
                 save.getUsername(), save.getEmail());
     }
 
@@ -70,7 +70,7 @@ public class UserRegistrationServiceImpl implements UserRegistrationService {
         user.setEnabled(true);
         userRepository.save(user);
         LOG.info(String.format("%s :: User Account:: [ID: %s, Username: %s, Mail: %s] has been activated!")
-                , LocalDateTime.now().format(GamingHostingApplication.formatter),
+                , LocalDateTime.now().format(GamingHostingApplication.FORMATTER),
                 user.getUsername(), user.getEmail());
     }
 }

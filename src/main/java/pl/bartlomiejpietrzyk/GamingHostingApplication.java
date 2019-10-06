@@ -15,7 +15,7 @@ import java.util.Properties;
 @SpringBootApplication(scanBasePackages = "pl.bartlomiejpietrzyk")
 public class GamingHostingApplication {
     public static String URL = "http://localhost:8080/";
-    public static DateTimeFormatter formatter = DateTimeFormatter.ofPattern("yyyy-MM-dd HH:mm:ss");
+    public static DateTimeFormatter FORMATTER = DateTimeFormatter.ofPattern("yyyy-MM-dd HH:mm:ss");
     public static void main(String[] args) {
         SpringApplication.run(GamingHostingApplication.class, args);
     }

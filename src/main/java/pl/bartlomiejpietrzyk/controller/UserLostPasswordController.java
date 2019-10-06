@@ -65,7 +65,8 @@ public class UserLostPasswordController {
 
     @GetMapping("/account/reset")
     public String resetPasswordHome(@RequestParam Long id,
-                                    @RequestParam String token, Model model) {
+                                    @RequestParam String token,
+                                    Model model) {
         PasswordToken byToken = passwordTokenRepository.findByToken(token);
         if (byToken == null) {
             return "redirect:/lostPassword?notoken";
@@ -81,5 +82,15 @@ public class UserLostPasswordController {
         model.addAttribute("reset", userChangeLostPasswordDto);
 
         return "resetPassword";
+    }
+
+    @PostMapping("/account/reset")
+    public String proceedPasswordResetSite(@ModelAttribute("reset") @Valid UserResetPasswordDto passwordDto,
+                                           BindingResult result) {
+        if (result.hasErrors()) {
+            return "redirect:/resetPassword?id=" + passwordDto.getId() + "&token=" + passwordDto.getToken() + "&failed";
+        }
+        passwordService.changePassword(passwordDto.getId(), passwordDto.getPassword(), passwordDto.getToken());
+        return "redirect:/login?changed";
     }
 }
