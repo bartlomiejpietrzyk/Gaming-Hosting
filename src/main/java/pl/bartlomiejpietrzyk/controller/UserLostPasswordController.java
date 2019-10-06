@@ -35,35 +35,35 @@ public class UserLostPasswordController {
         this.emailService = emailService;
     }
 
-    @GetMapping("/password/lost")
+    @GetMapping("/account/lost")
     public String lostPasswordHome(Model model) {
         model.addAttribute("user", new UserLostPasswordDto());
         return "lostPassword";
     }
 
-    @PostMapping("/password/lost")
+    @PostMapping("/account/lost")
     public String lostPasswordProceed(@ModelAttribute("user") @Valid UserLostPasswordDto userDto,
                                       BindingResult result) {
         User user = userRepository.findByEmail(userDto.getEmail());
         if (result.hasErrors()) {
-            return "redirect:/lostPassword?error";
+            return "redirect:/account/lost?error";
         }
         if (user == null) {
-            return "redirect:/lostPassword?notExist";
+            return "redirect:/account/lost?notExist";
         }
         if (!user.getEnabled()) {
-            return "redirect:/lostPassword?disabled";
+            return "redirect:/account/lost?disabled";
         }
         PasswordToken passwordToken = passwordService.createPasswordToken(user);
         SimpleMailMessage simpleMailMessage = passwordService
                 .constructResetTokenEmail(passwordToken.getToken(), user);
         emailService.sendMessage(user.getEmail(),
                 simpleMailMessage.getSubject(), simpleMailMessage.getText());
-        return "redirect:/lostPassword?sent";
+        return "redirect:/account/lost?sent";
     }
 
 
-    @GetMapping("/password/reset")
+    @GetMapping("/account/reset")
     public String resetPasswordHome(@RequestParam Long id,
                                     @RequestParam String token, Model model) {
         PasswordToken byToken = passwordTokenRepository.findByToken(token);

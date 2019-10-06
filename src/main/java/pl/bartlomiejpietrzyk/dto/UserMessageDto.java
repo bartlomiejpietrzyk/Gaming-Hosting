@@ -3,9 +3,8 @@ package pl.bartlomiejpietrzyk.dto;
 import lombok.Getter;
 import lombok.Setter;
 import org.springframework.beans.factory.annotation.Autowired;
+import pl.bartlomiejpietrzyk.GamingHostingApplication;
 import pl.bartlomiejpietrzyk.entity.Message;
-
-import java.time.format.DateTimeFormatter;
 
 @Getter
 @Setter
@@ -26,7 +25,7 @@ public class UserMessageDto {
         this.userId = that.getUserId();
         this.subject = that.getSubject();
         this.text = that.getText();
-        this.time = that.getTime().format(DateTimeFormatter.ofPattern("yyyy-MM-dd HH:mm:ss"));
+        this.time = that.getTime().format(GamingHostingApplication.FORMATTER);
         this.status = that.getStatus();
     }
 }
