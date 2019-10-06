@@ -69,18 +69,17 @@ public class UserLostPasswordController {
                                     Model model) {
         PasswordToken byToken = passwordTokenRepository.findByToken(token);
         if (byToken == null) {
-            return "redirect:/lostPassword?notoken";
+            return "redirect:/account/lost?notoken";
         } else if (byToken.getId() != null && byToken.getTokenUsed() != null) {
-            return "redirect:/lostPassword?usedtoken";
+            return "redirect:/account/lost?usedtoken";
         }
         if (passwordService.validatePasswordToken(id, token) != null) {
-            return "redirect:/lostPassword?error";
+            return "redirect:/account/lost?error";
         }
         UserResetPasswordDto userChangeLostPasswordDto =
                 new UserResetPasswordDto(userRepository.getOne(id));
         userChangeLostPasswordDto.setToken(token);
         model.addAttribute("reset", userChangeLostPasswordDto);
-
         return "resetPassword";
     }
 
