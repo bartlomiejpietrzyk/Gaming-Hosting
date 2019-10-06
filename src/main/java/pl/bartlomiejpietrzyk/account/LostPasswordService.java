@@ -9,7 +9,7 @@ public interface LostPasswordService {
 
     PasswordToken createPasswordToken(User user);
 
-    String validatePasswordToken(Long id, String token);
+    Integer validatePasswordToken(Long id, String token);
 
     void invalidatePasswordToken(String token);
 
