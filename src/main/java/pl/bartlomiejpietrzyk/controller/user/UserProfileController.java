@@ -6,6 +6,8 @@ import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
 import org.springframework.validation.BindingResult;
 import org.springframework.web.bind.annotation.*;
+import pl.bartlomiejpietrzyk.account.IChangePasswordService;
+import pl.bartlomiejpietrzyk.dto.UserChangePasswordDto;
 import pl.bartlomiejpietrzyk.dto.UserEditDto;
 import pl.bartlomiejpietrzyk.entity.User;
 import pl.bartlomiejpietrzyk.repository.UserRepository;
@@ -19,11 +21,13 @@ import java.security.Principal;
 public class UserProfileController {
     private final UserRepository userRepository;
     private final UserEditService userEditService;
+    private final IChangePasswordService changePasswordService;
 
     @Autowired
-    public UserProfileController(UserRepository userRepository, UserEditService userEditService) {
+    public UserProfileController(UserRepository userRepository, UserEditService userEditService, IChangePasswordService changePasswordService) {
         this.userRepository = userRepository;
         this.userEditService = userEditService;
+        this.changePasswordService = changePasswordService;
     }
 
     @ModelAttribute("user")
@@ -53,5 +57,22 @@ public class UserProfileController {
         }
         userEditService.userDataEdit(user);
         return "redirect:/user/profile?success";
+    }
+
+    @GetMapping("/edit/password")
+    public String userChangePasswordHome(@RequestParam("id") Long id,
+                                         Model model) {
+        UserChangePasswordDto passwordDto = new UserChangePasswordDto(userRepository.getOne(id));
+        model.addAttribute("userPassword", passwordDto);
+        return "panel/user/profile/userPasswordEdit";
+    }
+
+    @PostMapping("/edit/password")
+    public String userChangePasswordProceed(@RequestParam("id") Long id,
+                                            @ModelAttribute("userPassword") UserChangePasswordDto passwordDto) {
+        Boolean aBoolean = changePasswordService.changePasswordSteps(userRepository.getOne(id));
+
+        System.err.println(aBoolean);
+        return "redirect:/user/profile";
     }
 }

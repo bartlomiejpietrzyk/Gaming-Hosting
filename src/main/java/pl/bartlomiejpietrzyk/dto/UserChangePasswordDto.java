@@ -8,21 +8,17 @@ import pl.bartlomiejpietrzyk.entity.User;
 import pl.bartlomiejpietrzyk.validator.FieldMatch;
 import pl.bartlomiejpietrzyk.validator.ValidPassword;
 
-import javax.validation.constraints.Email;
 import javax.validation.constraints.NotEmpty;
 
-@Setter
 @Getter
+@Setter
 @FieldMatch.List({
         @FieldMatch(first = "password", second = "passwordConfirm", message = "The password fields must match"),
 })
-public class UserResetPasswordDto {
+public class UserChangePasswordDto {
+
     @NotEmpty
     private String id;
-    @Email
-    @NotEmpty
-    private String email;
-    @Length(min = 8, max = 32)
     @NotEmpty
     @ValidPassword
     private String password;
@@ -32,13 +28,13 @@ public class UserResetPasswordDto {
     @NotEmpty
     private String token;
 
+
     @Autowired
-    public UserResetPasswordDto() {
+    public UserChangePasswordDto() {
     }
 
-    public UserResetPasswordDto(User that) {
+    public UserChangePasswordDto(User that) {
         this.id = String.valueOf(that.getId());
-        this.email = that.getEmail();
         this.password = that.getPassword();
         this.token = getToken();
     }
