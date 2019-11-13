@@ -1,0 +1,103 @@
+<!DOCTYPE HTML>
+<html xmlns:th="http://www.thymeleaf.org"
+      xmlns:layout="http://www.ultraq.net.nz/web/thymeleaf/layout"
+      layout:decorate="panel/template" lang="pl">
+<body>
+<div layout:fragment="top-bar">
+    <span class="text-white btn border-white"><span th:text="#{panel.text.add.create}"></span>:
+                    <a class="btn btn-outline-light" th:href="@{/admin/game/add/}"
+                       th:text="#{panel.text.server.game}"></a>
+</div>
+<section layout:fragment="content">
+
+    <!-- Begin Page Content -->
+    <div class="container-fluid">
+        <!---->
+        <!-- Page Heading -->
+        <div class="d-sm-flex align-items-center justify-content-between mb-4">
+            <h1 class="h3 mb-0 text-gray-800" th:text="#{panel.text.gamesList}">games List</h1>
+        </div>
+
+        <!-- DataTales Example -->
+        <div class="card shadow mb-4">
+
+            <div class="card-body">
+                <div class="table-responsive">
+                    <table class="table table-hover table-fixed table-bordered" id="dataTable" width="100%"
+                           cellspacing="0">
+                        <thead>
+
+                        <tr class="alert-outline-dark">
+                            <th th:text="#{panel.text.id}">#ID#</th>
+                            <th th:text="#{panel.text.game.title}">Title</th>
+                            <th th:text="#{panel.text.game.desc}">Description</th>
+                            <th th:text="#{panel.text.game.pub.slot.price}">Public Slot Price</th>
+                            <th th:text="#{panel.text.game.pub.slot.max}">Public Min Slot</th>
+                            <th th:text="#{panel.text.game.pub.slot.min}">Public Min Slot</th>
+                            <th th:text="#{panel.text.game.priv.slot.price}">Public Slot Price</th>
+                            <th th:text="#{panel.text.game.priv.slot.max}">Public Max Slot</th>
+                            <th th:text="#{panel.text.game.priv.slot.min}">Public Min Slot</th>
+                            <th th:text="#{panel.text.game.tv}">TV Slot</th>
+                            <th th:text="#{panel.text.game.tv.slot.price}">TV Slot</th>
+                            <th th:text="#{panel.text.action}">Actions</th>
+                        </tr>
+                        </thead>
+                        <tbody>
+                        <tr th:each="game : ${gamesList}">
+                            <td th:text="${game.id}"></td>
+                            <td th:text="${game.title}"></td>
+                            <td th:text="${game.description}"></td>
+                            <td th:text="${game.publicSlotPrice}"></td>
+                            <td th:text="${game.publicMaxSlot}"></td>
+                            <td th:text="${game.publicMinSlot}"></td>
+                            <td th:text="${game.privateSlotPrice}"></td>
+                            <td th:text="${game.privateMaxSlot}"></td>
+                            <td th:text="${game.privateMinSlot}"></td>
+                            <td th:text="${game.liveStreamTvSlot}"></td>
+                            <td th:text="${game.liveStreamTvSlotPrice}"></td>
+                            <td>
+                                <a th:href="@{/admin/game/details(id=${game.id})}">
+                                    <input type="hidden" name="id" th:value="${game.id}">
+                                    <input type="submit" th:value="#{panel.text.button.details}"
+                                           class="btn btn-outline-dark"/></a>
+
+                                <a th:href="@{/admin/game/edit(id=${game.id})}">
+                                    <input type="hidden" name="id" th:value="${game.id}">
+                                    <input type="submit" th:value="#{panel.text.button.edit}"
+                                           class="btn btn-outline-info"/></a>
+
+                                <a th:href="@{/admin/game/delete(id=${game.id})}"
+                                   th:action="@{/admin/game/delete(id=${game.id})}" method="post">
+                                    <input type="submit" th:value="#{panel.text.button.delete}"
+                                           class="btn btn-outline-danger"
+                                           onclick="return confirm('Are you sure to delete this game?')"></a>
+                            </td>
+                        </tr>
+                        </tbody>
+                    </table>
+                </div>
+            </div>
+        </div>
+
+        <!-- Content Row -->
+        <div class=" row">
+            <!---->
+            <!-- Content Column -->
+            <div class="col-lg-6 mb-4">
+                <!---->
+                <!---->
+            </div>
+            <!---->
+            <div class="col-lg-6 mb-4">
+                <!---->
+            </div>
+        </div>
+        <!---->
+    </div>
+    <!-- /.container-fluid -->
+    <!---->
+</section>
+
+
+</body>
+</html>
