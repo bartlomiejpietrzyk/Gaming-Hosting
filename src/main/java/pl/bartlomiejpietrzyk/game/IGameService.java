@@ -7,15 +7,17 @@ import java.util.List;
 
 public interface IGameService {
 
-    Game addGame(GameDto gameDto);
+    boolean addGame(GameDto gameDto);
+
+    GameDto getGameDetails(Long id);
 
     List<Game> getAllGames();
 
-    Game editGame(Long id);
+    GameDto editGame(Long id, GameDto gameDto);
 
     Boolean setAvailable(boolean available);
 
     void removeGame(Long id);
 
-    Game dtoToGame(GameDto gameDto);
+    Long getIdByTitle(String title);
 }

@@ -6,7 +6,7 @@
 
 <div layout:fragment="top-bar">
     <span class="text-white btn border-white">
-        <a class="btn alert-dark" th:href="@{/api/admin/user/}"
+        <a class="btn alert-dark" th:href="@{/admin/user/}"
            th:text="#{panel.text.button.back}"></a></span>
 </div>
 <section layout:fragment="content">
@@ -35,7 +35,7 @@
                                     You've successfully registered!</span>
                         </div>
                     </div>
-                    <form th:action="@{/admin/game/add}" th:object="${game}" th:method="post">
+                    <form th:action="@{/admin/game/add}" th:object="${newGame}" th:method="post">
 
                         <h6 class="error-message btn-outline-danger text-white"
                             th:if="${#fields.hasGlobalErrors()}"
@@ -155,12 +155,14 @@
 
                         <div class="form-group">
                             <span class="" th:text="#{panel.text.game.tv}"></span>
-                            <span th:text="${liveStreamTvSlot}"></span><br>
+                            <!--                            <span th:text="${liveStreamTvSlot}"></span>-->
+                            <br>
                             <select class="btn btn-outline-dark" th:field="*{liveStreamTvSlot}">
                                 <option th:value="true" th:text="#{panel.text.game.tv.av.true}"></option>
                                 <option th:value="false" th:text="#{panel.text.game.tv.av.false}"></option>
                             </select>
                         </div>
+
                         <div class="form-group"
                              th:classappend="${#fields.hasErrors('liveStreamTvSlotPrice')}? 'has-error':''">
                             <label for="tvSlot" class="control-label"
@@ -169,7 +171,7 @@
                                    class="form-control"
                                    type="number"
                                    step="0.01"
-                                   required="true"
+                                   required="false"
                                    th:field="*{liveStreamTvSlotPrice}"/>
                             <h6 class="error-message btn-outline-danger text-white"
                                 th:each="error : ${#fields.errors('liveStreamTvSlotPrice')}">
@@ -181,6 +183,16 @@
                             <select class="btn btn-outline-dark" th:field="*{available}">
                                 <option th:value="true" th:text="#{panel.text.game.ava.true}"></option>
                                 <option th:value="false" th:text="#{panel.text.game.ava.false}"></option>
+                            </select>
+                        </div>
+                        <div class="form-group">
+                            <span class="" th:text="#{panel.text.game.ava}"></span><br>
+                            <select class="btn btn-outline-dark" th:field="*{type}">
+                                <option th:value="FPS" th:text="#{game.type.fps}"></option>
+                                <option th:value="MMO" th:text="#{game.type.mmo}"></option>
+                                <option th:value="SANDBOX" th:text="#{game.type.sand}"></option>
+                                <option th:value="TEAMSPEAK" th:text="#{game.type.ts}"></option>
+                                <option th:value="MUMBLE" th:text="#{game.type.mum}"></option>
                             </select>
                         </div>
 

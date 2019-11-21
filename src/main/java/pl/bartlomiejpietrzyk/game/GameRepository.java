@@ -5,4 +5,5 @@ import pl.bartlomiejpietrzyk.entity.Game;
 
 public interface GameRepository extends JpaRepository<Game, Long> {
 
+    Game findByTitle(String name);
 }

@@ -3,9 +3,9 @@ package pl.bartlomiejpietrzyk.dto;
 import lombok.Getter;
 import lombok.Setter;
 import org.springframework.beans.factory.annotation.Autowired;
+import pl.bartlomiejpietrzyk.GameType;
 import pl.bartlomiejpietrzyk.entity.Game;
 
-import javax.validation.constraints.Min;
 import javax.validation.constraints.NotEmpty;
 
 @Getter
@@ -22,7 +22,6 @@ public class GameDto {
     @NotEmpty(message = "Set public slot price!")
     private Double publicSlotPrice;
 
-    @Min(12)
     @NotEmpty(message = "Set maximum public slots!")
     private Integer publicMaxSlot;
 
@@ -35,7 +34,6 @@ public class GameDto {
     @NotEmpty(message = "Set maximum private slots!")
     private Integer privateMaxSlot;
 
-    @Min(6)
     @NotEmpty(message = "Set minimum private slots!")
     private Integer privateMinSlot;
 
@@ -45,12 +43,15 @@ public class GameDto {
     @NotEmpty(message = "Set TV slot price!")
     private Double liveStreamTvSlotPrice;
 
+    private GameType type;
+
 
     @Autowired
     public GameDto() {
     }
 
     public GameDto(Game that) {
+        this.id = that.getId();
         this.title = that.getTitle();
         this.description = that.getDescription();
         this.publicSlotPrice = that.getPublicSlotPrice();
@@ -59,5 +60,9 @@ public class GameDto {
         this.privateMinSlot = that.getPrivateMinSlot();
         this.publicMaxSlot = that.getPublicMaxSlot();
         this.publicMinSlot = that.getPublicMinSlot();
+        this.available = that.getAvailable();
+        this.liveStreamTvSlot = that.getLiveStreamTvSlot();
+        this.liveStreamTvSlotPrice = that.getLiveStreamTvSlotPrice();
+        this.type = that.getType();
     }
 }

@@ -19,10 +19,23 @@ public class GameServiceImpl implements IGameService {
     }
 
     @Override
-    public Game addGame(GameDto gameDto) {
+    public boolean addGame(GameDto gameDto) {
         Game gameToSave = dtoToGame(gameDto);
         Game save = gameRepository.save(gameToSave);
-        return save;
+        Game one = gameRepository.getOne(save.getId());
+
+        return one.equals(save);
+    }
+
+    @Override
+    public GameDto getGameDetails(Long id) {
+        Game one = gameRepository.getOne(id);
+        return new GameDto(one);
+    }
+
+    @Override
+    public Long getIdByTitle(String name) {
+        return gameRepository.findByTitle(name).getId();
     }
 
     @Override
@@ -32,9 +45,15 @@ public class GameServiceImpl implements IGameService {
     }
 
     @Override
-    public Game editGame(Long id) {
-        Game existing = gameRepository.getOne(id);
-        return existing;
+    public GameDto editGame(Long id, GameDto gameDto) {
+        Game one = gameRepository.getOne(id);
+        Game game = dtoToGame(gameDto);
+        if (one.equals(game)) {
+            return null;
+        } else {
+            Game save = gameRepository.save(game);
+            return new GameDto(save);
+        }
     }
 
     @Override
@@ -47,9 +66,9 @@ public class GameServiceImpl implements IGameService {
 
     }
 
-    @Override
-    public Game dtoToGame(GameDto gameDto) {
+    private Game dtoToGame(GameDto gameDto) {
         Game game = new Game();
+        game.setId(gameDto.getId());
         game.setTitle(gameDto.getTitle());
         game.setDescription(gameDto.getDescription());
         game.setPublicSlotPrice(gameDto.getPublicSlotPrice());
@@ -58,6 +77,11 @@ public class GameServiceImpl implements IGameService {
         game.setPrivateSlotPrice(gameDto.getPrivateSlotPrice());
         game.setPrivateMaxSlot(gameDto.getPrivateMaxSlot());
         game.setPrivateMinSlot(gameDto.getPrivateMinSlot());
+        game.setAvailable(gameDto.getAvailable());
+        game.setLiveStreamTvSlot(gameDto.getLiveStreamTvSlot());
+        game.setLiveStreamTvSlotPrice(gameDto.getLiveStreamTvSlotPrice());
+        game.setType(gameDto.getType());
         return game;
     }
+
 }
