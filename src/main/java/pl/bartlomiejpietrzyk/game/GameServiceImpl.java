@@ -45,15 +45,20 @@ public class GameServiceImpl implements IGameService {
     }
 
     @Override
-    public GameDto editGame(Long id, GameDto gameDto) {
-        Game one = gameRepository.getOne(id);
-        Game game = dtoToGame(gameDto);
-        if (one.equals(game)) {
-            return null;
-        } else {
-            Game save = gameRepository.save(game);
-            return new GameDto(save);
-        }
+    public void editGame(Long id, GameDto gameDto) {
+        Game game = gameRepository.getOne(id);
+        game.setTitle(gameDto.getTitle());
+        game.setDescription(gameDto.getDescription());
+        game.setPublicSlotPrice(gameDto.getPublicSlotPrice());
+        game.setPublicMaxSlot(gameDto.getPublicMaxSlot());
+        game.setPublicMinSlot(gameDto.getPublicMinSlot());
+        game.setPrivateSlotPrice(gameDto.getPrivateSlotPrice());
+        game.setPrivateMaxSlot(gameDto.getPrivateMaxSlot());
+        game.setPrivateMinSlot(gameDto.getPrivateMinSlot());
+        game.setAvailable(gameDto.getAvailable());
+        game.setLiveStreamTvSlot(gameDto.getLiveStreamTvSlot());
+        game.setLiveStreamTvSlotPrice(gameDto.getLiveStreamTvSlotPrice());
+        gameRepository.saveAndFlush(game);
     }
 
     @Override
@@ -63,6 +68,7 @@ public class GameServiceImpl implements IGameService {
 
     @Override
     public void removeGame(Long id) {
+        gameRepository.deleteById(id);
 
     }
 
@@ -80,8 +86,6 @@ public class GameServiceImpl implements IGameService {
         game.setAvailable(gameDto.getAvailable());
         game.setLiveStreamTvSlot(gameDto.getLiveStreamTvSlot());
         game.setLiveStreamTvSlotPrice(gameDto.getLiveStreamTvSlotPrice());
-        game.setType(gameDto.getType());
         return game;
     }
-
 }

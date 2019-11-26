@@ -3,7 +3,6 @@ package pl.bartlomiejpietrzyk.dto;
 import lombok.Getter;
 import lombok.Setter;
 import org.springframework.beans.factory.annotation.Autowired;
-import pl.bartlomiejpietrzyk.GameType;
 import pl.bartlomiejpietrzyk.entity.Game;
 
 import javax.validation.constraints.NotEmpty;
@@ -43,8 +42,6 @@ public class GameDto {
     @NotEmpty(message = "Set TV slot price!")
     private Double liveStreamTvSlotPrice;
 
-    private GameType type;
-
 
     @Autowired
     public GameDto() {
@@ -63,6 +60,5 @@ public class GameDto {
         this.available = that.getAvailable();
         this.liveStreamTvSlot = that.getLiveStreamTvSlot();
         this.liveStreamTvSlotPrice = that.getLiveStreamTvSlotPrice();
-        this.type = that.getType();
     }
 }

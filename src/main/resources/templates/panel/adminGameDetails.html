@@ -1,0 +1,185 @@
+<!DOCTYPE HTML>
+<html xmlns:th="http://www.thymeleaf.org"
+      xmlns:layout="http://www.ultraq.net.nz/web/thymeleaf/layout"
+      layout:decorate="panel/template" lang="pl">
+<body>
+
+<div layout:fragment="top-bar">
+    <span class="text-white btn border-white">
+        <a href="javascript:history.back()"
+           class="btn alert-dark"
+           th:text="#{panel.text.button.back}"></a></span>
+</div>
+<section layout:fragment="content">
+
+    <!-- Begin Page Content -->
+    <div class="container-fluid">
+        <!---->
+        <!-- Page Heading -->
+        <div class="d-sm-flex align-items-center justify-content-between mb-4">
+            <h1 class="h3 mb-0 text-gray-800" th:text="#{panel.text.game.details}">Creating user</h1>
+        </div>
+
+        <!-- DataTales Example -->
+        <div class="card shadow mb-4">
+            <div class="card-body col-md-4">
+                <div class="table-responsive">
+                    <div th:if="${param.success}">
+                        <div class="alert alert-info">
+                                <span class="text-dark text-monospace" th:text="#{panel.text.game.succ}">
+                                    You've successfully added a game!</span>
+                        </div>
+                    </div>
+                    <div th:if="${param.failed}">
+                        <div class="alert alert-info">
+                                <span class="text-dark text-monospace" th:text="#{panel.text.game.fail}">
+                                    You've successfully registered!</span>
+                        </div>
+                    </div>
+                    <h6 class="error-message btn-outline-danger text-white"
+                        th:if="${#fields.hasGlobalErrors()}"
+                        th:each="error : ${#fields.errors('global')}">
+                        <span class="btn-danger" th:text="${error}">Validation error</span></h6>
+
+                    <div class="form-group">
+                        <label for="title" class="control-label"
+                               th:text="#{panel.text.game.title}">Title</label>
+                        <input id="title"
+                               class="form-control"
+                               disabled="true"
+                               th:value="${game.title}"/>
+                        <span class="btn-danger" th:text="${error}">Validation error</span></h6>
+                    </div>
+                    <div class="form-group">
+                        <label for="description" class="control-label"
+                               th:text="#{panel.text.game.desc}">Description</label>
+                        <input id="description"
+                               class="form-control"
+                               disabled="true"
+                               th:value="${game.description}"/>
+                        <span class="btn-danger" th:text="${error}">Validation error</span></h6>
+                    </div>
+
+                    <div class="form-group">
+                        <label for="publicPrice" class="control-label"
+                               th:text="#{panel.text.game.pub.slot.price}">Password</label>
+                        <input id="publicPrice"
+                               class="form-control"
+                               type="text"
+                               disabled="true"
+                               th:value="${game.publicSlotPrice}"/>
+                        <span class="btn-danger" th:text="${error}">Validation error</span></h6>
+                    </div>
+                    <div class="form-group">
+                        <label for="publicMax" class="control-label"
+                               th:text="#{panel.text.game.pub.slot.max}">Password</label>
+                        <input id="publicMax"
+                               class="form-control"
+                               type="text"
+                               disabled="true"
+                               th:value="${game.publicMaxSlot}"/>
+                        <span class="btn-danger" th:text="${error}">Validation error</span></h6>
+                    </div>
+                    <div class="form-group">
+                        <label for="publicMin" class="control-label"
+                               th:text="#{panel.text.game.pub.slot.min}">Password</label>
+                        <input id="publicMin"
+                               class="form-control"
+                               type="text"
+                               disabled="true"
+                               th:value="${game.publicMinSlot}"/>
+                        <span class="btn-danger" th:text="${error}">Validation error</span></h6>
+                    </div>
+
+                    <div class="form-group">
+                        <label for="privatePrice" class="control-label"
+                               th:text="#{panel.text.game.priv.slot.price}">Password</label>
+                        <input id="privatePrice"
+                               class="form-control"
+                               type="text"
+                               disabled="true"
+                               th:value="${game.privateSlotPrice}"/>
+                        <span class="btn-danger" th:text="${error}">Validation error</span></h6>
+                    </div>
+                    <div class="form-group">
+                        <label for="privateMax" class="control-label"
+                               th:text="#{panel.text.game.priv.slot.max}">Password</label>
+                        <input id="privateMax"
+                               class="form-control"
+                               type="text"
+                               disabled="true"
+                               th:value="${game.privateMaxSlot}"/>
+                        <span class="btn-danger" th:text="${error}">Validation error</span></h6>
+                    </div>
+                    <div class="form-group">
+                        <label for="privateMin" class="control-label"
+                               th:text="#{panel.text.game.priv.slot.min}">Password</label>
+                        <input id="privateMin"
+                               class="form-control"
+                               type="text"
+                               disabled="true"
+                               th:value="${game.privateMinSlot}"/>
+                        <span class="btn-danger" th:text="${error}">Validation error</span></h6>
+                    </div>
+
+                    <div class="form-group">
+                        <span class="" th:text="#{panel.text.game.tv}"></span>
+                        <!--                            <span th:text="${liveStreamTvSlot}"></span>-->
+                        <br>
+                        <select class="btn btn-outline-dark">
+                            <option th:if="${game.liveStreamTvSlot} == true" th:text="#{panel.text.game.tv.av.true}">
+                            <option th:if="${game.liveStreamTvSlot} == false" th:text="#{panel.text.game.tv.av.false}">
+                        </select>
+                    </div>
+
+                    <div class="form-group">
+                        <label for="tvSlot" class="control-label"
+                               th:text="#{panel.text.game.tv.slot.price}">TV Slot Price</label>
+                        <input id="tvSlot"
+                               class="form-control"
+                               type="text"
+                               disabled="true"
+                               th:value="${game.liveStreamTvSlotPrice}"/>
+                        <span class="btn-danger" th:text="${error}">Validation error</span></h6>
+                    </div>
+                    <div class="form-group">
+                        <span class="" th:text="#{panel.text.game.ava}"></span><br>
+                        <select class="btn btn-outline-dark" th:value="${game.available}">
+                            <option th:if="${game.liveStreamTvSlot} == false" th:text="#{panel.text.game.ava.false}">
+                            <option th:if="${game.liveStreamTvSlot} == true" th:text="#{panel.text.game.ava.true}">
+                        </select>
+                    </div>
+                    <div class="form-group">
+                        <a th:href="@{/admin/game/edit(id=${game.id})}"
+                           class="btn btn-danger" th:text="#{panel.text.button.edit}">
+                            Edit
+                        </a>
+                    </div>
+
+                    <br><br>
+                </div>
+            </div>
+        </div>
+    </div>
+    <!-- Content Row -->
+    <div class="row">
+        <!---->
+        <!-- Content Column -->
+        <div class="col-lg-6 mb-4">
+            <!---->
+            <!---->
+        </div>
+        <!---->
+        <div class="col-lg-6 mb-4">
+            <!---->
+        </div>
+    </div>
+    <!---->
+    </div>
+    <!-- /.container-fluid -->
+    <!---->
+</section>
+
+
+</body>
+</html>

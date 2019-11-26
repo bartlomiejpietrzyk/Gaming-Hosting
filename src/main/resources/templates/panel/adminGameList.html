@@ -6,7 +6,7 @@
 <div layout:fragment="top-bar">
     <span class="text-white btn border-white"><span th:text="#{panel.text.add.create}"></span>:
                     <a class="btn btn-outline-light" th:href="@{/admin/game/add/}"
-                       th:text="#{panel.text.server.game}"></a>
+                       th:text="#{panel.text.server.game}"></a></span>
 </div>
 <section layout:fragment="content">
 
@@ -31,7 +31,6 @@
                             <th th:text="#{panel.text.id}">#ID#</th>
                             <th width="30%" th:text="#{panel.text.game.title}">Title</th>
                             <th th:text="#{panel.text.game.desc}">Description</th>
-                            <th th:text="#{panel.text.game.type}">Type</th>
                             <th th:text="#{panel.text.game.tv}">TV Slot</th>
                             <th th:text="#{panel.text.game.ava}">Available</th>
                             <th th:text="#{panel.text.action}">Actions</th>
@@ -42,12 +41,11 @@
                             <td th:text="${game.id}"></td>
                             <td th:text="${game.title}"></td>
                             <td th:text="${game.description}"></td>
-                            <td th:text="${game.type}"></td>
                             <td>
                                 <th:block th:if="${game.liveStreamTvSlot} == true"
                                           th:text="#{panel.text.game.tv.av.true}"></th:block>
                                 <th:block th:if="${game.liveStreamTvSlot} != true"
-                                          th:text="#{panel.text.game.tv.av.true}"></th:block>
+                                          th:text="#{panel.text.game.tv.av.false}"></th:block>
                             </td>
                             <td>
                                 <th:block th:if="${game.available} == true"
@@ -97,7 +95,5 @@
     <!-- /.container-fluid -->
     <!---->
 </section>
-
-
 </body>
 </html>

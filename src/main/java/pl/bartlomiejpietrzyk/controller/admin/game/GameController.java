@@ -3,6 +3,7 @@ package pl.bartlomiejpietrzyk.controller.admin.game;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
+import org.springframework.validation.BindingResult;
 import org.springframework.web.bind.annotation.*;
 import pl.bartlomiejpietrzyk.dto.GameDto;
 import pl.bartlomiejpietrzyk.entity.Game;
@@ -40,12 +41,12 @@ public class GameController {
     }
 
     @PostMapping("/add")
-    public String createGameProceed(@ModelAttribute("gameProceed") GameDto gameDto) {
+    public String createGameProceed(@ModelAttribute("gameProceed") GameDto gameDto,
+                                    BindingResult result) {
         boolean b = gameService.addGame(gameDto);
-        if (!b) {
+        if (!b || result.hasErrors()) {
             return "redirect:/add?failed";
         }
-
         return "redirect:/admin/game/details?id=" + gameService.getIdByTitle(gameDto.getTitle());
     }
 
@@ -62,13 +63,24 @@ public class GameController {
                                       Model model) {
         GameDto gameDetails = gameService.getGameDetails(id);
         model.addAttribute("editGame", gameDetails);
-        return "panel/adminGameDetails";
+        return "panel/adminGameEdit";
     }
 
     @PostMapping("/edit")
     public String editGameDetailsProceed(@RequestParam("id") Long id,
-                                         @ModelAttribute("editGame") GameDto gameDto) {
-        GameDto gameDto1 = gameService.editGame(id, gameDto);
-        return "panel/details?id=" + id + "?success";
+                                         @ModelAttribute("editGame") GameDto gameDto,
+                                         BindingResult result) {
+        if (result.hasErrors()) {
+            return "panel/edit?id=" + id + "&failed";
+        }
+        gameService.editGame(id, gameDto);
+        return "panel/details?id=" + id + "&success";
     }
+
+    @RequestMapping("/delete")
+    public String removeGameProceed(@RequestParam Long id) {
+        gameService.removeGame(id);
+        return "redirect:/admin/game?" + id + "&deleted";
+    }
+
 }

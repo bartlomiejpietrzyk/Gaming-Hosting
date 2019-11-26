@@ -13,7 +13,7 @@ public interface IGameService {
 
     List<Game> getAllGames();
 
-    GameDto editGame(Long id, GameDto gameDto);
+    void editGame(Long id, GameDto gameDto);
 
     Boolean setAvailable(boolean available);
 
