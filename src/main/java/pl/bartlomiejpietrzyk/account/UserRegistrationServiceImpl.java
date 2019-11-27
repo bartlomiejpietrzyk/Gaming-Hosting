@@ -20,7 +20,7 @@ import java.util.HashSet;
 
 @Service
 @Transactional
-public class UserRegistrationServiceImpl implements UserRegistrationService {
+public class UserRegistrationServiceImpl implements IUserRegistrationService {
     private final Logger LOG = LoggerFactory.getLogger(UserRegistrationServiceImpl.class);
     private final UserRepository userRepository;
     private final RoleRepository roleRepository;

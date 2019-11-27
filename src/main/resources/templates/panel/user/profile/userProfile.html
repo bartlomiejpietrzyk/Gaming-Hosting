@@ -80,11 +80,15 @@
                             </tr>
                             <tr>
                                 <th class="alert" th:text="#{panel.text.isEnabled}"></th>
-                                <td th:text="${user.enabled}"></td>
+                                <td>
+                                    <span th:text="#{panel.text.yes}" th:if="${user.enabled} == true"></span>
+                                    <span th:text="#{panel.text.no}" th:if="${user.enabled} == false"></span>
+                                </td>
                             </tr>
                             <tr>
                                 <th class="alert" th:text="#{panel.text.isLocked}"></th>
-                                <td th:text="${user.locked}"></td>
+                                <span th:text="#{panel.text.yes}" th:if="${user.locked} == true"></span>
+                                <span th:text="#{panel.text.no}" th:unless="${user.locked} == false"></span>
                             </tr>
                             <tr>
                                 <th class="alert" th:text="#{panel.text.created}"></th>
